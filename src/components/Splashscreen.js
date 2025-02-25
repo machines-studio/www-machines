@@ -3,13 +3,12 @@ import shuffle from '/utils/array-shuffle'
 export const selector = '.splashscreen'
 
 export function hydrate (element) {
-  const images = element.querySelectorAll('figure')
+  const images = shuffle([...element.querySelectorAll('figure')])
   const logo = element.querySelector('h1 > svg')
   if (!images?.length) return
   if (!logo) return
 
-  let picker
-  let picked
+  let index = 0
 
   window.addEventListener('touchstart', show)
   window.addEventListener('touchend', hide)
@@ -19,13 +18,11 @@ export function hydrate (element) {
   function show () {
     hide()
 
-    if (!picker?.length) picker = shuffle([...images])
-    picked = picker.pop()
-    if (picked) picked.classList.add('is-visible')
-    else show()
+    index = (index + 1) % images.length
+    images[index]?.classList.add('is-visible')
   }
 
   function hide () {
-    picked?.classList.remove('is-visible')
+    images[index]?.classList.remove('is-visible')
   }
 }
