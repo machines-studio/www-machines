@@ -19,6 +19,7 @@
   --body-font-feature-settings: 'ss11' 1;
 
   @include mobile {
+    --space-gutter: 1.6rem;
     --body-font-size: 1.4rem;
   }
 
