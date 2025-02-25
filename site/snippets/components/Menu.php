@@ -1,4 +1,4 @@
 <menu class='menu'>
-  <a href='https://instagram.com/machines.studio'>instagram</a>
+  <?= Html::a('https://instagram.com/machines.studio', 'instagram', ['target' => '_blank']) ?>
   <?= Html::email($site->email(), 'email') ?>
 </menu>
