@@ -11,10 +11,10 @@ export function hydrate (element) {
   let picker
   let picked
 
-  logo.addEventListener('touchstart', show)
-  logo.addEventListener('touchend', hide)
-  logo.addEventListener('mouseenter', show)
-  logo.addEventListener('mouseleave', hide)
+  window.addEventListener('touchstart', show)
+  window.addEventListener('touchend', hide)
+  window.addEventListener('mousedown', show)
+  window.addEventListener('mouseup', hide)
 
   function show () {
     hide()
