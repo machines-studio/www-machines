@@ -1,0 +1,35 @@
+@import '/style/reset';
+@import '/style/fonts';
+@import '/style/prose';
+
+:root {
+  --color-white: #FFF;
+  --color-black: #222;
+
+  --space-gutter: 2rem;
+
+  --body-font-family: system-ui, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+  --body-font-size: 1.8rem;
+  --body-line-height: 130%;
+  --body-text-decoration-thickness: 1px;
+  --body-text-underline-offset: 0.2em;
+
+  --title-font-size: 4.0rem;
+  --title-font-weight: 700;
+
+  @include mobile {
+    --title-font-size: 6.0rem;
+    --body-font-size: 2.2rem;
+  }
+
+  @include retina {
+    --body-text-decoration-thickness: 15px;
+  }
+}
+
+/* stylelint-disable no-invalid-position-at-import-rule */
+
+@import '/style/base';
+@import '/components/Article';
+@import '/components/Hello';
+@import '/views/default';
