@@ -12,7 +12,7 @@ import lozad from 'lozad'
     ],
     local: [
       // Inside barba wrapper
-      await import('/components/Hello')
+      await import('/components/Splashscreen')
     ]
   }
 

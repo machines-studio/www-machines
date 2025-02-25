@@ -1,5 +1,8 @@
 title: Site
 
-sections:
-  pages:
-    type: pages
+fields:
+  email:
+    type: email
+
+  letters:
+    type: files

@@ -1,1 +1,12 @@
-Title: Titre du site
+Title: Machines Studio
+
+----
+
+Email: hello@machines.studio
+
+----
+
+Letters:
+
+- file://93hhFBeyyvaXI84A
+- file://3Mf4s4DoPopvGDm6

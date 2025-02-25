@@ -1,25 +1,25 @@
 @import '/style/reset';
 @import '/style/fonts';
-@import '/style/prose';
+@import '/style/animations';
 
 :root {
-  --color-white: #FFF;
-  --color-black: #222;
+  --color-white: #e4e4e4;
+  --color-black: black;
 
-  --space-gutter: 2rem;
+  --space-gutter: 2.0rem;
 
-  --body-font-family: system-ui, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
-  --body-font-size: 1.8rem;
+  --z-menu: 1;
+  --easing: 120ms;
+
+  --body-font-family: milling, system-ui, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+  --body-font-size: 1.2rem;
   --body-line-height: 130%;
   --body-text-decoration-thickness: 1px;
   --body-text-underline-offset: 0.2em;
-
-  --title-font-size: 4.0rem;
-  --title-font-weight: 700;
+  --body-font-feature-settings: 'ss11' 1;
 
   @include mobile {
-    --title-font-size: 6.0rem;
-    --body-font-size: 2.2rem;
+    --body-font-size: 1.4rem;
   }
 
   @include retina {
@@ -30,6 +30,6 @@
 /* stylelint-disable no-invalid-position-at-import-rule */
 
 @import '/style/base';
-@import '/components/Article';
-@import '/components/Hello';
+@import '/components/Menu';
+@import '/components/Splashscreen';
 @import '/views/default';
