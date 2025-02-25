@@ -13,7 +13,7 @@
   figure {
     @include easing(opacity);
     position: absolute;
-    inset: calc(var(--space-gutter) * 3);
+    inset: calc(var(--space-gutter) * 2);
 
     overflow: hidden;
     pointer-events: none;
