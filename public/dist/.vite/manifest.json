@@ -8,13 +8,13 @@
     "src": "assets/205tf-milling-triplex1mm.otf"
   },
   "components/Splashscreen.js": {
-    "file": "assets/Splashscreen-DFoP9fGP.js",
+    "file": "assets/Splashscreen-DFnQKsyw.js",
     "name": "Splashscreen",
     "src": "components/Splashscreen.js",
     "isDynamicEntry": true
   },
   "index.js": {
-    "file": "assets/index-bkRMTh_e.js",
+    "file": "assets/index-Djnn0mR4.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
