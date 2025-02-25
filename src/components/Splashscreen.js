@@ -4,17 +4,17 @@ export const selector = '.splashscreen'
 
 export function hydrate (element) {
   const images = element.querySelectorAll('figure')
-  const nut = element.querySelector(':scope > svg')
+  const logo = element.querySelector('h1 > svg')
   if (!images?.length) return
-  if (!nut) return
+  if (!logo) return
 
   let picker
   let picked
 
-  nut.addEventListener('touchstart', show)
-  nut.addEventListener('touchend', hide)
-  nut.addEventListener('mouseenter', show)
-  nut.addEventListener('mouseleave', hide)
+  logo.addEventListener('touchstart', show)
+  logo.addEventListener('touchend', hide)
+  logo.addEventListener('mouseenter', show)
+  logo.addEventListener('mouseleave', hide)
 
   function show () {
     hide()
