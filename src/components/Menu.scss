@@ -1,4 +1,6 @@
 .menu {
+  @include no-select;
+
   position: fixed;
   z-index: var(--z-menu);
   right: var(--space-gutter);
