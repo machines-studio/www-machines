@@ -1,0 +1,55 @@
+{
+  "assets/205tf-milling-duplex1mm.otf": {
+    "file": "assets/205tf-milling-duplex1mm-CmFhjRGx.otf",
+    "src": "assets/205tf-milling-duplex1mm.otf"
+  },
+  "assets/205tf-milling-triplex1mm.otf": {
+    "file": "assets/205tf-milling-triplex1mm-CSwAA5jV.otf",
+    "src": "assets/205tf-milling-triplex1mm.otf"
+  },
+  "components/Splashscreen.js": {
+    "file": "assets/Splashscreen-IGRK42sW.js",
+    "name": "Splashscreen",
+    "src": "components/Splashscreen.js",
+    "isDynamicEntry": true
+  },
+  "index.js": {
+    "file": "assets/index-CYYrPlmV.js",
+    "name": "index",
+    "src": "index.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "views/default.js",
+      "components/Splashscreen.js"
+    ]
+  },
+  "index.scss": {
+    "file": "assets/index-CexOS9bs.css",
+    "src": "index.scss",
+    "isEntry": true
+  },
+  "panel.css": {
+    "file": "assets/panel-CvZKDwJf.js",
+    "name": "panel",
+    "src": "panel.css",
+    "isEntry": true,
+    "css": [
+      "assets/panel-B_SY1GJM.css"
+    ]
+  },
+  "panel.js": {
+    "file": "assets/panel-08zNAYie.js",
+    "name": "panel",
+    "src": "panel.js",
+    "isEntry": true,
+    "imports": [
+      "panel.css"
+    ]
+  },
+  "views/default.js": {
+    "file": "assets/default-C34K_Rk0.js",
+    "name": "default",
+    "src": "views/default.js",
+    "isDynamicEntry": true
+  }
+}
