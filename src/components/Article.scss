@@ -1,0 +1,40 @@
+.article {
+  margin-top: var(--space-2);
+
+  section {
+    padding-block: var(--space-2);
+
+    &:nth-child(odd) {
+      background: var(--color-postit);
+    }
+  }
+
+  > h2, > header {
+    margin-bottom: 0;
+  }
+
+  > h2 {
+    @include font('h1');
+  }
+
+  > header {
+    @include font('h2');
+  }
+
+  > h2,
+  > header,
+  section > * {
+    width: column-span(6);
+    margin-left: column-start(1);
+
+    @include narrow {
+      width: auto;
+      margin-inline: var(--space-gutter);
+    }
+  }
+
+  // WIP classname
+  .small {
+    @include font('nav');
+  }
+}

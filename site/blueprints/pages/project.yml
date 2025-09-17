@@ -1,0 +1,17 @@
+title: Projet
+
+# fields:
+#   thumbnail:
+#     type: files
+
+columns:
+  - width: 1/3
+    fields:
+      year: fields/year
+      tags: fields/tags
+      credits: fields/credits
+
+  - width: 2/3
+    fields:
+      blocks: fields/blocks
+

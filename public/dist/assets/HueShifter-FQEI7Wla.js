@@ -1,0 +1,1 @@
+const c=".hue-shifter";let t=0;const n=["mouseenter","focus","click"];function r(e){for(const s of n)e.addEventListener(s,o);function o(){t=(t+2)%360,e.style.setProperty("--hue-shift",t+"deg")}}export{r as hydrate,c as selector};

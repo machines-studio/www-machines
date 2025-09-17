@@ -1,0 +1,5 @@
+type: pages
+
+layout: cards
+image:
+  cover: true

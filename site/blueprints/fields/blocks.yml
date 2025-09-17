@@ -1,0 +1,5 @@
+label: Blocs
+type: blocks
+
+fieldsets:
+  - writer

@@ -1,44 +1,76 @@
 {
+  "assets/205tf-milling-duplex1mm-italic.otf": {
+    "file": "assets/205tf-milling-duplex1mm-italic-dWjPk0hy.otf",
+    "src": "assets/205tf-milling-duplex1mm-italic.otf"
+  },
   "assets/205tf-milling-duplex1mm.otf": {
     "file": "assets/205tf-milling-duplex1mm-CmFhjRGx.otf",
     "src": "assets/205tf-milling-duplex1mm.otf"
   },
-  "assets/205tf-milling-triplex1mm.otf": {
-    "file": "assets/205tf-milling-triplex1mm-CSwAA5jV.otf",
-    "src": "assets/205tf-milling-triplex1mm.otf"
+  "components/Clients.js": {
+    "file": "assets/Clients-8CimV6Fx.js",
+    "name": "Clients",
+    "src": "components/Clients.js",
+    "isDynamicEntry": true
   },
-  "components/Splashscreen.js": {
-    "file": "assets/Splashscreen-DFnQKsyw.js",
-    "name": "Splashscreen",
-    "src": "components/Splashscreen.js",
+  "components/HueShifter.js": {
+    "file": "assets/HueShifter-FQEI7Wla.js",
+    "name": "HueShifter",
+    "src": "components/HueShifter.js",
+    "isDynamicEntry": true
+  },
+  "components/Menu.js": {
+    "file": "assets/Menu-ClP7H4H3.js",
+    "name": "Menu",
+    "src": "components/Menu.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.js"
+    ]
+  },
+  "components/Projects.js": {
+    "file": "assets/Projects-Bpa1YHiW.js",
+    "name": "Projects",
+    "src": "components/Projects.js",
+    "isDynamicEntry": true
+  },
+  "components/Slideshow.js": {
+    "file": "assets/Slideshow-CycBDMY9.js",
+    "name": "Slideshow",
+    "src": "components/Slideshow.js",
     "isDynamicEntry": true
   },
   "index.js": {
-    "file": "assets/index-Djnn0mR4.js",
+    "file": "assets/index-BbwhZKiY.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
     "dynamicImports": [
       "views/default.js",
-      "components/Splashscreen.js"
+      "components/Menu.js",
+      "components/HueShifter.js",
+      "components/Clients.js",
+      "components/HueShifter.js",
+      "components/Projects.js",
+      "components/Slideshow.js"
     ]
   },
   "index.scss": {
-    "file": "assets/index-C85nZGu4.css",
+    "file": "assets/index-1AaZ7J-2.css",
     "src": "index.scss",
     "isEntry": true
   },
   "panel.css": {
-    "file": "assets/panel-CvZKDwJf.js",
+    "file": "assets/panel-DiF1USl4.js",
     "name": "panel",
     "src": "panel.css",
     "isEntry": true,
     "css": [
-      "assets/panel-B_SY1GJM.css"
+      "assets/panel-tn0RQdqM.css"
     ]
   },
   "panel.js": {
-    "file": "assets/panel-08zNAYie.js",
+    "file": "assets/panel-DfESdCUy.js",
     "name": "panel",
     "src": "panel.js",
     "isEntry": true,
@@ -47,9 +79,12 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-C34K_Rk0.js",
+    "file": "assets/default-Gs9aqdiE.js",
     "name": "default",
     "src": "views/default.js",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "index.js"
+    ]
   }
 }

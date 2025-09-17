@@ -1,0 +1,90 @@
+main[data-barba-namespace='project'] {
+  .slideshow {
+    @include mobile {
+      --slideshow-height: 75vw;
+    }
+  }
+
+  article {
+    margin-top: var(--space-gutter);
+
+    @include mobile {
+      margin-top: 0;
+    }
+  }
+
+  article > h2 {
+    @include font('h1');
+    margin-inline: var(--space-gutter);
+    margin-bottom: var(--space-gutter);
+
+    @include mobile {
+      margin-bottom: var(--space-0);
+    }
+  }
+
+  article > section {
+    display: grid;
+    grid-template-columns: column-span(2) column-span(6);
+    gap: var(--space-gutter);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-gutter);
+
+    @include mobile {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    &:nth-child(odd) {
+      background: var(--color-white);
+    }
+
+    // Align aside and prose with h3
+    &:has(h3:first-child) {
+      $offset: calc(var(--h2-font-size) - var(--body-font-size) - 3px);
+      padding-top: calc(var(--space-gutter) + $offset);
+
+      .prose {
+        margin-top: calc(-1 * $offset);
+      }
+    }
+  }
+
+  aside {
+    @include mobile {
+      padding-top: var(--space-gutter);
+    }
+  }
+
+  .prose {
+    max-width: 60ch;
+    padding-right: var(--space-0);
+  }
+
+  .years {
+    display: flex;
+
+    .year + .year::before {
+      content: '\00A0→\00A0';
+    }
+  }
+
+  .credits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-0);
+    margin-top: var(--space-gutter);
+  }
+
+  .credit {
+    @include font('nav');
+    line-height: 120%;
+    text-transform: initial;
+
+    &[data-name]::before {
+      font-size: small;
+      text-transform: lowercase;
+      content: attr(data-name);
+    }
+  }
+}

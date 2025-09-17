@@ -1,0 +1,19 @@
+main[data-barba-namespace='projects'] {
+  // ??? only on shuffle
+  > svg {
+    position: fixed;
+    z-index: -1;
+    top: 50vh;
+    left: var(--space-gutter);
+
+    width: calc(100vw - var(--space-gutter) * 2);
+
+    color: var(--color-white);
+
+    transform: translateY(-50%);
+
+    @include mobile {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+label: Crédits
+type: structure
+empty: Aucun crédits
+translate: false
+
+fields:
+  fr:
+    type: text
+    required: true
+    width: 1/2
+  en:
+    type: text
+    width: 1/2
+
+  entries:
+    label: Entrées
+    min: 1
+
+    field:
+      type: text

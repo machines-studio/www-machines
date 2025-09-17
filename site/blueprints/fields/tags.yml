@@ -1,0 +1,10 @@
+label: Tags
+type: multiselect
+icon: tag
+translate: false
+
+options:
+  type: query
+  query: page.parent?.taxonomy.toStructure ?? []
+  text: "{{ item.uuid.toTaxonomy }}"
+  value: "{{ item.uuid }}"

@@ -7,8 +7,8 @@ return [
   'name' => 'Français',
   'url' => '/',
 
-  // Write your custom languages variables here, and use them in your snippets using t('go.home', 'fallback')
   'translations' => [
-    'sitemap' => 'Plan du site',
+    'clients.more' => '+',
+    'projects.filter.search.placeholder' => 'nom, année, tag…'
   ]
 ];

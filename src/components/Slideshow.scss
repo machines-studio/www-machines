@@ -1,0 +1,113 @@
+:root {
+  --slideshow-height: calc(100vh - var(--menu-height) - var(--slideshow-dots-height));
+  --slideshow-dots-gap: 0.8rem;
+  --slideshow-dots-height: var(--space-gutter);
+  --slideshow-dot-width: 1rem;
+  --slideshow-dot-active-width: var(--space-gutter);
+  --slideshow-dot-color: var(--color-white);
+  --slideshow-dot-color-progress: var(--color-accent);
+
+  @supports (height: 100svh) {
+    --slideshow-height: calc(100svh - var(--menu-height) - var(--slideshow-dots-height));
+  }
+
+  @include mobile {
+    --slideshow-dots-height: calc(2 * var(--space-gutter));
+  }
+}
+
+.slideshow {
+  position: relative;
+  padding-top: var(--space-gutter);
+  padding-bottom: var(--slideshow-dots-height);
+  margin-top: calc(-1 * var(--space-gutter)); // Leave room for slide shadow
+  overflow: hidden;
+
+  &__container {
+    position: relative;
+    display: flex;
+    gap: var(--space-gutter);
+    height: var(--slideshow-height);
+    padding-inline: var(--space-gutter);
+  }
+
+  &__container:has(&__slide + &__slide) &__slide { cursor: grab; }
+  &.is-active &__slide { cursor: grabbing !important; }
+
+  &__slide {
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+
+    flex: 0 0 100%;
+
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+
+    figure {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__dots {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--slideshow-dots-gap);
+    height: var(--slideshow-dots-height);
+
+    @include mobile {
+      right: calc(var(--space-gutter) + var(--space-0));
+      left: unset;
+    }
+  }
+
+  &__dot {
+    @include easing(width, 500ms);
+    position: relative;
+
+    width: var(--slideshow-dot-width);
+    height: var(--slideshow-dot-width);
+    cursor: pointer;
+
+    background: var(--slideshow-dot-color);
+    border-radius: 999px;
+
+    &::before {
+      @include hitbox(calc(var(--slideshow-dots-gap) / 2));
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--slideshow-dot-color-progress);
+      opacity: 0;
+    }
+  }
+
+  &__dot.is-active {
+    position: relative;
+    width: var(--slideshow-dot-active-width);
+    overflow: hidden;
+
+    &::after {
+      opacity: 1;
+      transform-origin: left;
+      animation: slideshow-dot-progress var(--slideshow-delay, 0ms) both;
+    }
+  }
+}
+
+@keyframes slideshow-dot-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}

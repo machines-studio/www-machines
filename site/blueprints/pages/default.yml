@@ -1,4 +1,5 @@
 title: Page par défaut
+icon: draft
 
 fields:
-  text: fields/writer
+  blocks: fields/blocks

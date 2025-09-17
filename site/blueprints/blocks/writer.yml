@@ -1,0 +1,6 @@
+name: Texte
+icon: text
+preview: text
+
+fields:
+  text: fields/writer

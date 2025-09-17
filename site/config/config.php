@@ -16,29 +16,45 @@ return [
   'thumbs' => [
     'presets' => [
       'default' => ['width' => 1920],
-      'prose' => ['width' => 1080]
+      'card' => ['width' => 800]
     ]
   ],
 
   'panel' => [
-    'menu' => function ($kirby) {
-      return [
-        'site' => [
-          'label' => 'Accueil',
-          'current' => function () : bool {
-            $links = ['site'];
-            $path  = Kirby\Cms\App::instance()->path();
-            return Str::contains($path, 'site');
-          }
-        ],
-        // Add pages here if needed
-        // 'projects' => menu($kirby, 'projects'),
-        '-',
-        'users',
-        'languages',
-        'system'
-      ];
-    }
+    'menu' => fn ($kirby) => array_merge([
+      'site' => [
+        'label' => 'Site',
+        'icon' => 'smile',
+        'current' => function () : bool {
+          $links = ['site'];
+          $path  = Kirby\Cms\App::instance()->path();
+          return Str::contains($path, 'site');
+        }
+      ],
+      '-',
+      'home' => menu($kirby, 'home'),
+      'agenda' => menu($kirby, 'agenda'),
+      '-',
+    ],
+    (function () use ($kirby) {
+      $items = [];
+      foreach ($kirby->site()->children()->listed() as $group) {
+        $id = $group->slug();
+        $items[$id] = menu($kirby, $id);
+      }
+      return $items;
+    })(),
+    [
+      '-',
+      'les-cahiers' => menu($kirby, 'les-cahiers'),
+      'legals' => menu($kirby, 'legals'),
+      'error' => menu($kirby, 'error'),
+      '-',
+      'users',
+      'languages',
+      'retour',
+      'system'
+    ])
   ],
 
   'sitemap' => [

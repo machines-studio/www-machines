@@ -7,6 +7,28 @@
 }
 
 /*
+  Safely hide an element while keeping it readable
+*/
+
+@mixin visually-hidden {
+  position: absolute !important;
+
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); // IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box
+  clip: rect(1px, 1px, 1px, 1px); // Maybe deprecated but we need to support legacy browsers
+
+  clip-path: inset(50%);
+
+  white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+
+  border: 0;
+}
+
+/*
   Apply a font style defined using CSS variables:
 
   :root {
@@ -76,10 +98,14 @@
     @include hitbox(3rem);
   }
 */
-@mixin hitbox ($expand: 1rem) {
+@mixin hitbox ($expand: 1rem, $debug: false) {
   content: '';
   position: absolute;
   inset: calc(-1 * $expand);
+
+  @if $debug {
+    @include debug;
+  }
 }
 
 /*

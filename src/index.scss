@@ -1,36 +1,97 @@
 @import '/style/reset';
 @import '/style/fonts';
-@import '/style/animations';
 
 :root {
-  --color-white: #e4e4e4;
+  // --color-accent: #89FDEC; // Defined in header.php
+  --color-gray: #E4E4E4;
+  --color-white: white;
   --color-black: black;
+  --color-postit: #FFFCE1; // ???
 
-  --space-gutter: 2.0rem;
+  --space-0: 1rem;
+  --space-1: 3.4rem;
+  --space-2: 6rem;
+  --space-3: 12rem;
+  --space-gutter: var(--space-1);
 
-  --z-menu: 1;
+  --z-menu: 10;
+
   --easing: 120ms;
+  --border-radius: var(--space-0);
+  --button-padding: 0.5rem 1.2rem;
+
+  --box-shadow: 0 0 3rem 0 rgba(0 0 0 / 20%);
+  --box-shadow-small: 0 0 1rem 0 rgba(0 0 0 / 10%);
+  --box-shadow-none: 0 0 3rem 0 rgba(0 0 0 / 0%);
 
   --body-font-family: milling, system-ui, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
-  --body-font-size: 1.2rem;
-  --body-line-height: 130%;
+  --body-font-size: 2.4rem;
+  --body-line-height: 128%;
   --body-text-decoration-thickness: 1px;
-  --body-text-underline-offset: 0.2em;
-  --body-font-feature-settings: 'ss11' 1;
+  --body-text-underline-offset: 0.3em;
+  --body-font-feature-settings:
+    'ss11' 1, /* dot dot dot */
+    'ss14' 1  /* arrows alt */
+  ;
 
-  @include mobile {
-    --space-gutter: 1.6rem;
-    --body-font-size: 1.4rem;
-  }
+  --nav-font-size: 1.8rem;
+  --nav-text-transform: lowercase;
+  --nav-text-decoration-thickness: var(--body-text-decoration-thickness); // Prevent weird inheritances
+
+  --h1-font-size: 8.3rem;
+  --h1-line-height: 103%;
+
+  --h2-font-size: 4.3rem;
+  --h2-line-height: 110%;
 
   @include retina {
-    --body-text-decoration-thickness: 15px;
+    --body-text-decoration-thickness: 1.5px;
+  }
+
+  @include mobile {
+    --space-0: 1rem;
+    --space-1: 2rem;
+    --space-2: 4rem;
+    --space-3: 6rem;
+
+    --body-font-size: 2rem;
+    --h1-font-size: 5.4rem;
+    --h2-font-size: 3rem;
   }
 }
 
-/* stylelint-disable no-invalid-position-at-import-rule */
+/**
+ * Return the left offset of a column
+ */
+@function column-start ($col, $columns: 8) {
+  $column-width: calc((100vw - var(--space-gutter)) / $columns);
+  @return calc(var(--space-gutter) + $column-width * $col); // stylelint-disable-line at-rule-empty-line-before
+}
+
+/**
+ * Return the width of a column span
+ */
+@function column-span ($col, $columns: 8) {
+  $column-width: calc((100vw - var(--space-gutter)) / $columns);
+  @return calc($column-width * $col - var(--space-gutter)); // stylelint-disable-line at-rule-empty-line-before
+}
+
+/* stylelint-disable no-invalid-position-at-import-rule, at-rule-empty-line-before */
 
 @import '/style/base';
+@import '/style/prose';
+
+@import '/components/Article';
+@import '/components/Clients';
+@import '/components/Footer';
+@import '/components/HueShifter';
 @import '/components/Menu';
-@import '/components/Splashscreen';
+@import '/components/ProjectCard';
+@import '/components/Projects';
+@import '/components/Languages';
+@import '/components/Slideshow';
+
 @import '/views/default';
+@import '/views/clients';
+@import '/views/project';
+@import '/views/projects';

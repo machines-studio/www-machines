@@ -1,0 +1,8 @@
+:root {
+  --hue-shift: 0deg;
+  --hue-offset: 0deg;
+}
+
+.hue-shifter {
+  filter: hue-rotate(calc(var(--hue-offset, 0deg) + var(--hue-shift, 0deg)));
+}

@@ -1,0 +1,12 @@
+label: Année(s)
+translate: false
+required: true
+
+type: entries
+min: 1
+max: 2
+sortable: false
+
+field:
+  type: text
+  placeholder: 2025

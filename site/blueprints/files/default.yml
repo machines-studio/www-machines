@@ -1,2 +1,12 @@
 fields:
-  hidden:
+  alt:
+    label: field.blocks.image.alt
+    type: text
+    icon: title
+
+  caption:
+    label: field.blocks.image.caption
+    type: writer
+    icon: text
+    inline: true
+

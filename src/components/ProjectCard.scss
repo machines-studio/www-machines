@@ -1,0 +1,78 @@
+:root {
+  --project-card-ratio: 3/4;
+  --project-card-width: column-span(2);
+  --project-card-backdrop-color: rgba(255 255 255 / 0%);
+  --project-card-backdrop-blur: 2rem;
+
+  @include narrow {
+    --project-card-width: column-span(4);
+  }
+
+  @include mobile {
+    --project-card-width: column-span(8);
+  }
+}
+
+.project-card {
+  @include font('nav');
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--project-card-width);
+  aspect-ratio: var(--project-card-ratio);
+  overflow: hidden;
+
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  &::before {
+    @include easing(opacity);
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background: var(--project-card-backdrop-color);
+    opacity: 0;
+    backdrop-filter:  blur(var(--project-card-backdrop-blur));
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &::after {
+    @include easing(opacity);
+    content: attr(aria-label);
+
+    position: absolute;
+
+    padding: var(--button-padding);
+
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    opacity: 0;
+    box-shadow: var(--box-shadow);
+
+    @include mobile {
+      top: var(--space-0);
+      left: var(--space-0);
+      border-radius: calc(var(--border-radius) / 2);
+      opacity: 1;
+    }
+  }
+
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+  }
+
+  figure {
+    width: 100%;
+    height: 100%;
+  }
+
+}

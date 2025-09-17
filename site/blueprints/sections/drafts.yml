@@ -1,0 +1,9 @@
+label: Brouillons
+type: pages
+status: drafts
+
+layout: list
+image:
+  query: false
+  icon: draft
+  back: white
