@@ -37,14 +37,10 @@ main[data-barba-namespace='project'] {
     }
 
     // Align aside and prose with h3
-    &:has(h3:first-child) {
+    &:has(.prose h3:first-child) .prose {
       @include desktop {
-        $offset: calc(var(--h2-font-size) - var(--body-font-size) - 3px);
-        padding-top: calc(var(--space-gutter) + $offset);
-
-        .prose {
-          margin-top: calc(-1 * $offset);
-        }
+        $offset: calc(var(--h2-font-size) - var(--body-font-size) - 1px);
+        margin-top: calc(-1 * $offset);
       }
     }
   }
@@ -101,6 +97,7 @@ main[data-barba-namespace='project'] {
   }
 
   .years {
+    @include font('nav');
     display: flex;
 
     .year + .year::before {
@@ -112,18 +109,21 @@ main[data-barba-namespace='project'] {
     display: flex;
     flex-direction: column;
     gap: var(--space-0);
-    margin-top: var(--space-gutter);
+    margin-top: var(--space-0);
   }
 
   .credit {
     @include font('nav');
-    line-height: 120%;
+    margin-bottom: var(--space-0);
+    line-height: var(--body-line-height);
     text-transform: initial;
 
     &[data-name]::before {
-      font-size: small;
-      text-transform: lowercase;
       content: attr(data-name);
+      display: block;
+      margin-bottom: var(--space-0);
+      text-decoration: underline;
+      text-transform: lowercase;
     }
   }
 }

@@ -36,6 +36,7 @@
   --nav-font-size: 1.8rem;
   --nav-text-transform: lowercase;
   --nav-text-decoration-thickness: var(--body-text-decoration-thickness); // Prevent weird inheritances
+  --nav-font-feature-settings: var(--body-font-feature-settings);
 
   --h1-font-size: 8.3rem;
   --h1-line-height: 103%;

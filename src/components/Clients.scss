@@ -27,13 +27,16 @@
     --stick-y: 0;
 
     overflow: hidden;
-    white-space: nowrap;
     will-change: transform;
     background: var(--color-accent);
     transform: translateX(var(--stick-x)) translateY(var(--stick-y));
 
     @include desktop {
       --hue-offset: 0deg !important;
+    }
+
+    @include mobile {
+      transform: none;
     }
 
     &.is-sticked {
@@ -48,9 +51,13 @@
     }
 
     a {
+      display: block;
+      max-width: calc(100vw - var(--space-gutter) * 2 - 2.4rem);
       overflow: hidden;
+
       text-decoration: none;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
