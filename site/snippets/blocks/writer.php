@@ -1,3 +1,3 @@
-<div class='prose'>
+<section class='prose'>
   <?= $block->text()->kirbytext() ?>
-</div>
+</section>

@@ -3,3 +3,4 @@ type: blocks
 
 fieldsets:
   - writer
+  - gallery

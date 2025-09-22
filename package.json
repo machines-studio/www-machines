@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@barba/core": "^2.10.0",
+    "@internet/raf": "^0.2.1",
     "embla-carousel": "^8.6.0",
-    "embla-carousel-autoplay": "^8.6.0",
     "lozad": "^1.16.0",
     "missing-math": "^3.4.0"
   }

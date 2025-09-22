@@ -1,0 +1,9 @@
+title: Vidéo
+extends: files/media
+
+accept:
+  mime: video/*
+  type: video
+
+create:
+  format: webm

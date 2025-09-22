@@ -23,42 +23,81 @@ main[data-barba-namespace='project'] {
     }
   }
 
-  article > section {
+  article > header {
     display: grid;
     grid-template-columns: column-span(2) column-span(6);
-    gap: var(--space-gutter);
-    padding-block: var(--space-2);
-    padding-inline: var(--space-gutter);
 
     @include mobile {
       display: flex;
       flex-direction: column-reverse;
-    }
 
-    &:nth-child(odd) {
-      background: var(--color-white);
+      aside {
+        padding-top: var(--space-gutter);
+      }
     }
 
     // Align aside and prose with h3
     &:has(h3:first-child) {
-      $offset: calc(var(--h2-font-size) - var(--body-font-size) - 3px);
-      padding-top: calc(var(--space-gutter) + $offset);
+      @include desktop {
+        $offset: calc(var(--h2-font-size) - var(--body-font-size) - 3px);
+        padding-top: calc(var(--space-gutter) + $offset);
 
-      .prose {
-        margin-top: calc(-1 * $offset);
+        .prose {
+          margin-top: calc(-1 * $offset);
+        }
       }
     }
   }
 
-  aside {
-    @include mobile {
-      padding-top: var(--space-gutter);
+  article > header,
+  article > section {
+    gap: var(--space-gutter);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-gutter);
+  }
+
+  article > section.prose {
+    background: var(--color-white);
+
+    @include desktop {
+      padding-left: 0;
+      > * { margin-left: column-start(2); }
+    }
+
+    & + section.prose {
+      padding-top: 0;
     }
   }
 
-  .prose {
-    max-width: 60ch;
-    padding-right: var(--space-0);
+  // TODO unify with components/Article
+  article > section.gallery {
+    padding-block: var(--space-gutter);
+
+    & + section.gallery {
+      padding-top: 0;
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(var(--gallery-columns-count), 1fr);
+      gap: var(--space-gutter);
+
+      @include narrow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    li {
+      flex: 0 0 calc(50% - var(--space-gutter) / 2);
+    }
+
+    // TODO data-crop
+    figure {
+      img, video {
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+      }
+    }
   }
 
   .years {

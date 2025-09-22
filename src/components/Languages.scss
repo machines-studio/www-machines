@@ -1,3 +1,7 @@
+:root {
+  --languages-color-inactive: var(--color-gray);
+}
+
 .languages {
   @include no-select;
 
@@ -7,7 +11,7 @@
 
   li + li::before {
     content: '\00A0/\2009';
-    color: var(--color-gray);
+    color: var(--languages-color-inactive);
   }
 
   a {
@@ -15,7 +19,7 @@
     text-decoration: none !important;
 
     &:not(.is-active, :hover) {
-      color: var(--color-gray);
+      color: var(--languages-color-inactive);
     }
   }
 }

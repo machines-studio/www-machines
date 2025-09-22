@@ -1,0 +1,9 @@
+title: Image
+extends: files/media
+
+accept:
+  mime: image/*
+  type: image
+
+create:
+  format: webp

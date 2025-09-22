@@ -88,7 +88,11 @@ figure {
     cursor: zoom-in;
   }
 
-  figcaption:empty {
-    display: none;
+  figcaption {
+    font-size: small;
+
+    &:empty {
+      display: none;
+    }
   }
 }

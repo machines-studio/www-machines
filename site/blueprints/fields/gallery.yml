@@ -1,0 +1,12 @@
+type: files
+
+required: true
+min: 1
+
+layout: cards
+size: small
+
+uploads: media
+
+image:
+  cover: true

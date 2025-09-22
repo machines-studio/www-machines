@@ -3,14 +3,12 @@
   $blocks = $page->blocks()->toBlocks();
 ?>
 
-<?php snippet('components/Slideshow', [
-  'medias' => $page->files() // TODO dynamic
-]) ?>
+<?php snippet('components/Slideshow', ['medias' => $page->slideshow()->toFiles()]) ?>
 
 <article>
   <h2><?= $page->title() ?></h2>
 
-  <section>
+  <header>
     <aside>
       <div class='years'>
         <?php foreach ($page->year()->toEntries() as $year) : ?>
@@ -34,14 +32,9 @@
     </aside>
 
     <?= $blocks->first() ?>
-  </section>
+  </header>
 
   <?php foreach ($blocks->slice(1) as $block) : ?>
-    <section>
-      <aside></aside>
-      <?= $block ?>
-    </section>
+    <?= $block ?>
   <?php endforeach ?>
-
 </article>
-

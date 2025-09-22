@@ -26,7 +26,6 @@
   &__container {
     position: relative;
     display: flex;
-    gap: var(--space-gutter);
     height: var(--slideshow-height);
     padding-inline: var(--space-gutter);
   }
@@ -37,18 +36,34 @@
   &__slide {
     height: 100%;
     min-width: 0;
+    margin-right: var(--space-gutter);
     overflow: hidden;
 
     flex: 0 0 100%;
 
-    background: var(--color-white);
+    background: var(--color-background, var(--color-white));
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 
     figure {
       width: 100%;
       height: 100%;
+
+      video, img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
+
+    &:not([data-crop]) figure video,
+    &:not([data-crop]) figure img {
+      object-fit: contain;
+      padding: var(--space-gutter);
+    }
+
+    // ???
+    figcaption { display: none; }
   }
 
   &__dots {
@@ -81,33 +96,30 @@
     background: var(--slideshow-dot-color);
     border-radius: 999px;
 
+    &.is-active {
+      position: relative;
+      width: var(--slideshow-dot-active-width);
+      overflow: hidden;
+    }
+
     &::before {
       @include hitbox(calc(var(--slideshow-dots-gap) / 2));
     }
 
     &::after {
       content: '';
+
       position: absolute;
       inset: 0;
+
       background: var(--slideshow-dot-color-progress);
       opacity: 0;
-    }
-  }
-
-  &__dot.is-active {
-    position: relative;
-    width: var(--slideshow-dot-active-width);
-    overflow: hidden;
-
-    &::after {
-      opacity: 1;
       transform-origin: left;
-      animation: slideshow-dot-progress var(--slideshow-delay, 0ms) both;
+      transform: scaleX(var(--slideshow-dot-progress, 0));
+    }
+
+    &.is-active::after {
+      opacity: 1;
     }
   }
-}
-
-@keyframes slideshow-dot-progress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
 }

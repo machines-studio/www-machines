@@ -3,9 +3,7 @@
 ], slots: true) ?>
   <?php slot('content') ?>
     <?php foreach ($page->blocks()->toBlocks() as $block) : ?>
-      <section>
-        <?= $block ?>
-      </section>
+      <?= $block ?>
     <?php endforeach ?>
   <?php endslot() ?>
 <?php endsnippet() ?>

@@ -1,0 +1,9 @@
+name: field.blocks.gallery.name
+icon: dashboard
+preview: fields
+wysiwyg: true
+
+fields:
+  medias:
+    extends: fields/gallery
+    max: 2
