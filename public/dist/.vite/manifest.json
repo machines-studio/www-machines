@@ -20,7 +20,7 @@
     "isDynamicEntry": true
   },
   "components/Menu.js": {
-    "file": "assets/Menu-ClP7H4H3.js",
+    "file": "assets/Menu-CeaoB2sj.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
@@ -35,13 +35,13 @@
     "isDynamicEntry": true
   },
   "components/Slideshow.js": {
-    "file": "assets/Slideshow-CycBDMY9.js",
+    "file": "assets/Slideshow-_kwVwzkc.js",
     "name": "Slideshow",
     "src": "components/Slideshow.js",
     "isDynamicEntry": true
   },
   "index.js": {
-    "file": "assets/index-BbwhZKiY.js",
+    "file": "assets/index-BOzZtstE.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
@@ -56,7 +56,7 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-1AaZ7J-2.css",
+    "file": "assets/index-CWR1x5bm.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -79,7 +79,7 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-Gs9aqdiE.js",
+    "file": "assets/default-DeaDsro7.js",
     "name": "default",
     "src": "views/default.js",
     "isDynamicEntry": true,
