@@ -1,5 +1,10 @@
 title: Page par défaut
 icon: draft
+extends:
+  - presets/files
+  - presets/icon
 
-fields:
-  blocks: fields/blocks
+tabs:
+  content:
+    fields:
+      blocks: fields/blocks

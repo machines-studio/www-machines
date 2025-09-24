@@ -1,9 +1,11 @@
 :root {
   --slideshow-height: calc(100vh - var(--menu-height) - var(--slideshow-dots-height));
+  --slideshow-duration: var(--easing-slow);
   --slideshow-dots-gap: 0.8rem;
   --slideshow-dots-height: var(--space-gutter);
   --slideshow-dot-width: 1rem;
   --slideshow-dot-active-width: var(--space-gutter);
+  --slideshow-dot-video-active-width: 10rem;
   --slideshow-dot-color: var(--color-white);
   --slideshow-dot-color-progress: var(--color-accent);
 
@@ -41,19 +43,12 @@
 
     flex: 0 0 100%;
 
-    background: var(--color-background, var(--color-white));
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 
     figure {
       width: 100%;
       height: 100%;
-
-      video, img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
     }
 
     &:not([data-crop]) figure video,
@@ -86,7 +81,7 @@
   }
 
   &__dot {
-    @include easing(width, 500ms);
+    @include easing(width, var(--easing-slow));
     position: relative;
 
     width: var(--slideshow-dot-width);
@@ -100,6 +95,10 @@
       position: relative;
       width: var(--slideshow-dot-active-width);
       overflow: hidden;
+    }
+
+    &[data-type='video'].is-active {
+      width: var(--slideshow-dot-video-active-width);
     }
 
     &::before {

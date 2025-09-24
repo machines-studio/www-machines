@@ -1,13 +1,22 @@
 .footer {
   @include no-select;
-  @include font('nav');
+  @include font('footer');
 
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-0) var(--space-gutter);
   width: 100%;
   padding: var(--space-gutter);
+
   background: var(--color-white);
   border-top: 1px solid var(--color-gray);
 
-  &, &__links {
+  @include mobile {
+    flex-direction: column;
+    gap: var(--space-gutter);
+  }
+
+  &__links {
     display: flex;
     flex-wrap: wrap;
     gap: 0 var(--space-gutter);
@@ -27,8 +36,7 @@
       position: fixed;
       z-index: var(--z-menu);
       bottom: 0;
-      box-shadow: var(--box-shadow);
-      animation: footer-slide-up 100ms var(--easing) both;
+      animation: footer-slide-up var(--easing-fast) var(--easing-fast) var(--easing-ease-smooth) both;
     }
   }
 }

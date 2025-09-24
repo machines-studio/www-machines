@@ -1,7 +1,11 @@
 import Barba from '@barba/core'
+
 export const selector = '.menu'
 
 export function hydrate (element) {
+  let nextFrame
+  let py = document.documentElement.scrollTop
+
   const links = Array.from(element.querySelectorAll('a'))
   const logo = element.querySelector('h1 svg')
 
@@ -24,17 +28,25 @@ export function hydrate (element) {
     }
   })
 
-  // Sticky menu when scrolling up
-  let py = document.documentElement.scrollTop
-  document.addEventListener('scroll', e => {
-    const y = document.documentElement.scrollTop
-    const dy = py - y
-    element.classList.toggle('is-sticky', dy > 0)
-    py = y
-  })
+  document.addEventListener('scroll', handleScroll)
+
+  return {
+    destroy: () => {
+      cancelAnimationFrame(nextFrame)
+      document.removeEventListener('scroll', handleScroll)
+    }
+  }
+
+  function handleScroll () {
+    nextFrame = window.requestAnimationFrame(() => {
+      const y = document.documentElement.scrollTop
+      element.classList.toggle('is-on-top', y < element.clientHeight)
+      // element.classList.toggle('is-sticky', py >= y) // ???
+      py = y
+    })
+  }
 
   function bounce ({ once = true } = {}) {
-    // TODO disable animation for prefers-reduce-motion
     logo.classList.add('is-bouncing')
     if (once) bounceStop()
   }

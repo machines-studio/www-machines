@@ -1,7 +1,6 @@
 :root {
   --project-card-ratio: 3/4;
   --project-card-width: column-span(2);
-  --project-card-backdrop-color: rgba(255 255 255 / 0%);
   --project-card-backdrop-blur: 2rem;
 
   @include narrow {
@@ -29,28 +28,16 @@
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 
-  &::before {
-    @include easing(opacity);
-    content: '';
-
-    position: absolute;
-    inset: 0;
-
-    background: var(--project-card-backdrop-color);
-    opacity: 0;
-    backdrop-filter:  blur(var(--project-card-backdrop-blur));
-
-    @include mobile {
-      display: none;
-    }
-  }
-
   &::after {
     @include easing(opacity);
     content: attr(aria-label);
 
     position: absolute;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
     padding: var(--button-padding);
 
     background: var(--color-white);
@@ -66,14 +53,21 @@
     }
   }
 
-  &:hover::before,
   &:hover::after {
     opacity: 1;
   }
 
   figure {
-    width: 100%;
-    height: 100%;
+    @include easing(filter);
+
+    // Improve blurred edges
+    width: calc(100% + 2 * var(--project-card-backdrop-blur));
+    height: calc(100% + 2 * var(--project-card-backdrop-blur));
+    margin: calc(-1 * var(--project-card-backdrop-blur));
+    filter: none;
   }
 
+  &:hover figure {
+    filter: blur(var(--project-card-backdrop-blur));
+  }
 }

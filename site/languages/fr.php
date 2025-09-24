@@ -8,7 +8,7 @@ return [
   'url' => '/',
 
   'translations' => [
-    'clients.more' => '+',
+    'clients.more' => '…',
     'projects.filter.search.placeholder' => 'nom, année, tag…'
   ]
 ];

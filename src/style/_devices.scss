@@ -27,7 +27,9 @@ $breakpoint-mobile: 800px;
 
 @mixin reduced-motion {
   @media (prefers-reduced-motion) {
-    @content;
+    .nope { // DEBUG
+      @content;
+    }
   }
 }
 

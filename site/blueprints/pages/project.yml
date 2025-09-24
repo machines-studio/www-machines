@@ -1,5 +1,12 @@
 title: Projet
-extends: layouts/files
+icon: box
+extends:
+  - presets/files
+  - presets/icon
+
+image:
+  query: page.thumbnail.toFile
+  cover: true
 
 tabs:
   content:

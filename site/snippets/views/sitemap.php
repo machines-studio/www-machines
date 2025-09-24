@@ -18,8 +18,10 @@
   'title' => $page->title()
 ], slots: true) ?>
   <?php slot('content') ?>
-    <ul>
-      <?php foreach (site()->children()->listed() as $page) walk($page) ?>
-    </ul>
+    <section class='prose'>
+      <ul>
+        <?php foreach (site()->children()->listed() as $page) walk($page) ?>
+      </ul>
+    </section>
   <?php endslot() ?>
 <?php endsnippet() ?>

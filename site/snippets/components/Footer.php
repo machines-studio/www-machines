@@ -1,5 +1,5 @@
 <?php
-  $links = [
+  $groups = [
     'primary' => [
       ['mailto:' . $site->email()],
       [
@@ -18,27 +18,26 @@
 ?>
 
 <footer class='footer'>
-  <?php foreach ($links as $l) : ?>
+  <?php foreach ($groups as $group) : ?>
     <ul class='footer__links'>
-      <?php foreach ($l as $link) {
-        // Handle string
-        if (is_string($link)) {
-          echo $link;
-          continue;
-        }
+      <?php foreach ($group as $item) : ?>
+        <li class='footer__link'>
+          <?php
+            // Handle string
+            if (is_string($item)) {
+              echo $item;
+              continue;
+            }
 
-        // Convert Page to array
-        if ($link instanceof \Kirby\Cms\Page) {
-          $link = [$link->url(), $link->title()];
-        }
+            // Convert Page to array
+            if ($item instanceof \Kirby\Cms\Page) {
+              $item = [$item->url(), $item->title()];
+            }
 
-        // Render <li><a></li>
-        e($link[0] ?? null, Html::tag(
-          'li',
-          [Html::a($link[0], $link[1] ?? null, $link[2] ?? [])],
-          ['class' => 'footer__link']
-        ));
-      } ?>
+            echo Html::a($item[0], $item[1] ?? null, $item[2] ?? [])
+          ?>
+        </li>
+      <?php endforeach ?>
     </ul>
   <?php endforeach ?>
 </footer>

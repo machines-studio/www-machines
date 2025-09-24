@@ -1,14 +1,16 @@
 :root {
-  --clients-bounce-back-duration: 1s;
-  --clients-bounce-back-easing: cubic-bezier(0, 3, 0.5, 1);
+  --clients-bounce-back-duration: var(--easing);
+  --clients-bounce-back-easing: var(--easing-ease-back);
 }
 
 .clients {
   @include no-select;
 
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-0);
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-0);
+  }
 
   &__group,
   &__client {
@@ -35,13 +37,14 @@
       --hue-offset: 0deg !important;
     }
 
-    @include mobile {
-      transform: none;
-    }
+    @include mobile { transform: none; }
+    @include reduced-motion { transform: none; }
 
     &.is-sticked {
       z-index: 1;
       box-shadow: var(--box-shadow-small);
+      @include mobile { box-shadow: none; }
+      @include reduced-motion { box-shadow: none; }
     }
 
     // Bounce back to position

@@ -13,6 +13,7 @@
 
     "custom-property-empty-line-before": false,
     "declaration-empty-line-before": false,
+    "at-rule-empty-line-before": false,
     "scss/at-mixin-parentheses-space-before": false,
     "scss/at-function-parentheses-space-before": false,
 

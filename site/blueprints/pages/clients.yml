@@ -1,4 +1,9 @@
 title: Clients
 icon: users
+extends:
+  - presets/files
+  - presets/icon
 
-# TODO
+fields:
+  blocks: fields/blocks
+  clients: fields/clients

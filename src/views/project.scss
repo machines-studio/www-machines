@@ -1,119 +1,70 @@
 main[data-barba-namespace='project'] {
+  // Layout
+
   .slideshow {
     @include mobile {
       --slideshow-height: 75vw;
     }
   }
 
-  article {
-    margin-top: var(--space-gutter);
-
-    @include mobile {
-      margin-top: 0;
-    }
-  }
-
-  article > h2 {
+  > h2 {
     @include font('h1');
-    margin-inline: var(--space-gutter);
-    margin-bottom: var(--space-gutter);
-
-    @include mobile {
-      margin-bottom: var(--space-0);
-    }
+    margin: var(--space-gutter);
   }
 
-  article > header {
+  > header {
     display: grid;
     grid-template-columns: column-span(2) column-span(6);
+    gap: var(--space-gutter);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-gutter);
 
     @include mobile {
       display: flex;
       flex-direction: column-reverse;
+      padding-top: 0;
 
       aside {
-        padding-top: var(--space-gutter);
+        padding-top: var(--space-2);
+        margin-top: var(--space-gutter);
+        border-top: 1px solid var(--color-white);
       }
     }
 
     // Align aside and prose with h3
     &:has(.prose h3:first-child) .prose {
       @include desktop {
-        $offset: calc(var(--h2-font-size) - var(--body-font-size) - 1px);
+        $offset: calc(var(--h2-font-size) - var(--body-font-size) + 2px);
         margin-top: calc(-1 * $offset);
       }
     }
   }
 
-  article > header,
-  article > section {
-    gap: var(--space-gutter);
-    padding-block: var(--space-2);
-    padding-inline: var(--space-gutter);
+  > article {
+    padding-top: 0;
   }
 
-  article > section.prose {
+  > article > section.prose {
+    padding-top: var(--space-2);
     background: var(--color-white);
 
-    @include desktop {
-      padding-left: 0;
-      > * { margin-left: column-start(2); }
-    }
-
-    & + section.prose {
-      padding-top: 0;
-    }
-  }
-
-  // TODO unify with components/Article
-  article > section.gallery {
-    padding-block: var(--space-gutter);
-
-    & + section.gallery {
-      padding-top: 0;
-    }
-
-    ul {
-      display: grid;
-      grid-template-columns: repeat(var(--gallery-columns-count), 1fr);
-      gap: var(--space-gutter);
-
-      @include narrow {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    li {
-      flex: 0 0 calc(50% - var(--space-gutter) / 2);
-    }
-
-    // TODO data-crop
-    figure {
-      img, video {
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
+    > * {
+      @include desktop {
+        margin-left: column-start(2);
       }
     }
   }
 
-  .years {
+  // Elements
+
+  .metas {
     @include font('nav');
-    display: flex;
-
-    .year + .year::before {
-      content: '\00A0→\00A0';
-    }
-  }
-
-  .credits {
     display: flex;
     flex-direction: column;
-    gap: var(--space-0);
-    margin-top: var(--space-0);
+    gap: var(--space-gutter);
   }
 
-  .credit {
-    @include font('nav');
+  .meta {
     margin-bottom: var(--space-0);
     line-height: var(--body-line-height);
     text-transform: initial;
@@ -124,6 +75,13 @@ main[data-barba-namespace='project'] {
       margin-bottom: var(--space-0);
       text-decoration: underline;
       text-transform: lowercase;
+    }
+
+    &[data-name='year'] {
+      display: flex;
+
+      &::before { content: none; }
+      .year + .year::before { content: '\00A0→\00A0'; }
     }
   }
 }

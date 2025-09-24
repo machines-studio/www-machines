@@ -12,7 +12,10 @@
       <?php foreach ($medias as $media) {
         snippet('components/HueShifter', [
           'tag' => 'li',
-          'attributes' => ['class' => 'slideshow__dot']
+          'attributes' => [
+            'class' => 'slideshow__dot',
+            'data-type' => $media->type()
+          ]
         ]);
       } ?>
     </ul>
@@ -23,7 +26,7 @@
       <li <?= attr([
         'class' => 'slideshow__slide',
         'data-crop' => $media->croppable()->or('true')->isTrue(),
-        'style' => '--color-background: ' . $media->color()
+        'style' => '--figure-color-background: ' . $media->color()
       ]) ?>>
         <?php snippet('html/media', [
           'media' => $media,

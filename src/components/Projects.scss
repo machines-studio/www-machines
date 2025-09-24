@@ -114,7 +114,7 @@
     }
 
     #toggle-search:checked ~ input[type='search'] {
-      animation: search-slide-in var(--easing) both;
+      animation: search-slide-in var(--easing-fast) both;
     }
 
     #toggle-search:not(:checked) ~ input[type='search'] {
@@ -125,7 +125,7 @@
       @include easing(opacity);
       pointer-events: none;
       opacity: 0;
-      transition-delay: var(--easing);
+      transition-delay: var(--easing-fast);
     }
   }
 }

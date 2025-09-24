@@ -15,7 +15,11 @@
 
   --z-menu: 10;
 
-  --easing: 120ms;
+  --easing: 300ms;
+  --easing-fast: 120ms;
+  --easing-slow: 600ms;
+  --easing-ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --easing-ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
   --border-radius: var(--space-0);
   --button-padding: 0.5rem 1.2rem;
 
@@ -44,8 +48,22 @@
   --h2-font-size: 4.3rem;
   --h2-line-height: 110%;
 
+  --menu-font-size: var(--nav-font-size);
+  --menu-text-transform: var(--nav-text-transform);
+  --menu-text-decoration-thickness: var(--body-text-decoration-thickness); // Prevent weird inheritances
+
+  --footer-font-size: var(--nav-font-size);
+  --footer-line-height: var(--nav-line-height);
+  --footer-text-transform: lowercase;
+  --footer-text-decoration-thickness: var(--body-text-decoration-thickness); // Prevent weird inheritances
+
   @include retina {
     --body-text-decoration-thickness: 1.5px;
+  }
+
+  @include reduced-motion {
+    --easing: 0ms;
+    --easing-slow: 0ms;
   }
 
   @include mobile {
@@ -55,8 +73,18 @@
     --space-3: 6rem;
 
     --body-font-size: 2rem;
+    --body-line-height: 133%;
+
+    --nav-font-size: 1.6rem;
+
     --h1-font-size: 5.4rem;
     --h2-font-size: 3rem;
+
+    --menu-font-size: 3.8rem;
+    --menu-line-height: var(--body-line-height);
+
+    --footer-font-size: 2.6rem;
+    --footer-line-height: var(--body-line-height);
   }
 }
 

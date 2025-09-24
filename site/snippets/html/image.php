@@ -46,10 +46,7 @@
       ])
     ]) ?>
   >
-  <figcaption>
-    <?= $caption ?>
-  </figcaption>
-
+  <figcaption><?= $caption ?></figcaption>
   <noscript>
     <img src='<?= $full->url() ?>' alt='<?= $alt ?>'>
   </noscript>

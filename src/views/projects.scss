@@ -10,6 +10,7 @@ main[data-barba-namespace='projects'] {
 
     color: var(--color-white);
 
+    filter: blur(1.2rem); // ???
     transform: translateY(-50%);
 
     @include mobile {

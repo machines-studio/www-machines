@@ -72,10 +72,10 @@
   @include easing((opacity, transform), 3000ms)
   @include easing((opacity, transform), 3000ms, true)
 */
-@mixin easing ($property: all, $duration: var(--easing, 120ms), $will-change: false) {
+@mixin easing ($property: all, $duration: var(--easing-fast), $will-change: false) {
   transition-duration: $duration;
   transition-property: $property;
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition-timing-function: var(--easing-ease-smooth);
 
   @if $will-change {
     will-change: $property;

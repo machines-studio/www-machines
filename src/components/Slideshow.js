@@ -6,14 +6,16 @@ export const selector = '.slideshow'
 export function hydrate (element) {
   if (element.querySelectorAll('.slideshow__slide').length <= 1) return
 
-  let currentVideo
+  let currentSlide, currentVideo, currentDot
 
   const dots = element.querySelectorAll('.slideshow__dot')
   const slides = element.querySelectorAll('.slideshow__slide')
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion)').matches
 
   const embla = EmblaCarousel(element, {
     container: '.slideshow__container',
-    loop: true
+    loop: true,
+    duration: reducedMotion ? 0 : 25
   })
 
   const autoplay = (() => {
@@ -45,7 +47,7 @@ export function hydrate (element) {
       if (isPaused) return
 
       ellapsed += dt
-      element.style.setProperty('--slideshow-dot-progress', (ellapsed / delay).toFixed(3))
+      currentDot?.style.setProperty('--slideshow-dot-progress', (ellapsed / delay).toFixed(3))
       if (ellapsed <= delay) return
 
       embla.scrollNext()
@@ -70,7 +72,7 @@ export function hydrate (element) {
     })
   }
 
-  autoplay.start()
+  if (!reducedMotion) autoplay.start()
 
   return {
     destroy: () => {
@@ -81,18 +83,21 @@ export function hydrate (element) {
   }
 
   function handleSlideChange () {
-    const index = embla.selectedScrollSnap()
-    const slide = slides[index]
-
     // Cleanup
     raf.remove(handleVideoTick)
-    element.style.setProperty('--slideshow-dot-progress', 0)
+    currentDot?.style.setProperty('--slideshow-dot-progress', 0)
     currentVideo?.removeEventListener('ended', handleVideoEnd)
     currentVideo?.pause()
     currentVideo = null
 
+    // Update current state
+    const index = embla.selectedScrollSnap()
+    currentSlide = slides[index]
+    currentDot = dots[index]
+    currentDot.style.setProperty('--slideshow-dot-progress', 0)
+
     // Handle current video if any
-    currentVideo = slide.querySelector('video')
+    currentVideo = currentSlide.querySelector('video')
     if (currentVideo) {
       raf.add(handleVideoTick)
       currentVideo.play()
@@ -117,8 +122,8 @@ export function hydrate (element) {
   }
 
   function handleVideoTick (e) {
-    if (!currentVideo) return
-    element.style.setProperty('--slideshow-dot-progress', (currentVideo.currentTime / currentVideo.duration).toFixed(3))
+    if (!currentVideo?.duration) return
+    currentDot?.style.setProperty('--slideshow-dot-progress', (currentVideo.currentTime / currentVideo.duration).toFixed(3))
   }
 
   function handleVideoEnd (e) {
