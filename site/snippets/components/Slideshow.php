@@ -30,6 +30,7 @@
       ]) ?>>
         <?php snippet('html/media', [
           'media' => $media,
+          'lazyload' => $medias->indexOf($media) > 0,
           'autoplay' => $medias->indexOf($media) === 0,
           'muted' => true
         ]) ?>

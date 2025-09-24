@@ -9,12 +9,11 @@
   }
 
   code {
-    padding: 0.25em;
+    @include font('code');
 
-    font-size: 85%;
-    line-height: 100%;
+    padding: 0.125em 0.25em;
     color: var(--color-gray);
-
+    vertical-align: 1px;
     background: var(--color-black);
     border-radius: 5px;
 

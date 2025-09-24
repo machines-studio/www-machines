@@ -3,12 +3,6 @@ accept:
   mime: image/*, video/*
   type: image, video
 
-create:
-  format: webp
-
-image:
-  cover: true
-
 fields:
   alt:
     label: field.blocks.image.alt

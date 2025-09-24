@@ -1,5 +1,13 @@
+$breakpoint-wide: 1920px;
 $breakpoint-narrow: 1024px;
 $breakpoint-mobile: 800px;
+$handle-prefers-reduced-motion: false;
+
+@mixin wide {
+  @media (min-width: $breakpoint-wide){
+    @content;
+  }
+}
 
 @mixin desktop {
   @media (min-width: $breakpoint-mobile + 1) {
@@ -26,8 +34,8 @@ $breakpoint-mobile: 800px;
 }
 
 @mixin reduced-motion {
-  @media (prefers-reduced-motion) {
-    .nope { // DEBUG
+  @if $handle-prefers-reduced-motion {
+    @media (prefers-reduced-motion) {
       @content;
     }
   }

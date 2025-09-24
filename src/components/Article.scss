@@ -1,7 +1,6 @@
 .article {
   position: relative;
   padding-top: var(--space-2);
-  overflow: hidden;
 
   // General layout
 
@@ -85,7 +84,7 @@
 
     // TODO data-crop
     figure {
-      img, video {
+      img, picture, video {
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
       }

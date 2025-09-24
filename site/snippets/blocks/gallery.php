@@ -1,8 +1,11 @@
-<?php $medias = $block->medias()->toFiles() ?>
+<?php
+  $medias = $block->medias()->toFiles();
+  $count = $medias->count()
+?>
 
 <section
   class='gallery'
-  data-count='<?= $medias->count() ?>'
+  data-count='<?= $count ?>'
   style='--gallery-columns-count: <?= $medias->count() ?>'
 >
   <ul>
@@ -11,8 +14,10 @@
         <?php snippet('html/media', [
           'media' => $media,
           'lazyload' => true,
-          'autoplay' => true
-          // 'preset' => // TODO
+          'autoplay' => true,
+          'sizes' => $count >= 2
+            ? option('thumbs.sizes.half')
+            : option('thumbs.sizes.default')
         ]) ?>
       </li>
     <?php endforeach ?>

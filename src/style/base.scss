@@ -4,9 +4,15 @@ html {
 
 body {
   @include font('body');
+
+  position: relative;
+
   display: grid;
   grid-template-rows: auto 1fr auto;
+  overflow-x: hidden;
+
   color: var(--color-black);
+
   background: var(--color-gray);
 
   &::after {
@@ -92,13 +98,7 @@ figure {
     box-shadow: var(--box-shadow);
   }
 
-  [data-lazyload] {
-    @include easing(opacity);
-    opacity: 0;
-    &[data-decoded='true'] { opacity: 1; }
-  }
-
-  img[data-photoswipe] {
+  [data-photoswipe] {
     cursor: pointer;
     cursor: zoom-in;
   }

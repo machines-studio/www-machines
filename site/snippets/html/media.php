@@ -4,15 +4,15 @@
 
   $lazyload ??= null;
   $autoplay ??= null;
-  $preset ??= null;
   $muted ??= null;
+  $sizes ??= null;
 
   switch ($media->type()) {
     case 'image':
     snippet('html/image', [
       'image' => $media,
-      'preset' => $preset,
-      'lazyload' => $lazyload
+      'lazyload' => $lazyload,
+      'sizes' => $sizes
     ]);
     break;
 

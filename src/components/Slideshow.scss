@@ -95,6 +95,7 @@
       position: relative;
       width: var(--slideshow-dot-active-width);
       overflow: hidden;
+      transition-timing-function: var(--easing-ease-back);
     }
 
     &[data-type='video'].is-active {

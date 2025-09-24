@@ -145,7 +145,7 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
 
       a {
         text-decoration-color: transparent;
-        &::before { @include hitbox(0.5rem); }
+        &::before { @include hitbox(2rem); }
       }
 
       &:has(.is-active, :hover)::before {

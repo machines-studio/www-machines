@@ -1,5 +1,5 @@
 :root {
-  --clients-bounce-back-duration: var(--easing);
+  --clients-bounce-back-duration: var(--easing-slow);
   --clients-bounce-back-easing: var(--easing-ease-back);
 }
 
@@ -20,8 +20,12 @@
     border-radius: var(--border-radius);
   }
 
-  &__group:has(+ &__client)::after {
-    content: '\00A0→';
+  &__group {
+    pointer-events: none;
+
+    &:has(+ *)::after {
+      content: '\00A0→';
+    }
   }
 
   &__client {

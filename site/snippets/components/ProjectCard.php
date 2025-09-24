@@ -17,6 +17,6 @@
 >
   <?php snippet('html/image', [
     'image' => $project->thumbnail()->toFile(),
-    'preset' => 'card'
+    'sizes' => option('thumbs.sizes.card')
   ]) ?>
 </a>

@@ -58,13 +58,14 @@
   }
 
   figure {
-    @include easing(filter);
+    @include easing(filter, var(--easing-slow), var(--easing-ease-back));
 
     // Improve blurred edges
     width: calc(100% + 2 * var(--project-card-backdrop-blur));
     height: calc(100% + 2 * var(--project-card-backdrop-blur));
     margin: calc(-1 * var(--project-card-backdrop-blur));
-    filter: none;
+    transform: translate3d(0, 0, 0); // Fix Safari filter glitch during easing
+    will-change: filter;
   }
 
   &:hover figure {
