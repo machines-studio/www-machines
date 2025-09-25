@@ -4,6 +4,7 @@ type: fields
 fields:
   seo_cover:
     extends: fields/thumbnail
+    required: false
     label: og:image
     help: "Taille minimum recommandée : 1200 × 628 px"
 
@@ -20,6 +21,5 @@ fields:
 
   seo_keywords:
     label: og:keywords
-    placeholder: "{{ site.seo_keywords }} {{ page.indexedTags }}" # WIP project categories
     icon: tag
     type: tags

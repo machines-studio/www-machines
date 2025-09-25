@@ -2,6 +2,10 @@ Title: Erreur
 
 ----
 
+Blocks: [{"content":{"text":"<p>La page demandée n’existe pas.</p>","cta":{"text":"retourner à l’accueil","link":"page://0wTYPYReLfGJvSz9"}},"id":"2b07d3ec-07fd-46af-aa4f-2b06ec45b6c3","isHidden":false,"type":"header"}]
+
+----
+
 Text: <p><a href="/@/page/0wTYPYReLfGJvSz9">Revenir à l’accueil</a></p>
 
 ----

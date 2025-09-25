@@ -4,18 +4,20 @@ extends:
   - presets/tabs
   - presets/icon
 
-columns:
-  - width: 1/3
-    fields:
-      taxonomy: fields/taxonomy
+tabs:
+  content:
+    columns:
+      - width: 1/3
+        fields:
+          taxonomy: fields/taxonomy
 
-  - width: 2/3
-    sections:
-      drafts:
-        extends: sections/drafts
-        create:
-          - project
-      pages:
-        label: Projets
-        extends: sections/pages
-        status: listed
+      - width: 2/3
+        sections:
+          drafts:
+            extends: sections/drafts
+            create:
+              - project
+          pages:
+            label: Projets
+            extends: sections/pages
+            status: listed

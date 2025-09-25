@@ -4,6 +4,8 @@ extends:
   - presets/tabs
   - presets/icon
 
-fields:
-  blocks: fields/blocks
-  clients: fields/clients
+tabs:
+  content:
+    fields:
+      blocks: fields/blocks
+      clients: fields/clients

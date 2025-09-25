@@ -10,6 +10,18 @@ Email: hello@machines.studio
 
 ----
 
+Seo-cover: - file://kveufmqucimavrpv
+
+----
+
+Seo-description: Studio de design graphique interactif et génératif
+
+----
+
+Seo-keywords: machines, studio, design, graphisme, objet, installation, art, système, outils, génératif, chevalvert, paris, lille, stéphane buellet, arnaud juracek
+
+----
+
 Letters:
 
 - file://wjorhnw24ohcimpz
