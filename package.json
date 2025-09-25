@@ -1,6 +1,7 @@
 {
-  "name": "boilerplate-kirby",
-  "description": "Opininated Kirby 4 boilerplate with vite, sass and barba",
+  "name": "www-machines",
+  "version": "0.1.0",
+  "description": "our website",
   "author": "Arnaud Juracek",
   "license": "MIT",
   "main": "src/index.js",
@@ -19,14 +20,9 @@
   },
   "devDependencies": {
     "concurrently": "^8.0.0",
-    "eslint": "8.x",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-config-standard-jsx": "^11.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.6.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint": "^9.27.0",
     "glob": "^10.3.3",
+    "neostandard": "^0.12.1",
     "sass": "^1.59.3",
     "stylelint": "^15.3.0",
     "stylelint-config-standard-scss": "^7.0.1",
@@ -38,7 +34,8 @@
   },
   "dependencies": {
     "@barba/core": "^2.10.0",
-    "lozad": "^1.16.0"
-  },
-  "version": "0.1.0"
+    "@internet/raf": "^0.2.1",
+    "embla-carousel": "^8.6.0",
+    "missing-math": "^3.4.0"
+  }
 }

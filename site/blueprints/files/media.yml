@@ -1,0 +1,31 @@
+title: Média
+accept:
+  mime: image/*, video/*
+  type: image, video
+
+fields:
+  alt:
+    label: field.blocks.image.alt
+    type: text
+    icon: title
+    width: 1/2
+
+  caption:
+    label: field.blocks.image.caption
+    type: writer
+    icon: text
+    inline: true
+    width: 1/2
+
+  croppable:
+    label: field.blocks.image.crop
+    type: toggle
+    default: on
+    width: 1/2
+
+  color:
+    label: Couleur d’arrière-plan
+    extends: fields/color
+    width: 1/2
+    when:
+      croppable: off

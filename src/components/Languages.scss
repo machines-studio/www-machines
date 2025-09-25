@@ -1,0 +1,21 @@
+.languages {
+  @include no-select;
+
+  ul {
+    display: flex;
+  }
+
+  li + li::before {
+    content: '\00A0/\2009';
+    opacity: 0.12;
+  }
+
+  a {
+    @include easing(color);
+    text-decoration: none !important;
+
+    &:not(.is-active, :hover) {
+      opacity: 0.12;
+    }
+  }
+}

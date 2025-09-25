@@ -1,0 +1,20 @@
+title: Header
+icon: text
+preview: fields
+wysiwyg: true
+
+fields:
+  text: fields/writer
+
+  cta:
+    label: Call-to-action
+    type: object
+    fields:
+      text:
+        type: text
+        width: 1/2
+
+      link:
+        type: link
+        width: 1/2
+

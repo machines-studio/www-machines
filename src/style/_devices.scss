@@ -1,7 +1,22 @@
-$breakpoint-mobile: 768px;
+$breakpoint-wide: 1920px;
+$breakpoint-narrow: 1024px;
+$breakpoint-mobile: 800px;
+$handle-prefers-reduced-motion: false;
+
+@mixin wide {
+  @media (min-width: $breakpoint-wide){
+    @content;
+  }
+}
 
 @mixin desktop {
   @media (min-width: $breakpoint-mobile + 1) {
+    @content;
+  }
+}
+
+@mixin narrow {
+  @media (max-width: $breakpoint-narrow) {
     @content;
   }
 }
@@ -19,8 +34,10 @@ $breakpoint-mobile: 768px;
 }
 
 @mixin reduced-motion {
-  @media (prefers-reduced-motion) {
-    @content;
+  @if $handle-prefers-reduced-motion {
+    @media (prefers-reduced-motion) {
+      @content;
+    }
   }
 }
 

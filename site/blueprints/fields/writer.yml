@@ -2,16 +2,20 @@ label: Texte
 type: writer
 
 toolbar:
-  inline: false
+  inline: true
   marks:
-    - bold
     - italic
     - strike
+    - code
     - link
-    - email
     - '|'
     - clear
-  nodes:
-    - paragraph
-    - bulletList
-    - orderedList
+
+nodes:
+  - heading
+  - paragraph
+  - bulletList
+  - orderedList
+
+headings:
+  - 3

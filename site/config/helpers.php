@@ -1,10 +1,5 @@
 <?php
 
-// Config helper to quickly define date.formats options
-function intl (string $pattern, ?string $locale = 'fr_FR') {
-  return new IntlDateFormatter($locale, IntlDateFormatter::FULL, IntlDateFormatter::SHORT, null, IntlDateFormatter::GREGORIAN, $pattern);
-}
-
 // Config helper to add a Page as a panel.menu entry
 function menu ($kirby, string $uid) {
   $page = $kirby->page($uid);

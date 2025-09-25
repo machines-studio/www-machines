@@ -17,7 +17,7 @@ vendor
 site/plugins/*
 
 # Prevent custom plugins to be ignored
-!site/plugins/NAMESPACE-*
+!site/plugins/machines-*
 
 /public/media/*
 !/public/media/index.html

@@ -1,0 +1,21 @@
+machines_taxonomy: true # Used for type check
+
+label: Taxonomie
+translate: false
+
+type: structure
+empty: Aucune taxonomie
+
+fields:
+  uuid:
+    type: hidden
+
+  fr:
+    required: true
+    type: text
+    width: 1/2
+
+  en:
+    type: text
+    placeholder: "{{ item.fr }}"
+    width: 1/2

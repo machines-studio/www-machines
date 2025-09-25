@@ -7,12 +7,13 @@
 }
 
 html {
+  height: 100%;
   font-size: 62.5%;
   text-size-adjust: 100%;
 }
 
 body {
-  height: 100%;
+  min-height: 100%;
   font-size: 1.2rem;
   -webkit-font-smoothing: antialiased;
   line-height: 1;

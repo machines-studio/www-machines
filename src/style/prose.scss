@@ -1,0 +1,79 @@
+.prose {
+  h2 { @include font('h1'); }
+  h3 { @include font('h2'); }
+
+  h2, h3 {
+    :is(p, figure, ul, ol, blockquote) + & {
+      margin-top: var(--space-gutter);
+    }
+  }
+
+  code {
+    @include font('code');
+
+    padding: 0.125em 0.25em;
+    color: var(--color-gray);
+    vertical-align: 1px;
+    background: var(--color-black);
+    border-radius: 5px;
+
+    &::selection {
+      color: var(--color-black);
+    }
+  }
+
+  a[target='_blank']::after {
+    content: '\202F↗';
+    display: inline-block;
+    line-height: 0;
+    vertical-align: -0.1em;
+  }
+
+  s {
+    text-decoration: underline;
+    text-underline-offset: -0.5ex;
+    text-decoration-skip-ink: none;
+  }
+
+
+  > {
+    h2, h3, p, figure, ol, ul, blockquote {
+      margin-bottom: var(--space-gutter);
+    }
+
+    h2, h3, p, ul, ol {
+      max-width: 60ch;
+      padding-right: var(--space-0);
+    }
+
+    p {
+      margin-bottom: var(--space-gutter);
+    }
+
+    ul, * ul {
+      padding-left: 1em;
+
+      li {
+        padding-left: 0.25em;
+        margin-block: 0.25em;
+      }
+
+      li::before {
+        position: absolute;
+        content: '→';
+        margin-left: -1.25em;
+      }
+
+      li:has(ul)::before {
+        position: absolute;
+        content: '↘\00A0\00A0';
+      }
+    }
+
+    ol, * ol { list-style: numeric outside; }
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+}

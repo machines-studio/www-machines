@@ -1,8 +1,7 @@
 title: Site
 
 fields:
+  color: fields/color
+
   email:
     type: email
-
-  letters:
-    type: files

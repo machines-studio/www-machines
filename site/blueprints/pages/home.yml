@@ -1,0 +1,11 @@
+title: Page d’accueil
+icon: home
+extends:
+  - presets/files
+  - presets/icon
+
+tabs:
+  content:
+    fields:
+      slideshow: fields/gallery
+      blocks: fields/blocks

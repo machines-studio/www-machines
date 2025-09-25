@@ -12,6 +12,12 @@
   <?= vite()->js('index.js', ['defer' => true]) ?>
   <?= vite()->css('index.scss') ?>
 
+  <style>
+    :root {
+      --color-accent: <?= $site->color() ?>;
+    }
+  </style>
+
   <script>
     document.getElementsByTagName('html')[0].className = 'js'
     document.getElementsByTagName('html')[0].dataset.hash = encodeURIComponent(window.location.hash.substr(1))

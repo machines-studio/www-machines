@@ -1,0 +1,8 @@
+label: Blocs
+type: blocks
+
+fieldsets:
+  - header
+  - writer
+  - gallery
+  - project

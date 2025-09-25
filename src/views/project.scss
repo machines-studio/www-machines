@@ -1,0 +1,87 @@
+main[data-barba-namespace='project'] {
+  // Layout
+
+  .slideshow {
+    @include mobile {
+      --slideshow-height: 75vw;
+    }
+  }
+
+  > h2 {
+    @include font('h1');
+    margin: var(--space-gutter);
+  }
+
+  > header {
+    display: grid;
+    grid-template-columns: column-span(2) column-span(6);
+    gap: var(--space-gutter);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-gutter);
+
+    @include mobile {
+      display: flex;
+      flex-direction: column-reverse;
+      padding-top: 0;
+
+      aside {
+        padding-top: var(--space-2);
+        margin-top: var(--space-gutter);
+        border-top: 1px solid var(--color-white);
+      }
+    }
+
+    // Align aside and prose with h3
+    &:has(.prose h3:first-child) .prose {
+      @include desktop {
+        $offset: calc(var(--h2-font-size) - var(--body-font-size) + 2px);
+        margin-top: calc(-1 * $offset);
+      }
+    }
+  }
+
+  > article {
+    padding-top: 0;
+  }
+
+  > article > section.prose {
+    padding-top: var(--space-2);
+    background: var(--color-white);
+
+    > * {
+      @include desktop {
+        margin-left: column-start(2);
+      }
+    }
+  }
+
+  // Elements
+
+  .metas {
+    @include font('nav');
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-gutter);
+  }
+
+  .meta {
+    margin-bottom: var(--space-0);
+    line-height: 118%;
+    text-transform: initial;
+
+    &[data-name]::before {
+      content: attr(data-name);
+      display: block;
+      margin-bottom: var(--space-0);
+      text-decoration: underline;
+      text-transform: lowercase;
+    }
+
+    &[data-name='year'] {
+      display: flex;
+
+      &::before { content: none; }
+      .year + .year::before { content: '\00A0→\00A0'; }
+    }
+  }
+}

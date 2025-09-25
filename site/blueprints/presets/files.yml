@@ -1,0 +1,9 @@
+tabs:
+  content:
+    label: Contenu
+
+  files:
+    label: Fichiers
+    sections:
+      files:
+        label: Fichiers

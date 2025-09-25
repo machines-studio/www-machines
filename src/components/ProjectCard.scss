@@ -1,0 +1,74 @@
+:root {
+  --project-card-ratio: 3/4;
+  --project-card-width: column-span(2);
+  --project-card-backdrop-blur: 2rem;
+
+  @include narrow {
+    --project-card-width: column-span(4);
+  }
+
+  @include mobile {
+    --project-card-width: column-span(8);
+  }
+}
+
+.project-card {
+  @include font('nav');
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--project-card-width);
+  aspect-ratio: var(--project-card-ratio);
+  overflow: hidden;
+
+  background: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  &::after {
+    @include easing(opacity);
+    content: attr(aria-label);
+
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
+    padding: var(--button-padding);
+
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    opacity: 0;
+    box-shadow: var(--box-shadow);
+
+    @include mobile {
+      top: var(--space-0);
+      left: var(--space-0);
+      border-radius: calc(var(--border-radius) / 2);
+      opacity: 1;
+    }
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  figure {
+    @include easing(filter, var(--easing-slow), var(--easing-ease-back));
+
+    // Improve blurred edges
+    width: calc(100% + 2 * var(--project-card-backdrop-blur));
+    height: calc(100% + 2 * var(--project-card-backdrop-blur));
+    margin: calc(-1 * var(--project-card-backdrop-blur));
+    transform: translate3d(0, 0, 0); // Fix Safari filter glitch during easing
+    will-change: filter;
+  }
+
+  &:hover figure {
+    filter: blur(var(--project-card-backdrop-blur));
+  }
+}

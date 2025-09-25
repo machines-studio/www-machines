@@ -1,0 +1,25 @@
+title: Projet
+icon: box
+extends:
+  - presets/files
+  - presets/icon
+
+image:
+  query: page.thumbnail.toFile
+  cover: true
+
+tabs:
+  content:
+    columns:
+      - width: 1/3
+        fields:
+          thumbnail: fields/thumbnail
+          year: fields/year
+          tags: fields/tags
+          credits: fields/credits
+
+      - width: 2/3
+        fields:
+          slideshow: fields/gallery
+          blocks: fields/blocks
+

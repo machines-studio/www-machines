@@ -1,0 +1,133 @@
+import EmblaCarousel from 'embla-carousel'
+import raf from '@internet/raf'
+
+export const selector = '.slideshow'
+
+export function hydrate (element) {
+  if (element.querySelectorAll('.slideshow__slide').length <= 1) return
+
+  let currentSlide, currentVideo, currentDot
+
+  const dots = element.querySelectorAll('.slideshow__dot')
+  const slides = element.querySelectorAll('.slideshow__slide')
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion)').matches
+
+  const embla = EmblaCarousel(element, {
+    container: '.slideshow__container',
+    loop: true,
+    duration: reducedMotion ? 0 : 25
+  })
+
+  const autoplay = (() => {
+    let isRunning
+    let isPaused = false
+    let ellapsed = 0
+    const delay = +(element.dataset.delay ?? 1000)
+
+    return {
+      get isRunning () { return isRunning },
+      get isPaused () { return isPaused },
+
+      pause: () => { isPaused = true },
+
+      start: () => {
+        isPaused = false
+        isRunning = true
+        raf.add(tick)
+      },
+
+      stop: () => {
+        isRunning = false
+        raf.remove(tick)
+      }
+    }
+
+    function tick (dt) {
+      if (!isRunning) return
+      if (isPaused) return
+
+      ellapsed += dt
+      currentDot?.style.setProperty('--slideshow-dot-progress', (ellapsed / delay).toFixed(3))
+      if (ellapsed <= delay) return
+
+      embla.scrollNext()
+      ellapsed = 0
+    }
+  })()
+
+  // Bind events
+  embla.on('init', handleSlideChange)
+  embla.on('select', handleSlideChange)
+  embla.on('pointerDown', e => element.classList.add('is-active'))
+  embla.on('pointerUp', e => {
+    element.classList.remove('is-active')
+    autoplay.stop()
+  })
+
+  // Handle dots
+  for (let index = 0; index < dots.length; index++) {
+    dots[index].addEventListener('click', e => {
+      e.preventDefault()
+      embla.scrollTo(index)
+    })
+  }
+
+  if (!reducedMotion) autoplay.start()
+
+  return {
+    destroy: () => {
+      embla.destroy()
+      autoplay.stop()
+      raf.remove(handleVideoTick)
+    }
+  }
+
+  function handleSlideChange () {
+    // Cleanup
+    raf.remove(handleVideoTick)
+    currentDot?.style.setProperty('--slideshow-dot-progress', 0)
+    currentVideo?.removeEventListener('ended', handleVideoEnd)
+    currentVideo?.pause()
+    currentVideo = null
+
+    // Update current state
+    const index = embla.selectedScrollSnap()
+    currentSlide = slides[index]
+    currentDot = dots[index]
+    currentDot.style.setProperty('--slideshow-dot-progress', 0)
+
+    // Handle current video if any
+    currentVideo = currentSlide.querySelector('video')
+    if (currentVideo) {
+      raf.add(handleVideoTick)
+      currentVideo.play()
+      currentVideo.removeAttribute('loop') // Loop is done in handleVideoEnd
+      currentVideo.addEventListener('ended', handleVideoEnd)
+    }
+
+    // Handle autoplay
+    if (autoplay.isRunning) {
+      if (currentVideo) {
+        currentVideo.currentTime = 0
+        autoplay.pause()
+      } else {
+        autoplay.start()
+      }
+    }
+
+    // Handle dots
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('is-active', i === index)
+    }
+  }
+
+  function handleVideoTick (e) {
+    if (!currentVideo?.duration) return
+    currentDot?.style.setProperty('--slideshow-dot-progress', (currentVideo.currentTime / currentVideo.duration).toFixed(3))
+  }
+
+  function handleVideoEnd (e) {
+    if (autoplay.isRunning) embla.scrollNext()
+    else e.target.play() // Loop back
+  }
+}

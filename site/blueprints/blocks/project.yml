@@ -1,0 +1,12 @@
+title: Carte projet
+icon: box
+preview: fields
+wysiwyg: true
+
+fields:
+  page:
+    type: pages
+    template: project
+    query: site.index.filterBy('intendedTemplate', '==', 'project')
+    subpages: false
+    multiple: false

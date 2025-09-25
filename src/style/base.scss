@@ -4,19 +4,66 @@ html {
 
 body {
   @include font('body');
+
+  position: relative;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow-x: hidden;
+
   color: var(--color-black);
-  background: var(--color-white);
+
+  background: var(--color-gray);
+
+  &::after {
+    @include debug-view {
+      content: '';
+
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      background-image: linear-gradient(to right, transparent var(--space-gutter), rgba(255 0 0 / 5%) 0);
+      background-size: calc((100vw - var(--space-gutter)) / 8);
+    }
+  }
 }
 
 main {
-  padding: var(--space-gutter);
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  // Page transition animation
+  .article, .slideshow, .projects__items {
+    animation: main-appears var(--easing-slow) forwards;
+
+    @keyframes main-appears {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  }
+}
+
+::selection {
+  background: var(--color-accent);
 }
 
 a {
+  @include easing(text-decoration-color);
   -webkit-tap-highlight-color: rgba(255 255 255 / 0%);
+
   color: inherit;
+
   text-decoration-line: none;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
   text-decoration-thickness: inherit;
+
+  &.is-active,
+  &:hover {
+    text-decoration-color: currentcolor;
+  }
 
   .prose & {
     text-decoration-line: underline;
@@ -30,26 +77,38 @@ a {
   }
 }
 
+input[id^='toggle-'] {
+  display: none;
+}
+
 figure {
   img,
-  picture {
+  picture,
+  video {
     @include no-select;
     width: 100%;
     height: 100%;
+
+    background: var(--figure-color-background, var(--color-white));
+
     object-fit: cover;
     object-position: var(--focus-x, 50%) var(--focus-y, 50%);
+
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
   }
 
-  img[data-lazyload][data-decoded='true'] {
-    opacity: 1;
-  }
-
-  img[data-photoswipe] {
+  [data-photoswipe] {
     cursor: pointer;
     cursor: zoom-in;
   }
 
-  figcaption:empty {
-    display: none;
+  figcaption {
+    margin-block: var(--space-0);
+    font-size: small;
+
+    &:empty {
+      display: none;
+    }
   }
 }

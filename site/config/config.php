@@ -4,41 +4,70 @@ include_once 'helpers.php';
 date_default_timezone_set('Europe/Paris');
 
 return [
-  'date' => [
-    'handler' => 'intl',
-    'formats' => [
-      'file' => intl('yyyyMMdd'),
-      'iso' => intl('yyyy-MM-dd'),
-      'full' => intl('dd MMMM yyyy')
-    ]
-  ],
-
   'thumbs' => [
-    'presets' => [
-      'default' => ['width' => 1920],
-      'prose' => ['width' => 1080]
-    ]
+    'sizes' => [
+      'default' => '100vw',
+      'half' => implode(',', [
+        '(max-width: 1024px) 100vw',
+        '50vw'
+      ]),
+      'card' => implode(',', [
+        '(min-width: 1024px) 33vw',
+        '(min-width: 800px) 50vw',
+        '100vw'
+      ])
+    ],
+
+    'srcsets' => (function () {
+      $srcsets = [
+        '300w' => ['width' => 300, 'quality' => 100],
+        '400w' => ['width' => 400, 'quality' => 100],
+        '800w' => ['width' => 800, 'quality' => 100],
+        '960w' => ['width' => 960, 'quality' => 100],
+        '1280w' => ['width' => 1280, 'quality' => 100],
+        '1920w' => ['width' => 1920, 'quality' => 100]
+      ];
+
+      return [
+        'default' => $srcsets,
+        'avif' => array_map(fn ($srcset) => [...$srcset, 'format' => 'avif'], $srcsets),
+        'webp' => array_map(fn ($srcset) => [...$srcset, 'format' => 'webp'], $srcsets)
+      ];
+    })()
   ],
 
   'panel' => [
-    'menu' => function ($kirby) {
-      return [
-        'site' => [
-          'label' => 'Accueil',
-          'current' => function () : bool {
-            $links = ['site'];
-            $path  = Kirby\Cms\App::instance()->path();
-            return Str::contains($path, 'site');
-          }
-        ],
-        // Add pages here if needed
-        // 'projects' => menu($kirby, 'projects'),
-        '-',
-        'users',
-        'languages',
-        'system'
-      ];
-    }
+    'menu' => fn ($kirby) => array_merge([
+      'site' => [
+        'label' => 'Site',
+        'icon' => 'smile',
+        'current' => function () : bool {
+          $links = ['site'];
+          $path  = Kirby\Cms\App::instance()->path();
+          return Str::contains($path, 'site');
+        }
+      ],
+      '-',
+      'home' => menu($kirby, 'home'),
+      '-',
+    ],
+    (function () use ($kirby) {
+      $items = [];
+      foreach ($kirby->site()->children()->listed() as $group) {
+        $id = $group->slug();
+        $items[$id] = menu($kirby, $id);
+      }
+      return $items;
+    })(),
+    [
+      '-',
+      'legals' => menu($kirby, 'legals'),
+      'error' => menu($kirby, 'error'),
+      '-',
+      'users',
+      'languages',
+      'system'
+    ])
   ],
 
   'sitemap' => [

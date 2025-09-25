@@ -1,20 +1,236 @@
+:root {
+  --menu-logo-height: 3.6rem;
+  --menu-height: 10.4rem;
+  --menu-backdrop-color: rgba(0 0 0 / 10%);
+  --menu-backdrop-blur: 1.2rem;
+
+  @include mobile {
+    --menu-logo-height: 3rem;
+    --menu-height: 6.9rem;
+  }
+}
+
+// Prevent scrolling when mobile menu is open
+body:has(#toggle-menu:checked) { overflow: hidden; }
+
 .menu {
   @include no-select;
+  @include font('menu');
 
-  position: fixed;
+  $sticked: "&:not(.is-on-top):is(:hover, .is-sticky)";
+  $scrolled: "&:not(.is-on-top)";
+  $open: "#toggle-menu:checked ~ .menu";
+
+  position: relative;
   z-index: var(--z-menu);
-  right: var(--space-gutter);
-  left: var(--space-gutter);
+  top: 0;
 
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   gap: var(--space-gutter);
+  padding: var(--space-gutter);
+  pointer-events: none;
 
-  a {
-    @include easing(opacity);
+  & > * {
+    pointer-events: auto;
   }
 
-  &:has(a:hover) a:not(:hover) {
-    opacity: 0.3;
+  #{$sticked} {
+    position: sticky;
   }
+
+  // Blurred mobile backdrop
+  &::before {
+    @include mobile {
+      @include easing(opacity);
+      content: '';
+
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      background: var(--menu-backdrop-color);
+      opacity: 0;
+      backdrop-filter: blur(var(--menu-backdrop-blur));
+    }
+
+    #toggle-menu:checked ~ & {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
+  h1 {
+    position: relative;
+
+    svg {
+      width: auto;
+      height: var(--menu-logo-height);
+    }
+
+    svg.is-bouncing {
+      animation: logo-bounce 1s infinite;
+
+      @include reduced-motion {
+        animation: none;
+      }
+    }
+
+    span {
+      @include visually-hidden;
+    }
+  }
+
+  #{$scrolled} h1 {
+    visibility: hidden;
+  }
+
+  &__links {
+    position: relative;
+    display: flex;
+    gap: var(--space-gutter);
+
+    @include mobile {
+      display: none;
+    }
+
+    #{$open} & {
+      @include mobile {
+        position: fixed;
+        top: var(--menu-height);
+        right: var(--space-gutter);
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: var(--space-0);
+      }
+    }
+  }
+
+  // Hitbox to trigger menu apparition
+  #{$scrolled} &__links::before {
+    @include desktop {
+      content: '';
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: calc(var(--menu-height) - var(--space-gutter));
+    }
+  }
+
+  // Pill when sticky
+  #{$sticked} &__link {
+    @include desktop {
+      @for $i from 1 through 10 {
+        &:nth-child(#{10 - $i}) {
+          animation: link-slide-down var(--easing) #{($i - 1) * 30}ms var(--easing-ease-back) both;
+        }
+      }
+
+      &::before {
+        @include easing(background);
+        content: '';
+
+        position: absolute;
+        z-index: -1;
+        inset: -0.5rem -1.2rem;
+
+        background: var(--color-white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+      }
+
+      a {
+        text-decoration-color: transparent;
+        &::before { @include hitbox(2rem); }
+      }
+
+      &:has(.is-active, :hover)::before {
+        background: var(--color-accent);
+      }
+    }
+  }
+
+  // Pill on mobile
+  &__link {
+    @include mobile {
+      @include easing(background);
+      padding: var(--button-padding);
+      background: var(--color-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      will-change: transform, opacity;
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          transform-origin: right center;
+          animation: link-slide-in var(--easing) #{($i - 1) * 20}ms var(--easing-ease-back) both;
+        }
+      }
+
+      &:has(.is-active, :hover) {
+        background: var(--color-accent);
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Hamburger
+  label[for='toggle-menu'] {
+    position: relative;
+    z-index: var(--z-menu);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    @include desktop {
+      display: none;
+    }
+
+    svg {
+      overflow: visible;
+    }
+
+    path {
+      @include easing(transform, var(--easing), var(--easing-ease-back));
+      transform-origin: 32% center;
+    }
+
+    #toggle-menu:checked ~ & path {
+      transition-timing-function: var(--easing-ease-smooth);
+    }
+
+    #toggle-menu:checked ~ & path:first-of-type {
+      transform: translateX(-9%) rotate(45deg);
+    }
+
+    #toggle-menu:checked ~ & path:last-of-type {
+      transform: translateX(-9%) rotate(-45deg);
+    }
+  }
+}
+
+@keyframes logo-bounce {
+  15% { transform: scaleX(1.5) scaleY(0.5) translateY(50%); }
+  20% { transform: translateY(-50%) rotate(0deg); }
+  60% { transform: translateY(-50%) rotate(120deg); }
+  70% { transform: rotate(180deg); }
+  90% { transform: rotate(180deg) scaleX(1.1) scaleY(0.9) translateY(-10%); }
+  100% { transform: rotate(180deg); }
+}
+
+@keyframes link-slide-in {
+  from { opacity: 0; transform: rotate(10deg) translateY(-50%); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes link-slide-down {
+  from { transform: translateY(calc(-1 * var(--menu-height))) rotate(30deg) ; }
+  to { transform: none; }
 }

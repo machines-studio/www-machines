@@ -1,1 +1,4 @@
 /* Write here your custom panel styles */
+.k-block-type-header .k-writer-input {
+  font-size: large;
+}
