@@ -16,7 +16,7 @@ class Taxonomy {
     ];
   }
 
-  public function get (string $lang = null) : string {
+  public function get (?string $lang = null) : string {
     $lang ??= kirby()->language()->code();
     return $this->value[$lang] ?? '';
   }
