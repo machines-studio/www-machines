@@ -1,0 +1,1 @@
+import{B as t}from"./index-Bf9xMI6Y.js";const f=new t("default",{beforeEnter:function({next:e}){},afterEnter:function({next:e}){},beforeLeave:function(){},afterLeave:function(){}});export{f as default};
