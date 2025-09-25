@@ -17,7 +17,7 @@
           'attributes' => ['class' => 'clients__client']
         ], slots: true) ?>
           <?php slot('content') ?>
-            <?php if (trim($client[1])) : ?>
+            <?php if (trim($client[1] ?? '')) : ?>
               <a href='<?= $client[1] ?>' target='_blank' rel='noopener'>
                 <?= $client[0] ?>
               </a>

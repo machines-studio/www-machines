@@ -8,14 +8,24 @@ const STICKY_FACTOR = 0.5 // %
 
 export function hydrate (element) {
   const clients = Array.from(element.querySelectorAll('.clients__client'))
+
   document.documentElement.addEventListener('mousemove', handleMouseMove)
+  window.addEventListener('resize', handleResize)
 
   let px, py, nextFrame
 
   return {
     destroy: () => {
       window.cancelAnimationFrame(nextFrame)
+      window.removeEventListener('resize', handleResize)
       document.documentElement.removeEventListener('mousemove', handleMouseMove)
+    }
+  }
+
+  function handleResize () {
+    // Store normal DOM position, so that we can disrupt it later
+    for (const client of clients) {
+      client.initialBoundingBox = getDocumentBbox(client)
     }
   }
 
@@ -28,15 +38,20 @@ export function hydrate (element) {
       const factor = map(distSq([px, py], [e.pageX, e.pageY]), 0, STICKY_DISTANCE ** 2, STICKY_FACTOR, 1, true)
 
       for (const client of clients) {
-        const rect = client.initialHit?.rect ?? client.getBoundingClientRect()
+        client.initialBoundingBox ??= getDocumentBbox(client)
 
-        const hit = e.clientX > rect.left && e.clientX < rect.right && e.clientY > rect.top && e.clientY < rect.bottom
+        // Adjust initial bounding box to current document scroll
+        const top = client.initialBoundingBox.top - document.documentElement.scrollTop
+        const left = client.initialBoundingBox.left - document.documentElement.scrollLeft
+        const bottom = top + client.initialBoundingBox.height
+        const right = left + client.initialBoundingBox.width
+        const hit = element.contains(e.target) && e.clientX > left && e.clientX < right && e.clientY > top && e.clientY < bottom
+
         client.classList.toggle('is-sticked', hit)
 
         if (hit) {
           // Define origin of the hit
           client.initialHit ??= {
-            rect,
             x: e.clientX,
             y: e.clientY
           }
@@ -61,5 +76,20 @@ export function hydrate (element) {
       px = e.pageX
       py = e.pageY
     })
+  }
+
+  /**
+   * Compute a bounding-box relative to the whole document
+   * @param {Element} element
+   * @return {<{ top, left, width, height }>}
+   */
+  function getDocumentBbox (element) {
+    const { top, left, width, height } = element.getBoundingClientRect()
+    return {
+      top: top + document.documentElement.scrollTop,
+      left: left + document.documentElement.scrollLeft,
+      width,
+      height
+    }
   }
 }
