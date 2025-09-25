@@ -48,14 +48,8 @@
   }
 
   > .project-card {
-    // WIP
     position: absolute;
     width: column-span(2);
-    transform:
-      translateX(80vw)
-      translateY(-130%)
-      rotate(10deg)
-    ;
 
     @include mobile {
       display: none;

@@ -19,4 +19,5 @@
     'image' => $project->thumbnail()->toFile(),
     'sizes' => option('thumbs.sizes.card')
   ]) ?>
+  <canvas class='project-card__debug'>
 </a>
