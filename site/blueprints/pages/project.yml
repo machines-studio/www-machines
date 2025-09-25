@@ -1,7 +1,7 @@
 title: Projet
 icon: box
 extends:
-  - presets/files
+  - presets/tabs
   - presets/icon
 
 image:

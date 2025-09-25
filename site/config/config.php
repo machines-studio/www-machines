@@ -49,22 +49,27 @@ return [
           return Str::contains($path, 'site');
         }
       ],
-      '-',
-      'home' => menu($kirby, 'home'),
-      '-',
+      'home' => menu($kirby, 'home')
     ],
+    // Listed
     (function () use ($kirby) {
-      $items = [];
+      $items = ['-'];
       foreach ($kirby->site()->children()->listed() as $group) {
         $id = $group->slug();
         $items[$id] = menu($kirby, $id);
       }
       return $items;
     })(),
+    // Unlisted
+    (function () use ($kirby) {
+      $items = ['-'];
+      foreach ($kirby->site()->children()->unlisted() as $group) {
+        $id = $group->slug();
+        $items[$id] = menu($kirby, $id);
+      }
+      return $items;
+    })(),
     [
-      '-',
-      'legals' => menu($kirby, 'legals'),
-      'error' => menu($kirby, 'error'),
       '-',
       'users',
       'languages',

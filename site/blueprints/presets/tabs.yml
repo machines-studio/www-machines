@@ -2,8 +2,14 @@ tabs:
   content:
     label: Contenu
 
+  seo:
+    label: SEO
+    sections:
+      seo: sections/seo
+
   files:
     label: Fichiers
     sections:
       files:
         label: Fichiers
+

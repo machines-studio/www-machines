@@ -1,7 +1,18 @@
-title: Site
+extends:
+  - presets/tabs
+  - presets/icon
 
-fields:
-  color: fields/color
+tabs:
+  content:
+    columns:
+      - width: 2/3
+        sections:
+          pages:
 
-  email:
-    type: email
+      - width: 1/3
+        fields:
+          color: fields/color
+
+          email:
+            type: email
+
