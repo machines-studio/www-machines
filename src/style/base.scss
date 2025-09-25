@@ -98,6 +98,14 @@ figure {
     box-shadow: var(--box-shadow);
   }
 
+  [loading='lazy'] {
+    @media (scripting: enabled) {
+      @include easing(opacity, var(--easing-slow));
+      opacity: 0;
+      &.is-loaded { opacity: 1;}
+    }
+  }
+
   [data-photoswipe] {
     cursor: pointer;
     cursor: zoom-in;

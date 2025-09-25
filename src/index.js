@@ -23,6 +23,13 @@ import { bootstrap } from '/core/Barba'
     },
 
     afterEnter: next => {
+      // Flag native lazy loading so that we can animate in CSS
+      for (const el of next.container.querySelectorAll('[loading="lazy"]')) {
+        const markAsLoaded = () => el.classList.add('is-loaded')
+        if (el.complete) markAsLoaded()
+        else el.addEventListener('load', markAsLoaded)
+      }
+
       // Reset scroll position
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     }
