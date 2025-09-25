@@ -31,6 +31,10 @@ main[data-barba-namespace='project'] {
       }
     }
 
+    .prose {
+      max-width: column-span(6, 8, $breakpoint-wide);
+    }
+
     // Align aside and prose with h3
     &:has(.prose h3:first-child) .prose {
       @include desktop {
@@ -50,6 +54,7 @@ main[data-barba-namespace='project'] {
 
     > * {
       @include desktop {
+        max-width: column-span(6, 8, $breakpoint-wide);
         margin-left: column-start(2);
       }
     }

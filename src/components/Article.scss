@@ -9,6 +9,7 @@
   > section > *,
   > .cta {
     width: column-span(6);
+    max-width: column-span(6, 8, $breakpoint-wide);
     margin-left: column-start(1);
 
     @include narrow {
@@ -47,8 +48,8 @@
     background: var(--color-white);
   }
 
+  // WIP
   > .project-card {
-    // WIP
     position: absolute;
     width: column-span(2);
     transform:
@@ -68,9 +69,10 @@
 
     ul {
       display: grid;
-      grid-template-columns: repeat(var(--gallery-columns-count), 1fr);
+      grid-template-columns: repeat(min(2, var(--gallery-columns-count)), 1fr);
       gap: var(--space-gutter);
       width: 100%;
+      max-width: unset;
       margin-left: unset;
 
       @include narrow {
