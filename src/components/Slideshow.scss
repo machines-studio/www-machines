@@ -19,10 +19,12 @@
 }
 
 .slideshow {
+  $shadow-radius: 3rem;
+
   position: relative;
-  padding-top: var(--space-gutter);
+  padding-top: $shadow-radius;
   padding-bottom: var(--slideshow-dots-height);
-  margin-top: calc(-1 * var(--space-gutter)); // Leave room for slide shadow
+  margin-top: calc(-1 * $shadow-radius); // Leave room for slide shadow
   overflow: hidden;
 
   &__container {
