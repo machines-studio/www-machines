@@ -3,12 +3,32 @@
     "file": "assets/205tf-milling-duplex1mm-italic-dWjPk0hy.otf",
     "src": "assets/205tf-milling-duplex1mm-italic.otf"
   },
+  "assets/205tf-milling-duplex1mm-italic.woff": {
+    "file": "assets/205tf-milling-duplex1mm-italic-D0T3IR3I.woff",
+    "src": "assets/205tf-milling-duplex1mm-italic.woff"
+  },
+  "assets/205tf-milling-duplex1mm-italic.woff2": {
+    "file": "assets/205tf-milling-duplex1mm-italic-DLGHdL7P.woff2",
+    "src": "assets/205tf-milling-duplex1mm-italic.woff2"
+  },
   "assets/205tf-milling-duplex1mm.otf": {
     "file": "assets/205tf-milling-duplex1mm-CmFhjRGx.otf",
     "src": "assets/205tf-milling-duplex1mm.otf"
   },
+  "assets/205tf-milling-duplex1mm.woff": {
+    "file": "assets/205tf-milling-duplex1mm-DQc0pnru.woff",
+    "src": "assets/205tf-milling-duplex1mm.woff"
+  },
+  "assets/ibm-plex-mono-medium-italic.ttf": {
+    "file": "assets/ibm-plex-mono-medium-italic-DGs9d82A.ttf",
+    "src": "assets/ibm-plex-mono-medium-italic.ttf"
+  },
+  "assets/ibm-plex-mono-medium.ttf": {
+    "file": "assets/ibm-plex-mono-medium-COFd06Dj.ttf",
+    "src": "assets/ibm-plex-mono-medium.ttf"
+  },
   "components/Clients.js": {
-    "file": "assets/Clients-8CimV6Fx.js",
+    "file": "assets/Clients-CB3qek90.js",
     "name": "Clients",
     "src": "components/Clients.js",
     "isDynamicEntry": true
@@ -20,7 +40,7 @@
     "isDynamicEntry": true
   },
   "components/Menu.js": {
-    "file": "assets/Menu-CeaoB2sj.js",
+    "file": "assets/Menu-D1WESuNw.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
@@ -35,13 +55,13 @@
     "isDynamicEntry": true
   },
   "components/Slideshow.js": {
-    "file": "assets/Slideshow-_kwVwzkc.js",
+    "file": "assets/Slideshow-DFsquMln.js",
     "name": "Slideshow",
     "src": "components/Slideshow.js",
     "isDynamicEntry": true
   },
   "index.js": {
-    "file": "assets/index-BOzZtstE.js",
+    "file": "assets/index-DThtrc0P.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
@@ -56,21 +76,21 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-CKrzaGGi.css",
+    "file": "assets/index-jstZQA8b.css",
     "src": "index.scss",
     "isEntry": true
   },
   "panel.css": {
-    "file": "assets/panel-DiF1USl4.js",
+    "file": "assets/panel-C64EqVrX.js",
     "name": "panel",
     "src": "panel.css",
     "isEntry": true,
     "css": [
-      "assets/panel-tn0RQdqM.css"
+      "assets/panel-DF3oujaB.css"
     ]
   },
   "panel.js": {
-    "file": "assets/panel-DfESdCUy.js",
+    "file": "assets/panel-D0jUJTvB.js",
     "name": "panel",
     "src": "panel.js",
     "isEntry": true,
@@ -79,7 +99,7 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-DeaDsro7.js",
+    "file": "assets/default-CCtNGGZx.js",
     "name": "default",
     "src": "views/default.js",
     "isDynamicEntry": true,
