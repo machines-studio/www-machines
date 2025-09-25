@@ -3,7 +3,7 @@ main[data-barba-namespace='project'] {
 
   .slideshow {
     @include mobile {
-      --slideshow-height: 75vw;
+      --slideshow-height: calc(100vw - var(--space-gutter) * 2);
     }
   }
 
