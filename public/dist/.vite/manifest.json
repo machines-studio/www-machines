@@ -40,7 +40,7 @@
     "isDynamicEntry": true
   },
   "components/Menu.js": {
-    "file": "assets/Menu-Dn938FV7.js",
+    "file": "assets/Menu-ehoamHIb.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
@@ -61,7 +61,7 @@
     "isDynamicEntry": true
   },
   "index.js": {
-    "file": "assets/index-Bf9xMI6Y.js",
+    "file": "assets/index-BLXn6Eiw.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
@@ -76,7 +76,7 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-CldVIwja.css",
+    "file": "assets/index-cfgvZh4u.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -99,7 +99,7 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-ZeHqjnCN.js",
+    "file": "assets/default-BJ_vxDNl.js",
     "name": "default",
     "src": "views/default.js",
     "isDynamicEntry": true,
