@@ -5,6 +5,8 @@ date_default_timezone_set('Europe/Paris');
 
 return [
   'thumbs' => [
+    'driver' => 'im',
+
     'sizes' => [
       'default' => '100vw',
       'half' => implode(',', [
