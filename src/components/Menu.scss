@@ -198,8 +198,12 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
     }
 
     path {
-      @include easing(transform);
+      @include easing(transform, var(--easing), var(--easing-ease-back));
       transform-origin: 32% center;
+    }
+
+    #toggle-menu:checked ~ & path {
+      transition-timing-function: var(--easing-ease-smooth);
     }
 
     #toggle-menu:checked ~ & path:first-of-type {
