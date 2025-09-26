@@ -559,13 +559,6 @@
     estraverse "^5.3.0"
     picomatch "^4.0.2"
 
-"@tooooools/ui@^2.0.0-alpha.0":
-  version "2.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@tooooools/ui/-/ui-2.0.0-alpha.0.tgz#ded10259a83180028a5a77f9bb822a88c5c231a3"
-  integrity sha512-AiN2Qu49z0PMoigvmjK+R0FDseSGPZW5SsOxm9mozp4wNhZetdBXZBxMow4mZS3lC32DfplaUoHz3xKj6K4RqQ==
-  dependencies:
-    debounce "^1.2.1"
-
 "@tybys/wasm-util@^0.10.0":
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/@tybys/wasm-util/-/wasm-util-0.10.1.tgz#ecddd3205cf1e2d5274649ff0eedd2991ed7f414"
@@ -888,11 +881,6 @@ ajv@^8.0.1:
     fast-uri "^3.0.1"
     json-schema-traverse "^1.0.0"
     require-from-string "^2.0.2"
-
-animejs@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/animejs/-/animejs-4.1.4.tgz#c766ab869c00ebf839dcd45e564003a147644f0e"
-  integrity sha512-BdnlkOx959ehvD56Gog6qafRIn6U1gOS5ZNNGK/QHbCv3Ha09IDarplQJbujavki0uT4moeP5RagtoPplhvPAQ==
 
 ansi-regex@^5.0.1:
   version "5.0.1"
@@ -1389,11 +1377,6 @@ date-fns@^2.30.0:
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
   dependencies:
     "@babel/runtime" "^7.21.0"
-
-debounce@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.1.tgz#38881d8f4166a5c5848020c11827b834bcb3e0a5"
-  integrity sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==
 
 debug@2.6.9, debug@^2.2.0:
   version "2.6.9"

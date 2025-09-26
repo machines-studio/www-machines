@@ -18,8 +18,14 @@
 .projects {
   $searching: '#toggle-search:checked ~';
 
+  position: relative;
+
   min-height: 100%;
+  padding-top: var(--menu-height);
   padding-bottom: var(--space-gutter);
+  margin-top: calc(-1 * var(--menu-height));
+
+  contain: paint;
 
   &__items {
     display: grid;
@@ -30,7 +36,14 @@
   }
 
   .filtered-out {
-    display: none;
+    // ??? when not draggable
+    // display: none;
+
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(0.5rem);
+    .project-card { box-shadow: var(--box-shadow-none); }
+    .project-card figure { opacity: 0.2; }
   }
 
   &__filter {
@@ -60,7 +73,7 @@
       flex-wrap: wrap;
     }
 
-    label, button {
+    label, button, a {
       @include no-select;
     }
 

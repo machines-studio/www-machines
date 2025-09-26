@@ -1,7 +1,7 @@
 :root {
   --project-card-ratio: 3/4;
   --project-card-width: column-span(2);
-  --project-card-backdrop-blur: 0;
+  --project-card-backdrop-blur: 1rem;
 
   @include narrow {
     --project-card-width: column-span(4);
@@ -22,74 +22,63 @@
   align-items: center;
   width: var(--project-card-width);
   aspect-ratio: var(--project-card-ratio);
-  overflow: hidden;
+  cursor: grab;
 
   background: var(--color-white);
   border-radius: var(--border-radius);
-  // box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 
-  // &::after {
-  //   @include easing(opacity);
-  //   content: attr(aria-label);
+  isolation: isolate;
+  will-change: transform;
+  contain: paint;
 
-  //   position: absolute;
+  &.is-dragged {
+    cursor: grabbing;
+  }
 
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   height: 2em;
-  //   padding: var(--button-padding);
+  &::after {
+    @include easing(opacity);
+    content: attr(aria-label);
 
-  //   background: var(--color-white);
-  //   border-radius: var(--border-radius);
-  //   opacity: 0;
-  //   box-shadow: var(--box-shadow);
+    position: absolute;
 
-  //   @include mobile {
-  //     top: var(--space-0);
-  //     left: var(--space-0);
-  //     border-radius: calc(var(--border-radius) / 2);
-  //     opacity: 1;
-  //   }
-  // }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
+    padding: var(--button-padding);
 
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    opacity: 0;
+    box-shadow: var(--box-shadow);
+
+    @include mobile {
+      top: var(--space-0);
+      left: var(--space-0);
+      border-radius: calc(var(--border-radius) / 2);
+      opacity: 1;
+    }
+  }
+
+  // TODO when draggable
   // &.is-active::after,
   // &:hover::after {
   //   opacity: 1;
   // }
 
   figure {
-    @include easing(filter, var(--easing-slow), var(--easing-ease-back));
+    @include easing((filter), var(--easing-slow), var(--easing-ease-back));
 
     // Improve blurred edges
     width: calc(100% + 2 * var(--project-card-backdrop-blur));
     height: calc(100% + 2 * var(--project-card-backdrop-blur));
     margin: calc(-1 * var(--project-card-backdrop-blur));
-    transform: translate3d(0, 0, 0); // Fix Safari filter glitch during easing
-    will-change: filter;
   }
 
-  // &.is-active figure,
-  // &:hover figure {
-  //   filter: blur(var(--project-card-backdrop-blur));
-  // }
-
-  &__debug {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-  }
-
-  &::after {
-    content: attr(data-log);
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0.5em;
-    font-family: var(--code-font-family);
-    line-height: 100%;
-    font-size: small;
+  // TODO: not when draggable
+  &.is-active figure,
+  &:hover figure {
+    // filter: blur(var(--project-card-backdrop-blur));
   }
 }

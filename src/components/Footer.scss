@@ -2,6 +2,9 @@
   @include no-select;
   @include font('footer');
 
+  position: relative;
+  z-index: var(--z-footer);
+
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-0) var(--space-gutter);

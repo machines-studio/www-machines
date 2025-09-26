@@ -1,161 +1,194 @@
-import { $ } from '@tooooools/ui/state'
 import { raf } from '@internet/raf'
-import { lerp, lerpRadians, degrees, normalize, map } from 'missing-math'
-import { createDraggable, utils } from 'animejs'
+import DebugCanvas from '/utils/DebugCanvas'
+import { clamp, lerp, lerpRadians } from 'missing-math'
+
+let Z_INDEX = 1
+const PRECISION = 3
+const DEADZONE_FALLOFF = 3 // Lower moves more
+const DRAG_THRESHOLD = 10 // px
+const FRICTION_CORNERS = 0.01
+const FRICTION_DEADZONE = 0.005
+const MIN_VELOCITY = 0.01
 
 export const selector = '.project-card'
 
+const debug = (new URLSearchParams(window.location.search)).has('debug')
+  ? new DebugCanvas(document.body)
+  : undefined
+
+// TODO offsetTop/left wrong at hydration when coming from barba
 export function hydrate (element) {
-  // TODO randomize initial position
-  const canvas = element.querySelector('canvas')
-  canvas.width = element.clientWidth
-  canvas.height = element.clientHeight
-  const ctx = canvas.getContext('2d')
+  const container = element.offsetParent
 
-  const center = [0, 0] // TODO single source of truth
-  // ctx.fillRect(canvas.width / 2 - 5, canvas.height / 2 - 5, 10, 10)
+  const Mouse = {
+    x: 0,
+    y: 0,
+    px: 0,
+    py: 0,
+    velocity: [0, 0],
+    pressed: false
+  }
 
-  const draggable = createDraggable(element, {
-    x: true,
-    y: true,
-    // trigger: logo.querySelector('path'),
-    scrollThreshold: Number.POSITIVE_INFINITY,
-    container: document.querySelector('main'),
-    containerPadding: 20,
-    containerFriction: 1,
-    releaseEase: 'outExpo',
-    onDrag: () => element.classList.add('is-active'),
-    onUpdate: draggable => {
-      const x = lerp(draggable.containerBounds[3], draggable.containerBounds[1], draggable.progressX)
-      const y = lerp(draggable.containerBounds[0], draggable.containerBounds[2], draggable.progressY)
+  const Handle = {
+    origin: undefined,
+    position: undefined,
+    distance: 0,
+    theta: 0
+  }
+
+  const Card = (() => {
+    const origin = (() => {
+      const main = element.closest('main') // Offset to handle dual <main> because of Barba
+      const { top, left } = element.getBoundingClientRect()
+      const x = left - main.offsetLeft
+      const y = top - main.offsetTop
       const width = element.clientWidth
       const height = element.clientHeight
-      const handleX = draggable.pointer[0]
-      const handleY = draggable.pointer[1]
 
-      log('x', x, draggable.x, draggable.angle)
-      dot(width / 2, height / 2)
-      dot(x - handleX, y - handleY)
+      return [x + width / 2, y + height / 2]
+    })()
 
-      // const theta = Math.atan2(draggable.y - handleY, draggable.x - handleX)
-      // // const width = draggable.containerBounds[1] - draggable.containerBounds[3]
-      // utils.set(element, {
-      //   rotate: degrees(draggable.angle),
-      //   // 'transform-origin': [
-      //   //   normalize(handleX, 0, draggable.width),
-      //   //   normalize(handleY, 0, draggable.height)
-      //   // ].map(v => v * 100 + '%').join(' ')
-      // })
-    },
-    onSettle: () => {
-      element.classList.remove('is-active')
-      clear()
+    return {
+      origin,
+      position: [...origin],
+      deadzone: Math.min(element.clientWidth, element.clientHeight) / 2,
+      theta: 0
     }
-  })
+  })()
 
-  function log (...args) {
-    element.dataset.log = args
-      .map(arg => typeof arg === 'number' ? arg.toFixed(2) : arg)
-      .join(' ')
+  // Bind events
+  element.addEventListener('click', handleClick)
+  element.addEventListener('pointerdown', handleDown)
+  document.documentElement.addEventListener('pointermove', handleMove)
+  element.addEventListener('pointerup', handleUp)
+  window.addEventListener('resize', handleResize)
+
+  return {
+    destroy: () => {
+      raf.remove(tick)
+    }
   }
 
-  function clear () {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+  function handleClick (e) {
+    // Abort mouse click when card has been dragged
+    if (distance(Handle.origin, Handle.position) > DRAG_THRESHOLD) {
+      e.stopPropagation()
+      e.preventDefault()
+    }
   }
 
-  function dot (x, y, r = 5) {
-    ctx.beginPath()
-    ctx.arc(x, y, r, 0, 2 * Math.PI)
-    ctx.fill()
+  function handleDown (e) {
+    e.preventDefault()
+
+    Mouse.pressed = Date.now()
+    element.classList.add('is-dragged')
+    element.style.zIndex = ++Z_INDEX // TODO improve to avoid too high z-index
+
+    // Compute Handle initial state for this drag
+    Handle.origin = [Mouse.x, Mouse.y]
+    Handle.distance = distance(Card.position, Handle.origin)
+    Handle.theta = Card.theta - Math.atan2(Card.position[1] - Handle.origin[1], Card.position[0] - Handle.origin[0])
+
+    element.setPointerCapture(e.pointerId)
+    raf.add(tick)
   }
 
-  // const $grabbed = $(false)
-  // const $mouseX = $(0)
-  // const $mouseY = $(0)
-  // const $handle = $(undefined)
-  // const $length = $(0)
-  // const $theta = $(0)
-  // const $thetaOffset = $(0)
+  function handleMove (e) {
+    Mouse.px = Mouse.x
+    Mouse.py = Mouse.y
+    Mouse.x = e.clientX + document.documentElement.scrollLeft
+    Mouse.y = e.clientY + document.documentElement.scrollTop
+  }
 
-  // const $target = $([$handle, $length], (
-  //   [curr, length],
-  //   prev = [0, 0]
-  // ) => {
-  //   if (!curr) return prev
+  function handleUp (e) {
+    debug?.clear()
+    element.classList.remove('is-dragged')
+    window.setTimeout(() => { Mouse.pressed = null }, 0)
+  }
 
-  //   const dx = curr[0] - prev[0]
-  //   const dy = curr[1] - prev[1]
-  //   const theta = Math.atan2(dy, dx)
+  function tick (dt) {
+    // Compute normalized distance to deadzone
+    const tdead = Math.min(1, Handle.distance / Card.deadzone) ** DEADZONE_FALLOFF
+    const friction = lerp(FRICTION_DEADZONE, FRICTION_CORNERS, tdead)
 
-  //   return [
-  //     curr[0] - (Math.cos(theta) * length),
-  //     curr[1] - (Math.sin(theta) * length)
-  //   ]
-  // })
+    // Apply drag and compute velocity
+    if (Mouse.pressed) {
+      Handle.position = [
+        clamp(Mouse.x, container.offsetLeft, container.offsetLeft + container.clientWidth),
+        clamp(Mouse.y, container.offsetTop, container.offsetTop + container.clientHeight)
+      ]
+      Mouse.velocity = [
+        Mouse.x - (Mouse.px ?? Mouse.x),
+        Mouse.y - (Mouse.py ?? Mouse.y)
+      ]
+    } else {
+      // Apply velocity to position
+      Handle.position = [
+        Handle.position[0] + Mouse.velocity[0],
+        Handle.position[1] + Mouse.velocity[1]
+      ]
 
-  // const $transformation = $([$target, $theta], ([point, theta]) => ([
-  //   `translate(${point[0].toFixed(2)}px, ${point[1].toFixed(2)}px)`,
-  //   `rotate(${theta}rad)`
-  // ]))
+      // Apply friction to velocity
+      Mouse.velocity = [
+        Mouse.velocity[0] * Math.exp(-friction * dt),
+        Mouse.velocity[1] * Math.exp(-friction * dt)
+      ]
 
-  // element.addEventListener('pointerdown', handleDown)
-  // element.addEventListener('pointerup', handleUp)
-  // document.documentElement.addEventListener('pointermove', handleMove)
-  // element.addEventListener('click', handleClick)
+      // Stop when no more velocity
+      if (Math.abs(Mouse.velocity[0]) <= MIN_VELOCITY && Math.abs(Mouse.velocity[1]) <= MIN_VELOCITY) {
+        raf.remove(tick)
+      }
+    }
 
-  // return {
-  //   destroy: () => {
-  //     raf.remove(tick)
-  //   }
-  // }
+    // Compute card position
+    Card.position = (() => {
+      const theta = lerpRadians(
+        // Static current angle
+        Math.PI - Handle.theta + Card.theta,
+        // Aligned on movement
+        Math.atan2(Handle.position[1] - Card.position[1], Handle.position[0] - Card.position[0]),
+        tdead
+      )
 
-  // function handleClick (e) {
-  //   // TODO do not prevent on label
-  //   e.preventDefault()
-  //   e.stopPropagation()
-  // }
+      return [
+        Handle.position[0] - (Math.cos(theta) * Handle.distance),
+        Handle.position[1] - (Math.sin(theta) * Handle.distance)
+      ]
+    })()
 
-  // function handleDown (e) {
-  //   e.preventDefault()
+    // Bounce on boundaries
+    if (Card.position[0] < container.offsetLeft || Card.position[0] > container.offsetLeft + container.clientWidth) Mouse.velocity[0] = -Mouse.velocity[0]
+    if (Card.position[1] < container.offsetTop || Card.position[1] > container.offsetTop + container.clientHeight) Mouse.velocity[1] = -Mouse.velocity[1]
 
-  //   $grabbed.value = true
-  //   $handle.value = [$mouseX.value, $mouseY.value]
-  //   $length.value = distance($handle.value, $target.value)
-  //   $thetaOffset.value = $theta - Math.atan2($target.value[1] - $handle.value[1], $target.value[0] - $handle.value[0])
+    // Compute card rotation
+    Card.theta = Handle.theta + Math.atan2(Card.position[1] - Handle.position[1], Card.position[0] - Handle.position[0])
 
-  //   element.setPointerCapture(e.pointerId)
-  //   raf.add(tick)
-  // }
+    // Apply card transformation
+    element.style.transform = ([
+      `translate(${[
+        Card.position[0] - Card.origin[0],
+        Card.position[1] - Card.origin[1]
+      ].map(v => v.toFixed(PRECISION) + 'px')})`,
+      `rotate(${Card.theta}rad)`
+    ].join(' '))
 
-  // function handleMove (e) {
-  //   $mouseX.value = e.clientX - document.documentElement.scrollTop
-  //   $mouseY.value = e.clientY - document.documentElement.scrollLeft
-  // }
+    // Render debug
+    if (debug) {
+      debug.resize()
+      debug.clear()
+      debug.rect(container.offsetLeft, container.offsetTop, container.clientWidth, container.clientHeight, { fillStyle: 'rgba(255 0 0 / 5%)' })
+      debug.point(...Card.position, Card.deadzone, { fillStyle: 'rgba(255 0 0 / 30%)' })
+      debug.point(...Handle.position)
+      debug.point(...Handle.origin)
+      debug.line(...Handle.position, ...Card.position)
+    }
+  }
 
-  // function handleUp (e) {
-  //   $grabbed.value = false
-  //   raf.remove(tick)
-  // }
+  function handleResize () {
+    Card.deadzone = Math.min(element.clientWidth, element.clientHeight) / 2
+  }
 
-  // function tick (dt) {
-  //   if ($grabbed.value) {
-  //     $handle.value = [$mouseX.value, $mouseY.value]
-
-  //     // Rotate around center, based on distance from center
-  //     const maxlen = Math.sqrt(element.clientWidth ** 2 + element.clientHeight ** 2) / 2
-  //     const t = normalize($length, 0, maxlen, true)
-  //     $theta.value = $thetaOffset + lerpRadians(
-  //       $theta.value - $thetaOffset,
-  //       Math.atan2($target.value[1] - $handle.value[1], $target.value[0] - $handle.value[0]),
-  //       t ** 3
-  //     )
-  //   }
-
-  //   console.log($transformation.value.join(' '))
-  //   element.style.transform = $transformation.value.join(' ')
-  // }
-
-  // function distance ([x1, y1], [x2, y2]) {
-  //   return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
-  // }
+  function distance ([x1, y1], [x2, y2]) {
+    return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
+  }
 }

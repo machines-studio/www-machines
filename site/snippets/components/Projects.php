@@ -5,7 +5,7 @@
 
 <section class='projects'>
   <ul class='projects__items'>
-    <?php for ($i = 0; $i < 1; $i++) : // DEBUG ?>
+    <?php for ($i = 0; $i < 10; $i++) : // DEBUG ?>
     <?php foreach ($projects as $project) : ?>
       <li>
         <?php snippet('components/ProjectCard', ['project' => $project]) ?>

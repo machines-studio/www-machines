@@ -21,9 +21,11 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
   $scrolled: "&:not(.is-on-top)";
   $open: "#toggle-menu:checked ~ .menu";
 
-  position: relative;
+  position: absolute;
   z-index: var(--z-menu);
   top: 0;
+  right: 0;
+  left: 0;
 
   display: flex;
   justify-content: space-between;
@@ -37,7 +39,7 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
   }
 
   #{$sticked} {
-    position: sticky;
+    position: fixed;
   }
 
   // Blurred mobile backdrop
