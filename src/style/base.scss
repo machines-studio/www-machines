@@ -31,7 +31,9 @@ main {
   padding-top: var(--menu-height);
 
   // Page transition animation
-  .article, .slideshow, .projects__items {
+  .slideshow:first-child,
+  .article:first-child,
+  .projects__items {
     animation: main-appears var(--easing-slow) forwards;
 
     @keyframes main-appears {
