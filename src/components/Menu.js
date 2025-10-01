@@ -4,7 +4,7 @@ export const selector = '.menu'
 
 export function hydrate (element) {
   let nextFrame
-  // let py = document.documentElement.scrollTop
+  let py = document.documentElement.scrollTop
 
   const links = Array.from(element.querySelectorAll('a'))
   const logo = element.querySelector('h1 svg')
@@ -42,10 +42,8 @@ export function hydrate (element) {
     nextFrame = window.requestAnimationFrame(() => {
       const y = document.documentElement.scrollTop
       element.classList.toggle('is-on-top', y < element.clientHeight)
-
-      // ???
-      // element.classList.toggle('is-sticky', py >= y)
-      // py = y
+      element.classList.toggle('is-sticky', py >= y)
+      py = y
     })
   }
 

@@ -28,7 +28,7 @@
     "src": "assets/ibm-plex-mono-medium.ttf"
   },
   "components/Clients.js": {
-    "file": "assets/Clients-CB3qek90.js",
+    "file": "assets/Clients-C227KMqU.js",
     "name": "Clients",
     "src": "components/Clients.js",
     "isDynamicEntry": true
@@ -40,7 +40,7 @@
     "isDynamicEntry": true
   },
   "components/Menu.js": {
-    "file": "assets/Menu-D5gAapUS.js",
+    "file": "assets/Menu-ehoamHIb.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
@@ -61,7 +61,7 @@
     "isDynamicEntry": true
   },
   "index.js": {
-    "file": "assets/index-CDIv9Au9.js",
+    "file": "assets/index-BLXn6Eiw.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
@@ -76,7 +76,7 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-C39Too3I.css",
+    "file": "assets/index-cfgvZh4u.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -99,7 +99,7 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-CEIrVBH6.js",
+    "file": "assets/default-BJ_vxDNl.js",
     "name": "default",
     "src": "views/default.js",
     "isDynamicEntry": true,

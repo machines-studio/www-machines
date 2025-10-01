@@ -4,6 +4,9 @@ include_once 'helpers.php';
 date_default_timezone_set('Europe/Paris');
 
 return [
+  'smartypants' => true,
+  'languages' => ['detect' => true],
+
   'thumbs' => [
     'driver' => 'im',
 
@@ -36,6 +39,10 @@ return [
         'webp' => array_map(fn ($srcset) => [...$srcset, 'format' => 'webp'], $srcsets)
       ];
     })()
+  ],
+
+  'sitemap' => [
+    'ignore' => ['error']
   ],
 
   'panel' => [
@@ -77,10 +84,6 @@ return [
     ])
   ],
 
-  'sitemap' => [
-    'ignore' => ['error']
-  ],
-
   'routes' => [
     [ // Sitemap for robots
       'pattern' => ['sitemap.xml', 'sitemap_index.xml'],
@@ -101,9 +104,9 @@ return [
     ],
 
     [ // Quick panel access from any page by appending /panel to the url
-      'pattern' => '(:all)/panel',
-      'action' => function ($uid) {
-        if ($page = page($uid)) return go($page->panel()->url());
+      'pattern' => '(fr|en)/(:all)/panel',
+      'action' => function ($lang, $uid) {
+        if ($page = page($uid)) return go($page->panel()->url() . "?language=$lang");
         return go('/panel');
       }
     ]

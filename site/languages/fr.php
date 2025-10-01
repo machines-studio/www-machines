@@ -5,7 +5,12 @@ return [
   'default' => true,
   'locale'  => 'fr_FR.utf8',
   'name' => 'Français',
-  'url' => '/',
+  'url' => '/fr',
+
+  'smartypants' => [
+    'doublequote.open' => '«&#8239;',
+    'doublequote.close' => '&#8239;»',
+  ],
 
   'translations' => [
     'clients.more' => '…',

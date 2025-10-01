@@ -1,7 +1,7 @@
 <?php
   $groups = [
     'primary' => [
-      ['mailto:' . $site->email()],
+      ['mailto:' . $site->email(), 'email'],
       [
         r($site->instagram()->isNotEmpty(), 'https://instagram.com/' . $site->instagram()),
         'instagram',

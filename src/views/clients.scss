@@ -2,5 +2,9 @@ main[data-barba-namespace='clients'] {
   section.clients {
     padding-top: 0;
     background: none;
+
+    ul {
+      max-width: initial;
+    }
   }
 }

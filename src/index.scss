@@ -113,16 +113,16 @@
 /**
  * Return the left offset of a column
  */
-@function column-start ($col, $columns: 8) {
-  $column-width: calc((100vw - var(--space-gutter)) / $columns);
+@function column-start ($col, $columns: 8, $width: 100vw) {
+  $column-width: calc(($width - var(--space-gutter)) / $columns);
   @return calc(var(--space-gutter) + $column-width * $col); // stylelint-disable-line at-rule-empty-line-before
 }
 
 /**
  * Return the width of a column span
  */
-@function column-span ($col, $columns: 8) {
-  $column-width: calc((100vw - var(--space-gutter)) / $columns);
+@function column-span ($col, $columns: 8, $width: 100vw) {
+  $column-width: calc(($width - var(--space-gutter)) / $columns);
   @return calc($column-width * $col - var(--space-gutter)); // stylelint-disable-line at-rule-empty-line-before
 }
 

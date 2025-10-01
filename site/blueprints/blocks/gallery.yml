@@ -6,4 +6,3 @@ wysiwyg: true
 fields:
   medias:
     extends: fields/gallery
-    max: 2
