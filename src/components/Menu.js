@@ -1,11 +1,12 @@
 import Barba from '@barba/core'
+import { Viewport, getElementRectangle } from '/utils/less-layout-trashing'
 
 export const selector = '.menu'
 
 export function hydrate (element) {
   let nextFrame
-  let py = document.documentElement.scrollTop
 
+  const Rect = getElementRectangle(element)
   const links = Array.from(element.querySelectorAll('a'))
   const logo = element.querySelector('h1 svg')
 
@@ -28,22 +29,23 @@ export function hydrate (element) {
     }
   })
 
+  Viewport.$scrollTop.subscribe(handleScroll)
   handleScroll()
-  document.addEventListener('scroll', handleScroll)
+  bounce()
 
   return {
     destroy: () => {
+      Rect.destroy()
       cancelAnimationFrame(nextFrame)
-      document.removeEventListener('scroll', handleScroll)
+      Viewport.$scrollTop.unsubscribe(handleScroll)
     }
   }
 
   function handleScroll () {
-    nextFrame = window.requestAnimationFrame(() => {
-      const y = document.documentElement.scrollTop
-      element.classList.toggle('is-on-top', y < element.clientHeight)
-      element.classList.toggle('is-sticky', py >= y)
-      py = y
+    nextFrame = requestAnimationFrame(() => {
+      const y = Viewport.$scrollTop
+      element.classList.toggle('is-on-top', y < Rect.$clientHeight)
+      element.classList.toggle('is-sticky', (y.previous ?? y) >= y && y < Viewport.$scrollHeight - Viewport.$innerHeight)
     })
   }
 

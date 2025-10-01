@@ -1,5 +1,9 @@
-<?php snippet('html/header') ?>
-<?php snippet('components/Menu') ?>
+<?php
+  if (!isset($_SERVER['HTTP_X_BARBA'])) {
+    snippet('html/header');
+    snippet('components/Menu');
+  }
+?>
 
 <main
   data-barba='container'
@@ -9,4 +13,8 @@
   <?php snippet('components/Footer') ?>
 </main>
 
-<?php snippet('html/footer') ?>
+<?php
+  if (!isset($_SERVER['HTTP_X_BARBA'])) {
+    snippet('html/footer');
+  }
+?>

@@ -15,6 +15,7 @@
   aria-label='<?= $project->title() ?>'
   data-filter='<?= $filter ?>'
 >
+  <?php snippet('components/Tooltip', ['content' => $project->title()]) ?>
   <?php snippet('html/image', [
     'image' => $project->thumbnail()->toFile(),
     'sizes' => option('thumbs.sizes.card')

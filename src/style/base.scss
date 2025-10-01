@@ -29,6 +29,7 @@ main {
   display: grid;
   grid-template-rows: 1fr auto;
   padding-top: var(--menu-height);
+  contain: paint;
 
   // Page transition animation
   .slideshow:first-child,

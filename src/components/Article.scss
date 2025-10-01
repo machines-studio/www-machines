@@ -54,6 +54,7 @@
   > .project-card {
     position: absolute;
     width: column-span(2);
+    max-width: column-span(3, 8, $breakpoint-wide);
 
     @include mobile {
       display: none;

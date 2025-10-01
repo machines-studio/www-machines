@@ -1,4 +1,5 @@
 import Barba from '@barba/core'
+import prefetch from '@barba/prefetch'
 import noop from '/utils/noop'
 
 // Init the Barba wrapper
@@ -7,6 +8,7 @@ export function bootstrap ({
   components = { global: [], local: [] },
   afterEnter = noop
 } = {}) {
+  Barba.use(prefetch)
   Barba.init({
     prevent: ({ el }) => el?.classList?.contains('no-barba'),
     views: views.map(view => view.default),

@@ -1,13 +1,16 @@
 import { raf } from '@internet/raf'
+import { $ } from '@tooooools/ui/state'
 import DebugCanvas from '/utils/DebugCanvas'
+import Pointer from '/utils/Pointer'
+import { getElementRectangle } from '/utils/less-layout-trashing'
 import { clamp, lerp, lerpRadians } from 'missing-math'
 
 let Z_INDEX = 1
 const PRECISION = 3
-const DEADZONE_FALLOFF = 3 // Lower moves more
+const DEADZONE_FALLOFF = 5 // Lower moves more
 const DRAG_THRESHOLD = 10 // px
 const FRICTION_CORNERS = 0.01
-const FRICTION_DEADZONE = 0.005
+const FRICTION_DEADZONE = 0.008
 const MIN_VELOCITY = 0.01
 
 export const selector = '.project-card'
@@ -16,56 +19,45 @@ const debug = (new URLSearchParams(window.location.search)).has('debug')
   ? new DebugCanvas(document.body)
   : undefined
 
-// TODO offsetTop/left wrong at hydration when coming from barba
-export function hydrate (element) {
-  const container = element.offsetParent
+// WIP handle initial position after resize
 
-  const Mouse = {
-    x: 0,
-    y: 0,
-    px: 0,
-    py: 0,
-    velocity: [0, 0],
-    pressed: false
-  }
+export function hydrate (element) {
+  const Rect = getElementRectangle(element)
+  const Container = getElementRectangle(element.offsetParent)
 
   const Handle = {
+    active: false,
     origin: undefined,
     position: undefined,
     distance: 0,
-    theta: 0
+    theta: 0,
+    velocity: [0, 0]
   }
 
-  const Card = (() => {
-    const origin = (() => {
-      const main = element.closest('main') // Offset to handle dual <main> because of Barba
-      const { top, left } = element.getBoundingClientRect()
-      const x = left - main.offsetLeft
-      const y = top - main.offsetTop
-      const width = element.clientWidth
-      const height = element.clientHeight
-
-      return [x + width / 2, y + height / 2]
-    })()
-
-    return {
-      origin,
-      position: [...origin],
-      deadzone: Math.min(element.clientWidth, element.clientHeight) / 2,
-      theta: 0
-    }
-  })()
+  const Card = {
+    origin: [
+      Rect.$offsetLeft + Rect.$offsetWidth / 2,
+      Rect.$offsetTop + Rect.$offsetHeight / 2
+    ],
+    position: [
+      Rect.$offsetLeft + Rect.$offsetWidth / 2,
+      Rect.$offsetTop + Rect.$offsetHeight / 2
+    ],
+    $deadzone: $([Rect.$offsetWidth, Rect.$offsetHeight], ([w, h]) => Math.min(w, h) / 2),
+    theta: 0
+  }
 
   // Bind events
   element.addEventListener('click', handleClick)
   element.addEventListener('pointerdown', handleDown)
-  document.documentElement.addEventListener('pointermove', handleMove)
   element.addEventListener('pointerup', handleUp)
   window.addEventListener('resize', handleResize)
 
   return {
     destroy: () => {
       raf.remove(tick)
+      Rect.destroy()
+      window.removeEventListener('resize', handleResize)
     }
   }
 
@@ -78,14 +70,15 @@ export function hydrate (element) {
   }
 
   function handleDown (e) {
+    if (e.button > 0) return
     e.preventDefault()
 
-    Mouse.pressed = Date.now()
+    Handle.active = true
     element.classList.add('is-dragged')
     element.style.zIndex = ++Z_INDEX // TODO improve to avoid too high z-index
 
     // Compute Handle initial state for this drag
-    Handle.origin = [Mouse.x, Mouse.y]
+    Handle.origin = [+Pointer.$pageX, +Pointer.$pageY]
     Handle.distance = distance(Card.position, Handle.origin)
     Handle.theta = Card.theta - Math.atan2(Card.position[1] - Handle.origin[1], Card.position[0] - Handle.origin[0])
 
@@ -93,55 +86,50 @@ export function hydrate (element) {
     raf.add(tick)
   }
 
-  function handleMove (e) {
-    Mouse.px = Mouse.x
-    Mouse.py = Mouse.y
-    Mouse.x = e.clientX + document.documentElement.scrollLeft
-    Mouse.y = e.clientY + document.documentElement.scrollTop
-  }
-
   function handleUp (e) {
+    Handle.active = false
     debug?.clear()
     element.classList.remove('is-dragged')
-    window.setTimeout(() => { Mouse.pressed = null }, 0)
   }
 
   function tick (dt) {
     // Compute normalized distance to deadzone
-    const tdead = Math.min(1, Handle.distance / Card.deadzone) ** DEADZONE_FALLOFF
+    const tdead = Math.min(1, Handle.distance / Card.$deadzone) ** DEADZONE_FALLOFF
     const friction = lerp(FRICTION_DEADZONE, FRICTION_CORNERS, tdead)
 
     // Apply drag and compute velocity
-    if (Mouse.pressed) {
+    if (Handle.active) {
       Handle.position = [
-        clamp(Mouse.x, container.offsetLeft, container.offsetLeft + container.clientWidth),
-        clamp(Mouse.y, container.offsetTop, container.offsetTop + container.clientHeight)
+        clamp(Pointer.$pageX, Container.$offsetLeft, Container.$offsetLeft + Container.$clientWidth),
+        clamp(Pointer.$pageY, Container.$offsetTop, Container.$offsetTop + Container.$clientHeight)
       ]
-      Mouse.velocity = [
-        Mouse.x - (Mouse.px ?? Mouse.x),
-        Mouse.y - (Mouse.py ?? Mouse.y)
+      Handle.velocity = [
+        Pointer.$pageX - (Pointer.$pageX.previous ?? Pointer.$pageX.value),
+        Pointer.$pageY - (Pointer.$pageY.previous ?? Pointer.$pageY.value)
       ]
-    } else {
+    } else if (Handle.position) {
       // Apply velocity to position
       Handle.position = [
-        Handle.position[0] + Mouse.velocity[0],
-        Handle.position[1] + Mouse.velocity[1]
+        Handle.position[0] + Handle.velocity[0],
+        Handle.position[1] + Handle.velocity[1]
       ]
 
       // Apply friction to velocity
-      Mouse.velocity = [
-        Mouse.velocity[0] * Math.exp(-friction * dt),
-        Mouse.velocity[1] * Math.exp(-friction * dt)
+      Handle.velocity = [
+        Handle.velocity[0] * Math.exp(-friction * dt),
+        Handle.velocity[1] * Math.exp(-friction * dt)
       ]
 
       // Stop when no more velocity
-      if (Math.abs(Mouse.velocity[0]) <= MIN_VELOCITY && Math.abs(Mouse.velocity[1]) <= MIN_VELOCITY) {
+      if (Math.abs(Handle.velocity[0]) <= MIN_VELOCITY && Math.abs(Handle.velocity[1]) <= MIN_VELOCITY) {
         raf.remove(tick)
       }
     }
 
     // Compute card position
     Card.position = (() => {
+      if (!Handle.position) return Card.position
+
       const theta = lerpRadians(
         // Static current angle
         Math.PI - Handle.theta + Card.theta,
@@ -157,35 +145,38 @@ export function hydrate (element) {
     })()
 
     // Bounce on boundaries
-    if (Card.position[0] < container.offsetLeft || Card.position[0] > container.offsetLeft + container.clientWidth) Mouse.velocity[0] = -Mouse.velocity[0]
-    if (Card.position[1] < container.offsetTop || Card.position[1] > container.offsetTop + container.clientHeight) Mouse.velocity[1] = -Mouse.velocity[1]
+    if (Card.position[0] < Container.$offsetLeft || Card.position[0] > Container.$offsetLeft + Container.$clientWidth) Handle.velocity[0] = -Handle.velocity[0]
+    if (Card.position[1] < Container.$offsetTop || Card.position[1] > Container.$offsetTop + Container.$clientHeight) Handle.velocity[1] = -Handle.velocity[1]
 
     // Compute card rotation
-    Card.theta = Handle.theta + Math.atan2(Card.position[1] - Handle.position[1], Card.position[0] - Handle.position[0])
+    Card.theta = Handle.position
+      ? Handle.theta + Math.atan2(Card.position[1] - Handle.position[1], Card.position[0] - Handle.position[0])
+      : Card.theta
 
     // Apply card transformation
-    element.style.transform = ([
-      `translate(${[
-        Card.position[0] - Card.origin[0],
-        Card.position[1] - Card.origin[1]
-      ].map(v => v.toFixed(PRECISION) + 'px')})`,
-      `rotate(${Card.theta}rad)`
-    ].join(' '))
+    element.style.setProperty('--project-card-angle', Card.theta + 'rad')
+    element.style.setProperty('--project-card-x', (Card.position[0] - Card.origin[0]).toFixed(PRECISION) + 'px')
+    element.style.setProperty('--project-card-y', (Card.position[1] - Card.origin[1]).toFixed(PRECISION) + 'px')
 
     // Render debug
     if (debug) {
       debug.resize()
       debug.clear()
-      debug.rect(container.offsetLeft, container.offsetTop, container.clientWidth, container.clientHeight, { fillStyle: 'rgba(255 0 0 / 5%)' })
-      debug.point(...Card.position, Card.deadzone, { fillStyle: 'rgba(255 0 0 / 30%)' })
-      debug.point(...Handle.position)
-      debug.point(...Handle.origin)
-      debug.line(...Handle.position, ...Card.position)
+      debug.rect(Container.$offsetLeft, Container.$offsetTop, Container.$clientWidth, Container.$clientHeight, { fillStyle: 'rgba(255 0 0 / 5%)' })
+      debug.point(...Card.position, Card.$deadzone, { fillStyle: 'rgba(255 0 0 / 30%)' })
+      Handle.origin && debug.point(...Handle.origin)
+      Handle.position && debug.point(...Handle.position)
+      Handle.position && debug.line(...Handle.position, ...Card.position)
     }
   }
 
+  // WIP snap to grid points on resize ?
   function handleResize () {
-    Card.deadzone = Math.min(element.clientWidth, element.clientHeight) / 2
+    // Card.origin = [
+    //   Rect.$offsetLeft + Rect.$offsetWidth / 2,
+    //   Rect.$offsetTop + Rect.$offsetHeight / 2
+    // ]
+    tick()
   }
 
   function distance ([x1, y1], [x2, y2]) {

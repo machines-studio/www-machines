@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@barba/core": "^2.10.0",
+    "@barba/prefetch": "^2.2.0",
     "@internet/raf": "^0.2.1",
     "embla-carousel": "^8.6.0",
     "missing-math": "^3.5.1"

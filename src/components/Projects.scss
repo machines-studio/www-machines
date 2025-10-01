@@ -19,13 +19,10 @@
   $searching: '#toggle-search:checked ~';
 
   position: relative;
-
   min-height: 100%;
   padding-top: var(--menu-height);
   padding-bottom: var(--space-gutter);
   margin-top: calc(-1 * var(--menu-height));
-
-  contain: paint;
 
   &__items {
     display: grid;
@@ -50,6 +47,7 @@
     @include font('nav');
 
     position: sticky;
+    z-index: var(--z-projects-filter);
     right: var(--space-gutter);
     bottom: var(--space-gutter);
     left: var(--space-gutter);

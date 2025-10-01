@@ -38,7 +38,7 @@
       'height' => $image->resize(1920)->height(),
       'draggable' => 'false',
       'style' => [
-        "--focus-x: %;" . ($focus[0] ?? 0.5) * 100 . '%;',
+        "--focus-x: " . ($focus[0] ?? 0.5) * 100 . '%;',
         '--focus-y: ' . ($focus[1] ?? 0.5) * 100 . '%;'
       ]
     ])?>>
