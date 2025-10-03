@@ -36,6 +36,7 @@
 
   body:has(#toggle-menu:checked) & {
     @include mobile {
+      // TODO bug because of contain:paint on main (DO NOT REMOVE ON MAIN!)
       position: fixed;
       z-index: var(--z-menu);
       bottom: 0;

@@ -1,0 +1,25 @@
+main[data-barba-namespace='home'] {
+  // ??? only on shuffle
+  > svg {
+    width: 100vw;
+    height: auto;
+    padding: var(--space-gutter);
+    margin-top: auto;
+    pointer-events: none;
+
+    @include mobile {
+      height: 23vw;
+      margin-bottom: 0;
+    }
+  }
+
+  > .project-card {
+    position: absolute;
+    width: column-span(2);
+    max-width: column-span(3, 8, $breakpoint-wide);
+
+    @include mobile {
+      display: none;
+    }
+  }
+}
