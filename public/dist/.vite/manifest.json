@@ -1,4 +1,22 @@
 {
+  "_Pointer-Bkr16rJj.js": {
+    "file": "assets/Pointer-Bkr16rJj.js",
+    "name": "Pointer",
+    "imports": [
+      "_less-layout-trashing-h1-YA2_D.js"
+    ]
+  },
+  "_less-layout-trashing-h1-YA2_D.js": {
+    "file": "assets/less-layout-trashing-h1-YA2_D.js",
+    "name": "less-layout-trashing",
+    "imports": [
+      "index.js"
+    ]
+  },
+  "_raf-Be84MYDk.js": {
+    "file": "assets/raf-Be84MYDk.js",
+    "name": "raf"
+  },
   "assets/205tf-milling-duplex1mm-italic.otf": {
     "file": "assets/205tf-milling-duplex1mm-italic-dWjPk0hy.otf",
     "src": "assets/205tf-milling-duplex1mm-italic.otf"
@@ -28,10 +46,16 @@
     "src": "assets/ibm-plex-mono-medium.ttf"
   },
   "components/Clients.js": {
-    "file": "assets/Clients-C227KMqU.js",
+    "file": "assets/Clients-D5bxudsZ.js",
     "name": "Clients",
     "src": "components/Clients.js",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "_Pointer-Bkr16rJj.js",
+      "_raf-Be84MYDk.js",
+      "_less-layout-trashing-h1-YA2_D.js",
+      "index.js"
+    ]
   },
   "components/HueShifter.js": {
     "file": "assets/HueShifter-FQEI7Wla.js",
@@ -40,28 +64,56 @@
     "isDynamicEntry": true
   },
   "components/Menu.js": {
-    "file": "assets/Menu-ehoamHIb.js",
+    "file": "assets/Menu-DVGL5i-m.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
     "imports": [
+      "index.js",
+      "_less-layout-trashing-h1-YA2_D.js"
+    ]
+  },
+  "components/ProjectCard.js": {
+    "file": "assets/ProjectCard-DkOz0uj8.js",
+    "name": "ProjectCard",
+    "src": "components/ProjectCard.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_raf-Be84MYDk.js",
+      "_less-layout-trashing-h1-YA2_D.js",
+      "_Pointer-Bkr16rJj.js",
       "index.js"
     ]
   },
   "components/Projects.js": {
-    "file": "assets/Projects-Bpa1YHiW.js",
+    "file": "assets/Projects-DKonfbks.js",
     "name": "Projects",
     "src": "components/Projects.js",
     "isDynamicEntry": true
   },
   "components/Slideshow.js": {
-    "file": "assets/Slideshow-DFsquMln.js",
+    "file": "assets/Slideshow-DknRkjXK.js",
     "name": "Slideshow",
     "src": "components/Slideshow.js",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "_raf-Be84MYDk.js"
+    ]
+  },
+  "components/Tooltip.js": {
+    "file": "assets/Tooltip-Dw2tPOHE.js",
+    "name": "Tooltip",
+    "src": "components/Tooltip.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_raf-Be84MYDk.js",
+      "_Pointer-Bkr16rJj.js",
+      "_less-layout-trashing-h1-YA2_D.js",
+      "index.js"
+    ]
   },
   "index.js": {
-    "file": "assets/index-BLXn6Eiw.js",
+    "file": "assets/index-SpzmsJoy.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
@@ -71,12 +123,14 @@
       "components/HueShifter.js",
       "components/Clients.js",
       "components/HueShifter.js",
+      "components/ProjectCard.js",
       "components/Projects.js",
-      "components/Slideshow.js"
+      "components/Slideshow.js",
+      "components/Tooltip.js"
     ]
   },
   "index.scss": {
-    "file": "assets/index-cfgvZh4u.css",
+    "file": "assets/index-C6pId2iR.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -99,7 +153,7 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-BJ_vxDNl.js",
+    "file": "assets/default-Dtz_z_V1.js",
     "name": "default",
     "src": "views/default.js",
     "isDynamicEntry": true,
