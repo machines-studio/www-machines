@@ -59,7 +59,8 @@ export default ({ mode }) => ({
           port: 8080,
           proxy: 'localhost:8888',
           notify: false,
-          codeSync: true
+          codeSync: true,
+          ghostMode: false
         }
       }
     })

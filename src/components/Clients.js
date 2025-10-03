@@ -1,5 +1,8 @@
 import distSq from '/utils/distance-squared'
 import { map } from 'missing-math'
+import { raf } from '@internet/raf'
+import Pointer from '/utils/Pointer'
+import { getElementRectangle } from '/utils/less-layout-trashing'
 
 export const selector = '.clients'
 
@@ -8,88 +11,60 @@ const STICKY_FACTOR = 0.5 // %
 
 export function hydrate (element) {
   const clients = Array.from(element.querySelectorAll('.clients__client'))
-
-  document.documentElement.addEventListener('mousemove', handleMouseMove)
-  window.addEventListener('resize', handleResize)
-
-  let px, py, nextFrame
+  raf.add(tick)
 
   return {
-    destroy: () => {
-      window.cancelAnimationFrame(nextFrame)
-      window.removeEventListener('resize', handleResize)
-      document.documentElement.removeEventListener('mousemove', handleMouseMove)
-    }
+    destroy: () => raf.remove(tick)
   }
 
-  function handleResize () {
-    // Store normal DOM position, so that we can disrupt it later
+  function tick () {
+    // Compute sticky factor based on mouse speed
+    const factor = map(
+      distSq(
+        [Pointer.$pageX.previous ?? Pointer.$pageX.value, Pointer.$pageY.previous ?? Pointer.$pageY.value],
+        [Pointer.$pageX, Pointer.$pageY]
+      ),
+      0,
+      STICKY_DISTANCE ** 2,
+      STICKY_FACTOR,
+      1,
+      true
+    )
+
     for (const client of clients) {
-      client.initialBoundingBox = getDocumentBbox(client)
-    }
-  }
+      const bbox = getElementRectangle(client).$boundingClientRect.value
 
-  function handleMouseMove (e) {
-    nextFrame = window.requestAnimationFrame(() => {
-      px ??= e.pageX
-      py ??= e.pageY
+      // Adjust initial bounding box to current document scroll
+      const top = bbox.top - document.documentElement.scrollTop
+      const left = bbox.left - document.documentElement.scrollLeft
+      const bottom = top + bbox.height
+      const right = left + bbox.width
+      const hit = element.contains(Pointer.$target.value) && Pointer.$clientX > left && Pointer.$clientX < right && Pointer.$clientY > top && Pointer.$clientY < bottom
 
-      // Compute sticky factor based on mouse speed
-      const factor = map(distSq([px, py], [e.pageX, e.pageY]), 0, STICKY_DISTANCE ** 2, STICKY_FACTOR, 1, true)
+      client.classList.toggle('is-sticked', hit)
 
-      for (const client of clients) {
-        client.initialBoundingBox ??= getDocumentBbox(client)
-
-        // Adjust initial bounding box to current document scroll
-        const top = client.initialBoundingBox.top - document.documentElement.scrollTop
-        const left = client.initialBoundingBox.left - document.documentElement.scrollLeft
-        const bottom = top + client.initialBoundingBox.height
-        const right = left + client.initialBoundingBox.width
-        const hit = element.contains(e.target) && e.clientX > left && e.clientX < right && e.clientY > top && e.clientY < bottom
-
-        client.classList.toggle('is-sticked', hit)
-
-        if (hit) {
-          // Define origin of the hit
-          client.initialHit ??= {
-            x: e.clientX,
-            y: e.clientY
-          }
-
-          // Update position
-          client.dx = (e.clientX - client.initialHit.x) * factor
-          client.dy = (e.clientY - client.initialHit.y) * factor
-          client.style.setProperty('--stick-x', client.dx.toFixed(3) + 'px')
-          client.style.setProperty('--stick-y', client.dy.toFixed(3) + 'px')
-        } else {
-          // Delete hit origin
-          delete client.initialHit
-
-          // Reset position
-          client.dx = 0
-          client.dy = 0
-          client.style.setProperty('--stick-x', 0)
-          client.style.setProperty('--stick-y', 0)
+      if (hit) {
+        // Define origin of the hit
+        client.initialHit ??= {
+          x: Pointer.$clientX.value,
+          y: Pointer.$clientY.value
         }
+
+        // Update position
+        client.dx = (Pointer.$clientX - client.initialHit.x) * factor
+        client.dy = (Pointer.$clientY - client.initialHit.y) * factor
+        client.style.setProperty('--stick-x', client.dx.toFixed(3) + 'px')
+        client.style.setProperty('--stick-y', client.dy.toFixed(3) + 'px')
+      } else {
+        // Delete hit origin
+        delete client.initialHit
+
+        // Reset position
+        client.dx = 0
+        client.dy = 0
+        client.style.setProperty('--stick-x', 0)
+        client.style.setProperty('--stick-y', 0)
       }
-
-      px = e.pageX
-      py = e.pageY
-    })
-  }
-
-  /**
-   * Compute a bounding-box relative to the whole document
-   * @param {Element} element
-   * @return {<{ top, left, width, height }>}
-   */
-  function getDocumentBbox (element) {
-    const { top, left, width, height } = element.getBoundingClientRect()
-    return {
-      top: top + document.documentElement.scrollTop,
-      left: left + document.documentElement.scrollLeft,
-      width,
-      height
     }
   }
 }

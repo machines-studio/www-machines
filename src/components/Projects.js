@@ -23,6 +23,7 @@ export function hydrate (element) {
   // Bind tags click
   for (const tag of tags) {
     tag.addEventListener('click', e => {
+      if (e.metaKey) return
       e.preventDefault()
       e.stopPropagation()
 

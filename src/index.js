@@ -10,15 +10,17 @@ import { bootstrap } from '/core/Barba'
       // Outside barba wrapper
       global: [
         await import('/components/Menu'),
-        await import('/components/HueShifter')
+        await import('/components/HueShifter'),
       ],
 
       // Inside barba wrapper
       local: [
         await import('/components/Clients'),
         await import('/components/HueShifter'),
+        await import('/components/ProjectCard'),
         await import('/components/Projects'),
-        await import('/components/Slideshow')
+        await import('/components/Slideshow'),
+        await import('/components/Tooltip'),
       ]
     },
 

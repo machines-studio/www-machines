@@ -1,0 +1,40 @@
+#tooltip {
+  @include easing(opacity, var(--easing-fast));
+  @include no-select;
+  @include font('nav');
+
+  position: fixed;
+  z-index: var(--z-tooltip);
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 2em;
+  padding: var(--button-padding);
+  pointer-events: none;
+
+  isolation: isolate;
+  will-change: transform;
+
+  white-space: nowrap;
+
+  background: var(--color-white);
+  border-radius: var(--border-radius);
+  opacity: 0;
+  transform:
+    translateX(var(--x, -100vw))
+    translateY(var(--y, -100vh))
+  ;
+  box-shadow: var(--box-shadow);
+
+  @include mobile {
+    display: none;
+  }
+
+  &.is-active {
+    opacity: 1;
+  }
+}

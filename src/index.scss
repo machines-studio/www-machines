@@ -13,7 +13,10 @@
   --space-3: 12rem;
   --space-gutter: var(--space-1);
 
-  --z-menu: 10;
+  --z-menu: 11;
+  --z-footer: 10;
+  --z-projects-filter: 10;
+  --z-tooltip: 9;
 
   --easing: 300ms;
   --easing-fast: 120ms;
@@ -139,8 +142,10 @@
 @import '/components/Projects';
 @import '/components/Languages';
 @import '/components/Slideshow';
+@import '/components/Tooltip';
 
-@import '/views/default';
 @import '/views/clients';
+@import '/views/default';
+@import '/views/home';
 @import '/views/project';
 @import '/views/projects';

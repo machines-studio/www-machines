@@ -17,7 +17,7 @@ return [
         '50vw'
       ]),
       'card' => implode(',', [
-        '(min-width: 1024px) 33vw',
+        '(min-width: 1024px) 50vw',
         '(min-width: 800px) 50vw',
         '100vw'
       ])

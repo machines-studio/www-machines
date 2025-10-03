@@ -1,6 +1,7 @@
 label: Vignette
 type: files
 
+translate: false
 required: true
 
 uploads: image

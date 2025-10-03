@@ -1,13 +1,16 @@
 :root {
   --project-card-ratio: 3/4;
   --project-card-width: column-span(2);
-  --project-card-backdrop-blur: 2rem;
+  --project-card-offset-x: 0px;
+  --project-card-offset-y: 0px;
+  --project-card-offset-angle: 0deg;
 
   @include narrow {
     --project-card-width: column-span(4);
   }
 
   @include mobile {
+    // --project-card-ratio: 1; // ???
     --project-card-width: column-span(8);
   }
 }
@@ -22,53 +25,25 @@
   align-items: center;
   width: var(--project-card-width);
   aspect-ratio: var(--project-card-ratio);
-  overflow: hidden;
 
   background: var(--color-white);
   border-radius: var(--border-radius);
+  transform:
+    translateX(calc(var(--project-card-x, 0px) + var(--project-card-offset-x)))
+    translateY(calc(var(--project-card-y, 0px) + var(--project-card-offset-y)))
+    rotate(calc(var(--project-card-angle, 0deg) + var(--project-card-offset-angle)))
+  ;
   box-shadow: var(--box-shadow);
 
-  &::after {
-    @include easing(opacity);
-    content: attr(aria-label);
+  isolation: isolate;
+  will-change: transform;
 
-    position: absolute;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2em;
-    padding: var(--button-padding);
-
-    background: var(--color-white);
-    border-radius: var(--border-radius);
-    opacity: 0;
-    box-shadow: var(--box-shadow);
-
-    @include mobile {
-      top: var(--space-0);
-      left: var(--space-0);
-      border-radius: calc(var(--border-radius) / 2);
-      opacity: 1;
-    }
-  }
-
-  &:hover::after {
-    opacity: 1;
+  &.is-dragged {
+    cursor: grabbing;
   }
 
   figure {
-    @include easing(filter, var(--easing-slow), var(--easing-ease-back));
-
-    // Improve blurred edges
-    width: calc(100% + 2 * var(--project-card-backdrop-blur));
-    height: calc(100% + 2 * var(--project-card-backdrop-blur));
-    margin: calc(-1 * var(--project-card-backdrop-blur));
-    transform: translate3d(0, 0, 0); // Fix Safari filter glitch during easing
-    will-change: filter;
-  }
-
-  &:hover figure {
-    filter: blur(var(--project-card-backdrop-blur));
+    width: 100%;
+    height: 100%;
   }
 }
