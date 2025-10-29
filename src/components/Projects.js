@@ -1,7 +1,7 @@
 export const selector = '.projects'
 
 export function hydrate (element) {
-  const cards = Array.from(element.querySelectorAll('.project-card'))
+  const cards = Array.from(element.querySelectorAll('.card'))
   const search = element.querySelector('input[type="search"]')
 
   const tags = Array.from(element.querySelectorAll('[data-tag]'))
@@ -27,8 +27,11 @@ export function hydrate (element) {
       e.preventDefault()
       e.stopPropagation()
 
-      tags.forEach(t => t.classList.toggle('is-active', t === tag))
-      filter(tag.dataset.tag)
+      tags.forEach(t => t !== tag && t.classList.remove('is-active'))
+      tag.classList.toggle('is-active')
+
+      if (tag.classList.contains('is-active')) filter(tag.dataset.tag)
+      else clear()
     })
   }
 

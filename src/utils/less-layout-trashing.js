@@ -42,29 +42,27 @@ Barba.hooks.after(() => {
 const RECTANGLES = new Map()
 export function getElementRectangle (element) {
   if (RECTANGLES.has(element)) {
-    return RECTANGLES.get(element)
+    const rectangle = RECTANGLES.get(element)
+    rectangle.update()
+    return rectangle
   }
 
-  const $offsetLeft = $(element.offsetLeft)
-  const $offsetTop = $(element.offsetTop)
-  const $offsetWidth = $(element.offsetWidth)
-  const $offsetHeight = $(element.offsetHeight)
-  const $clientLeft = $(element.clientLeft)
-  const $clientTop = $(element.clientTop)
-  const $clientWidth = $(element.clientWidth)
-  const $clientHeight = $(element.clientHeight)
+  const main = element.closest('main') ?? document.documentElement
   const $boundingClientRect = $(element.getBoundingClientRect())
 
   const api = {
-    $offsetLeft,
-    $offsetTop,
-    $offsetWidth,
-    $offsetHeight,
-    $clientLeft,
-    $clientTop,
-    $clientWidth,
-    $clientHeight,
+    // Relative to the viewport top-left corner
     $boundingClientRect,
+
+    // Relative to the document top-left corner
+    $top: $($boundingClientRect, rect => rect.top + window.scrollY - main.offsetTop),
+    $right: $($boundingClientRect, rect => rect.left + rect.width + window.scrollX - main.offsetLeft),
+    $bottom: $($boundingClientRect, rect => rect.top + rect.height + window.scrollY - main.offsetTop),
+    $left: $($boundingClientRect, rect => rect.left + window.scrollX - main.offsetLeft),
+    $width: $($boundingClientRect, rect => rect.width),
+    $height: $($boundingClientRect, rect => rect.height),
+    $centerX: $($boundingClientRect, rect => rect.left + window.scrollX - main.offsetLeft + rect.width / 2),
+    $centerY: $($boundingClientRect, rect => rect.top + window.scrollY - main.offsetTop + rect.height / 2),
 
     update,
     destroy: () => {
@@ -79,14 +77,6 @@ export function getElementRectangle (element) {
   return api
 
   function update () {
-    $offsetLeft.value = element.offsetLeft
-    $offsetTop.value = element.offsetTop
-    $offsetWidth.value = element.offsetWidth
-    $offsetHeight.value = element.offsetHeight
-    $clientLeft.value = element.clientLeft
-    $clientTop.value = element.clientTop
-    $clientWidth.value = element.clientWidth
-    $clientHeight.value = element.clientHeight
     $boundingClientRect.value = element.getBoundingClientRect()
   }
 }

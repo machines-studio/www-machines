@@ -138,7 +138,9 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
 
         position: absolute;
         z-index: -1;
-        inset: -0.5rem -1.2rem;
+        inset: -0.25rem -1.2rem;
+
+        height: 3.4rem;
 
         background: var(--color-white);
         border-radius: var(--border-radius);
@@ -185,8 +187,10 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
 
   // Hamburger
   label[for='toggle-menu'] {
-    position: relative;
+    position: fixed;
     z-index: var(--z-menu);
+    right: var(--space-gutter);
+
     display: flex;
     align-items: center;
     cursor: pointer;

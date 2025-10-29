@@ -1,0 +1,6 @@
+label: Projets
+type: pages
+template: project
+query: site.index.filterBy('intendedTemplate', '==', 'project')
+subpages: false
+translate: false

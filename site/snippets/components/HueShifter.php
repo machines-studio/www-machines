@@ -8,5 +8,5 @@
   $attributes['class'] = 'hue-shifter ' . ($attributes['class'] ?? '');
   $attributes['style'] = "--hue-offset: {$offset}deg";
 
-  echo Html::tag($tag, [$content], $attributes);
+  echo Html::tag($tag, is_array($content) ? $content : [$content], $attributes);
 ?>

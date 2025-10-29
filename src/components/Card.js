@@ -13,17 +13,15 @@ const FRICTION_CORNERS = 0.01
 const FRICTION_DEADZONE = 0.008
 const MIN_VELOCITY = 0.01
 
-export const selector = '.project-card'
+export const selector = '.card'
 
 const debug = (new URLSearchParams(window.location.search)).has('debug')
   ? new DebugCanvas(document.body)
   : undefined
 
-// WIP handle initial position after resize
-
 export function hydrate (element) {
-  const Rect = getElementRectangle(element)
-  const Container = getElementRectangle(element.offsetParent)
+  const Rect = getElementRectangle(element.closest('.card-slot') ?? element)
+  const Container = getElementRectangle(element.closest('.cards') ?? element.offsetParent)
 
   const Handle = {
     active: false,
@@ -35,15 +33,9 @@ export function hydrate (element) {
   }
 
   const Card = {
-    origin: [
-      Rect.$offsetLeft + Rect.$offsetWidth / 2,
-      Rect.$offsetTop + Rect.$offsetHeight / 2
-    ],
-    position: [
-      Rect.$offsetLeft + Rect.$offsetWidth / 2,
-      Rect.$offsetTop + Rect.$offsetHeight / 2
-    ],
-    $deadzone: $([Rect.$offsetWidth, Rect.$offsetHeight], ([w, h]) => Math.min(w, h) / 2),
+    origin: [Rect.$centerX.value, Rect.$centerY.value],
+    position: [Rect.$centerX.value, Rect.$centerY.value],
+    $deadzone: $([Rect.$width, Rect.$height], ([w, h]) => Math.max(w, h) / 2),
     theta: 0
   }
 
@@ -62,8 +54,10 @@ export function hydrate (element) {
   }
 
   function handleClick (e) {
-    // Abort mouse click when card has been dragged
-    if (distance(Handle.origin, Handle.position) > DRAG_THRESHOLD) {
+    // Abort mouse click when card has been dragged or hold for too long
+    const tooFar = distance(Handle.origin, Handle.position) > DRAG_THRESHOLD
+    const tooLong = Pointer.$lastPressed.value - Date.now() > 1_000 // ms
+    if (tooFar || tooLong) {
       e.stopPropagation()
       e.preventDefault()
     }
@@ -100,8 +94,8 @@ export function hydrate (element) {
     // Apply drag and compute velocity
     if (Handle.active) {
       Handle.position = [
-        clamp(Pointer.$pageX, Container.$offsetLeft, Container.$offsetLeft + Container.$clientWidth),
-        clamp(Pointer.$pageY, Container.$offsetTop, Container.$offsetTop + Container.$clientHeight)
+        clamp(Pointer.$pageX, Container.$left, Container.$left + Container.$width),
+        clamp(Pointer.$pageY, Container.$top, Container.$top + Container.$height)
       ]
       Handle.velocity = [
         Pointer.$pageX - (Pointer.$pageX.previous ?? Pointer.$pageX.value),
@@ -145,8 +139,8 @@ export function hydrate (element) {
     })()
 
     // Bounce on boundaries
-    if (Card.position[0] < Container.$offsetLeft || Card.position[0] > Container.$offsetLeft + Container.$clientWidth) Handle.velocity[0] = -Handle.velocity[0]
-    if (Card.position[1] < Container.$offsetTop || Card.position[1] > Container.$offsetTop + Container.$clientHeight) Handle.velocity[1] = -Handle.velocity[1]
+    if (Card.position[0] < Container.$left || Card.position[0] > Container.$right) Handle.velocity[0] = -Handle.velocity[0]
+    if (Card.position[1] < Container.$top || Card.position[1] > Container.$bottom) Handle.velocity[1] = -Handle.velocity[1]
 
     // Compute card rotation
     Card.theta = Handle.position
@@ -154,15 +148,15 @@ export function hydrate (element) {
       : Card.theta
 
     // Apply card transformation
-    element.style.setProperty('--project-card-angle', Card.theta + 'rad')
-    element.style.setProperty('--project-card-x', (Card.position[0] - Card.origin[0]).toFixed(PRECISION) + 'px')
-    element.style.setProperty('--project-card-y', (Card.position[1] - Card.origin[1]).toFixed(PRECISION) + 'px')
+    element.style.setProperty('--card-angle', Card.theta + 'rad')
+    element.style.setProperty('--card-x', (Card.position[0] - Card.origin[0]).toFixed(PRECISION) + 'px')
+    element.style.setProperty('--card-y', (Card.position[1] - Card.origin[1]).toFixed(PRECISION) + 'px')
 
     // Render debug
     if (debug) {
       debug.resize()
       debug.clear()
-      debug.rect(Container.$offsetLeft, Container.$offsetTop, Container.$clientWidth, Container.$clientHeight, { fillStyle: 'rgba(255 0 0 / 5%)' })
+      debug.rect(Container.$left, Container.$top, Container.$width, Container.$height, { fillStyle: 'rgba(255 0 0 / 5%)' })
       debug.point(...Card.position, Card.$deadzone, { fillStyle: 'rgba(255 0 0 / 30%)' })
       Handle.origin && debug.point(...Handle.origin)
       Handle.position && debug.point(...Handle.position)
@@ -170,12 +164,16 @@ export function hydrate (element) {
     }
   }
 
-  // WIP snap to grid points on resize ?
   function handleResize () {
-    // Card.origin = [
-    //   Rect.$offsetLeft + Rect.$offsetWidth / 2,
-    //   Rect.$offsetTop + Rect.$offsetHeight / 2
-    // ]
+    reset()
+  }
+
+  function reset () {
+    Card.theta = 0
+    Card.origin = [Rect.$centerX.value, Rect.$centerY.value]
+    Card.position = Array.from(Card.origin)
+    Handle.origin = undefined
+    Handle.position = undefined
     tick()
   }
 

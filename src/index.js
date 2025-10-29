@@ -17,7 +17,7 @@ import { bootstrap } from '/core/Barba'
       local: [
         await import('/components/Clients'),
         await import('/components/HueShifter'),
-        await import('/components/ProjectCard'),
+        await import('/components/Card'),
         await import('/components/Projects'),
         await import('/components/Slideshow'),
         await import('/components/Tooltip'),

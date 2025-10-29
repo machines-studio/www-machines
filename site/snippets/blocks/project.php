@@ -1,1 +1,3 @@
-<?php snippet('components/ProjectCard', ['project' => $block->page()->toPage()]) ?>
+<?php snippet('components/Card', [
+  'page' => $block->page()->toPage()
+]) ?>

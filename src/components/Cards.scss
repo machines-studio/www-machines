@@ -1,0 +1,93 @@
+.cards {
+  contain: paint;
+
+  &[data-layout='grid'] {
+    --cards-grid-columns: 4;
+    --card-width: auto;
+
+    display: grid;
+    align-items: start;
+    grid-template-columns: repeat(var(--cards-grid-columns), 1fr);
+    gap: var(--space-gutter);
+    padding-inline: var(--space-gutter);
+
+    @include wide {
+      --cards-grid-columns: 5;
+    }
+
+    @include narrow {
+      --cards-grid-columns: 2;
+    }
+
+    @include mobile {
+      --cards-grid-columns: 1;
+    }
+  }
+
+  &[data-layout='stack'] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .card-slot { position: absolute; }
+
+    .card {
+      --card-offset-angle: calc(30deg * sin(var(--card-seed)));
+
+      @include mobile {
+        --card-width: 75vw;
+        --card-offset-angle: calc(10deg * sin(var(--card-seed)));
+      }
+    }
+  }
+
+  &[data-layout='fan'] { // stack on mobile
+    $spread: 20deg;
+    $spread-random: 3deg;
+    $span: 20%;
+    $span-random: 0%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include mobile {
+      --card-width: 50vw;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-slot + .card-slot {
+      margin-left: calc(-0.33 * var(--card-width));
+
+      @include mobile {
+        margin-top: -10vw;
+        margin-left: 0;
+      }
+    }
+
+    .card-slot {
+      transform: translateY(
+        calc(
+          #{lerp(0px, -$span, sin(pi * var(--card-slot-index-normalized)))} +
+          #{$span-random} * sin(var(--card-slot-seed))
+        )
+      );
+
+      @include mobile {
+        position: absolute;
+        transform: none;
+      }
+    }
+
+    .card {
+      --card-offset-angle: calc(
+        #{lerp(-$spread, $spread, var(--card-slot-index-normalized))} +
+        #{$spread-random} * sin(var(--card-seed))
+      );
+    }
+  }
+
+  .card-slot { pointer-events: none; }
+  .card { pointer-events: auto; }
+}

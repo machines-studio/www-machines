@@ -7,7 +7,7 @@ import { getElementRectangle } from '/utils/less-layout-trashing'
 export const selector = '.clients'
 
 const STICKY_DISTANCE = 100 // px
-const STICKY_FACTOR = 0.5 // %
+const STICKY_FACTOR = 0.3 // %
 
 export function hydrate (element) {
   const clients = Array.from(element.querySelectorAll('.clients__client'))
@@ -32,14 +32,19 @@ export function hydrate (element) {
     )
 
     for (const client of clients) {
-      const bbox = getElementRectangle(client).$boundingClientRect.value
+      const {
+        $top,
+        $left,
+        $bottom,
+        $right
+      } = getElementRectangle(client)
 
       // Adjust initial bounding box to current document scroll
-      const top = bbox.top - document.documentElement.scrollTop
-      const left = bbox.left - document.documentElement.scrollLeft
-      const bottom = top + bbox.height
-      const right = left + bbox.width
-      const hit = element.contains(Pointer.$target.value) && Pointer.$clientX > left && Pointer.$clientX < right && Pointer.$clientY > top && Pointer.$clientY < bottom
+      const hit = element.contains(Pointer.$target.value) &&
+        Pointer.$pageX > $left &&
+        Pointer.$pageX < $right &&
+        Pointer.$pageY > $top &&
+        Pointer.$pageY < $bottom
 
       client.classList.toggle('is-sticked', hit)
 

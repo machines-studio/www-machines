@@ -1,3 +1,8 @@
+:root {
+  --tooltip-x: -100vw;
+  --tooltip-y: -100vh;
+}
+
 #tooltip {
   @include easing(opacity, var(--easing-fast));
   @include no-select;
@@ -12,7 +17,7 @@
   justify-content: center;
   align-items: center;
   width: auto;
-  height: 2em;
+  height: var(--button-height);
   padding: var(--button-padding);
   pointer-events: none;
 
@@ -25,8 +30,8 @@
   border-radius: var(--border-radius);
   opacity: 0;
   transform:
-    translateX(var(--x, -100vw))
-    translateY(var(--y, -100vh))
+    translateX(var(--tooltip-x, -100vw))
+    translateY(var(--tooltip-y, -100vh))
   ;
   box-shadow: var(--box-shadow);
 

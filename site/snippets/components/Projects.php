@@ -1,25 +1,15 @@
 <?php
-  $projects ??= new Collection();
-  $tags = $page->taxonomy()->toTaxonomies($projects->pluck('tags', ',', true));
+  $pages ??= new Collection();
+  $tags = $page->taxonomy()->toTaxonomies($pages->pluck('tags', ',', true));
 ?>
 
 <section class='projects'>
-  <ul class='projects__items'>
-    <?php for ($i = 0; $i < 10; $i++) : // DEBUG ?>
-    <?php foreach ($projects as $project) : ?>
-      <li>
-        <?php snippet('components/ProjectCard', ['project' => $project]) ?>
-      </li>
-    <?php endforeach ?>
-    <?php endfor // DEBUG ?>
-  </ul>
+  <?php snippet('components/Cards', [
+    'pages' => $pages,
+    'layout' => 'grid'
+  ]) ?>
 
   <nav class='projects__filter'>
-    <?php snippet('components/HueShifter', [
-      'tag' => 'button',
-      'content' => snippet('svg/view-grid', [], true) // TODO go to grid view
-    ]) ?>
-
     <fieldset>
       <input id='toggle-search' type='checkbox'>
 
@@ -60,10 +50,5 @@
         'attributes' => ['id' => 'clear-filter']
       ]) ?>
     </fieldset>
-
-    <?php snippet('components/HueShifter', [
-      'tag' => 'button',
-      'content' => snippet('svg/shuffle', [], true) // TODO go to shuffled view
-    ]) ?>
   </nav>
 </section>

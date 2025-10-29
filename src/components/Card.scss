@@ -1,0 +1,49 @@
+:root {
+  --card-width: #{column-span(1, 4)};
+  --card-ratio: calc(3 / 4);
+  --card-offset-angle: 0deg;
+
+  @include wide {
+    --card-width: #{column-span(1, 5)};
+  }
+
+  @include narrow {
+    --card-width: column-span(1, 2);
+  }
+
+  @include mobile {
+    --card-width: column-span(1, 1);
+  }
+}
+
+.card {
+  @include font('nav');
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--card-width);
+  aspect-ratio: var(--card-ratio);
+
+  background: var(--color-white);
+  border-radius: var(--border-radius);
+  transform:
+    translateX(var(--card-x, 0))
+    translateY(var(--card-y, 0))
+    rotate(calc(var(--card-angle, 0deg) + var(--card-offset-angle)))
+  ;
+
+  isolation: isolate;
+  will-change: transform;
+
+  &.is-dragged {
+    cursor: grabbing;
+  }
+
+  figure {
+    width: 100%;
+    height: 100%;
+  }
+}

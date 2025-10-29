@@ -1,25 +1,23 @@
 main[data-barba-namespace='home'] {
-  // ??? only on shuffle
-  > svg {
+  .splashscreen {
+    position: relative;
+  }
+
+  .splashscreen > svg {
+    position: absolute;
+    bottom: 0;
+
     width: 100vw;
     height: auto;
     padding: var(--space-gutter);
-    margin-top: auto;
     pointer-events: none;
 
-    @include mobile {
-      height: 23vw;
-      margin-bottom: 0;
-    }
+    color: var(--color-black);
   }
 
-  > .project-card {
-    position: absolute;
-    width: column-span(2);
-    max-width: column-span(3, 8, $breakpoint-wide);
-
-    @include mobile {
-      display: none;
-    }
+  .splashscreen > .cards {
+    height: calc(100 * var(--vh));
+    padding-top: var(--menu-height);
+    padding-bottom: var(--menu-height);
   }
 }

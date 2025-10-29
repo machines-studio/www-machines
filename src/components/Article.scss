@@ -50,14 +50,24 @@
     background: var(--color-white);
   }
 
-  // WIP
-  > .project-card {
+  > .card {
+    --card-offset-angle: calc(30deg * sin(var(--card-seed)));
+
     position: absolute;
-    width: column-span(2);
-    max-width: column-span(3, 8, $breakpoint-wide);
+
+    // Random X
+    left: clamp(
+      -1 * var(--card-width) * 0.25,
+      50vw + sin(var(--card-seed)) * 100vw,
+      100vw - var(--card-width) * 0.75
+    );
+    margin-top: calc(-1 * var(--card-width) * var(--card-ratio));
 
     @include mobile {
-      display: none;
+      --card-offset-angle: 0;
+      position: relative;
+      left: unset;
+      margin-inline: var(--space-gutter);
     }
   }
 

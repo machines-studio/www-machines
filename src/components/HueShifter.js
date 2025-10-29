@@ -9,12 +9,15 @@ const EVENTS = [
 ]
 
 export function hydrate (element) {
-  for (const event of EVENTS) {
-    element.addEventListener(event, shift)
-  }
+  update()
+  for (const event of EVENTS) element.addEventListener(event, shift)
 
   function shift () {
     GLOBAL_HUE = (GLOBAL_HUE + 2) % 360
+    update()
+  }
+
+  function update () {
     element.style.setProperty('--hue-shift', GLOBAL_HUE + 'deg')
   }
 }

@@ -7,5 +7,4 @@ extends:
 tabs:
   content:
     fields:
-      slideshow: fields/gallery
-      blocks: fields/blocks
+      projects: fields/projects

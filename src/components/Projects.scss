@@ -1,46 +1,52 @@
-:root {
-  --projects-columns: 4;
-  --projects-min-height: calc(100vh - var(--menu-height) - var(--space-gutter) * 3);
-
-  @include wide {
-    --projects-columns: 5;
-  }
-
-  @include narrow {
-    --projects-columns: 2;
-  }
-
-  @include mobile {
-    --projects-columns: 1;
-  }
-}
-
 .projects {
   $searching: '#toggle-search:checked ~';
 
   position: relative;
   min-height: 100%;
-  padding-top: var(--menu-height);
-  padding-bottom: var(--space-gutter);
-  margin-top: calc(-1 * var(--menu-height));
 
-  &__items {
-    display: grid;
-    grid-template-columns: repeat(var(--projects-columns), 1fr);
-    gap: var(--space-gutter);
-    min-height: var(--projects-min-height);
-    padding-inline: var(--space-gutter);
+  .cards {
+    min-height: calc(100 * var(--vh));
+    padding-top: var(--menu-height);
+    padding-bottom: calc(var(--space-gutter) * 2 + var(--button-height));
+    margin-bottom: calc(-2 * var(--button-height));
   }
 
   .filtered-out {
-    // ??? when not draggable
-    // display: none;
-
     z-index: -1;
     pointer-events: none;
     filter: blur(0.5rem);
-    .project-card { box-shadow: var(--box-shadow-none); }
-    .project-card figure { opacity: 0.2; }
+    .card { box-shadow: var(--box-shadow-none); }
+    .card figure { opacity: 0.2; }
+  }
+
+  // Display tooltip when filtering
+  &:has(.filtered-out) .card-slot:not(.filtered-out) .card {
+    &::before {
+      @include font('nav');
+      @include easing(opacity);
+
+      content: attr(aria-label);
+
+      position: absolute;
+
+      width: auto;
+      height: var(--button-height);
+      max-width: calc(100% - var(--space-0) * 2);
+      padding: var(--button-padding);
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      background: var(--color-white);
+      border-radius: var(--border-radius);
+      opacity: 1;
+      box-shadow: var(--box-shadow);
+    }
+
+    &:hover::before {
+      opacity: 0;
+    }
   }
 
   &__filter {
@@ -52,9 +58,10 @@
     bottom: var(--space-gutter);
     left: var(--space-gutter);
 
-    justify-content: space-between;
+    justify-content: center;
+    gap: var(--space-0);
     padding-inline: var(--space-gutter);
-    margin-top: var(--space-gutter);
+    margin-bottom: var(--space-gutter);
 
     @include mobile {
       display: none !important;
@@ -75,6 +82,12 @@
       @include no-select;
     }
 
+    // Squares
+    label, button {
+      width: var(--button-height);
+      svg { min-width: var(--button-height); }
+    }
+
     label, button, a, input[type='search'] {
       @include font('nav');
       @include easing(background);
@@ -84,7 +97,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 2em;
+      gap: var(--space-0);
+      height: var(--button-height);
       padding: var(--button-padding);
       cursor: pointer;
 
@@ -147,6 +161,11 @@
       pointer-events: none;
       opacity: 0;
       transition-delay: var(--easing-fast);
+    }
+
+    &:not(:has(.is-active, #toggle-search:checked)) #clear-filter {
+      pointer-events: none;
+      color: rgba(0 0 0 / 30%);
     }
   }
 }

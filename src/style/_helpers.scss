@@ -1,3 +1,7 @@
+@function lerp ($a, $b, $t: 0) {
+  @return calc(#{$a} + (#{$b} - #{$a}) * #{$t});
+}
+
 /*
   Display an outline around a block to debug its layout
 */

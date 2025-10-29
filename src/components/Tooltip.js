@@ -17,10 +17,10 @@ const Rect = getElementRectangle(tooltip)
 raf.add(tick)
 
 function tick () {
-  const x = clamp(Pointer.$clientX + OFFSET_X * Rect.$offsetWidth, 0, Viewport.$innerWidth - Rect.$offsetWidth)
-  const y = clamp(Pointer.$clientY + OFFSET_Y * Rect.$offsetHeight, 0, Viewport.$innerHeight - Rect.$offsetHeight)
-  tooltip.style.setProperty('--x', x.toFixed(2) + 'px')
-  tooltip.style.setProperty('--y', y.toFixed(2) + 'px')
+  const x = clamp(Pointer.$clientX + OFFSET_X * Rect.$width, 0, Viewport.$innerWidth - Rect.$width)
+  const y = clamp(Pointer.$clientY + OFFSET_Y * Rect.$height, 0, Viewport.$innerHeight - Rect.$height)
+  document.body.style.setProperty('--tooltip-x', x.toFixed(2) + 'px')
+  document.body.style.setProperty('--tooltip-y', y.toFixed(2) + 'px')
 }
 
 export function hydrate (element) {
@@ -40,6 +40,7 @@ export function hydrate (element) {
   function handleEnter () {
     tooltip.innerText = text
     tooltip.classList.add('is-active')
+    Rect.update()
   }
 
   function handleLeave () {

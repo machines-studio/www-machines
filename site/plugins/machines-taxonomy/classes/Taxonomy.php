@@ -12,7 +12,7 @@ class Taxonomy {
     $this->uuid = $options['uuid'] ?? null;
     $this->value = [
       'fr' => $options['fr'] ?? null,
-      'en' => $options['en'] ?: ($options['fr'] ?? null)
+      'en' => ($options['en'] ?? '') ?: ($options['fr'] ?? null)
     ];
   }
 

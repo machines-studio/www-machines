@@ -6,6 +6,7 @@ const Pointer = {
   $clientX: $(-1),
   $clientY: $(-1),
   $pressed: $(false),
+  $lastPressed: $(undefined),
   $target: $(undefined)
 }
 
@@ -20,7 +21,8 @@ document.documentElement.addEventListener('pointermove', e => {
 })
 
 document.documentElement.addEventListener('pointerdown', e => {
-  Pointer.$pressed.value = Date.now()
+  Pointer.$pressed.value = true
+  Pointer.$lastPressed.value = Date.now()
 })
 
 document.documentElement.addEventListener('pointerup', e => {
