@@ -2,6 +2,7 @@ import { raf } from '@internet/raf'
 import { clamp } from 'missing-math'
 import Pointer from '/utils/Pointer'
 import { Viewport, getElementRectangle } from '/utils/less-layout-trashing'
+import IS_MOBILE from '/utils/is-mobile'
 
 export const selector = '.tooltip'
 
@@ -14,7 +15,7 @@ tooltip.id = 'tooltip'
 document.body.appendChild(tooltip)
 const Rect = getElementRectangle(tooltip)
 
-raf.add(tick)
+if (!IS_MOBILE) raf.add(tick)
 
 function tick () {
   const x = clamp(Pointer.$clientX + OFFSET_X * Rect.$width, 0, Viewport.$innerWidth - Rect.$width)
@@ -24,6 +25,8 @@ function tick () {
 }
 
 export function hydrate (element) {
+  if (IS_MOBILE) return
+
   const container = element.offsetParent ?? element.parentNode
   const text = element.innerText
 

@@ -1,9 +1,11 @@
 import { raf } from '@internet/raf'
 import { $ } from '@tooooools/ui/state'
+import { clamp, lerp, lerpRadians } from 'missing-math'
+
 import DebugCanvas from '/utils/DebugCanvas'
 import Pointer from '/utils/Pointer'
 import { getElementRectangle } from '/utils/less-layout-trashing'
-import { clamp, lerp, lerpRadians } from 'missing-math'
+import IS_MOBILE from '/utils/is-mobile'
 
 let Z_INDEX = 1
 const PRECISION = 3
@@ -20,6 +22,8 @@ const debug = (new URLSearchParams(window.location.search)).has('debug')
   : undefined
 
 export function hydrate (element) {
+  if (IS_MOBILE) return
+
   const Rect = getElementRectangle(element.closest('.card-slot') ?? element)
   const Container = getElementRectangle(element.closest('.cards') ?? element.offsetParent)
 

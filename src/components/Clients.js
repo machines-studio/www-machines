@@ -3,6 +3,7 @@ import { map } from 'missing-math'
 import { raf } from '@internet/raf'
 import Pointer from '/utils/Pointer'
 import { getElementRectangle } from '/utils/less-layout-trashing'
+import IS_MOBILE from '/utils/is-mobile'
 
 export const selector = '.clients'
 
@@ -10,6 +11,8 @@ const STICKY_DISTANCE = 100 // px
 const STICKY_FACTOR = 0.3 // %
 
 export function hydrate (element) {
+  if (IS_MOBILE) return
+
   const clients = Array.from(element.querySelectorAll('.clients__client'))
   raf.add(tick)
 

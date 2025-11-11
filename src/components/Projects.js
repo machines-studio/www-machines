@@ -1,6 +1,10 @@
+import IS_MOBILE from '/utils/is-mobile'
+
 export const selector = '.projects'
 
 export function hydrate (element) {
+  if (IS_MOBILE) return
+
   const cards = Array.from(element.querySelectorAll('.card'))
   const search = element.querySelector('input[type="search"]')
 
