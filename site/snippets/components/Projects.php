@@ -47,7 +47,10 @@
       <?php snippet('components/HueShifter', [
         'tag' => 'button',
         'content' => snippet('svg/xmark', [], true),
-        'attributes' => ['id' => 'clear-filter']
+        'attributes' => [
+          'id' => 'clear-filter',
+          'aria-label' => t('projects.filter.clear')
+        ]
       ]) ?>
     </fieldset>
   </nav>
