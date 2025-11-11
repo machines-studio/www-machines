@@ -1,13 +1,13 @@
 {
-  "_Pointer-Bkr16rJj.js": {
-    "file": "assets/Pointer-Bkr16rJj.js",
+  "_Pointer-QKU2q22n.js": {
+    "file": "assets/Pointer-QKU2q22n.js",
     "name": "Pointer",
     "imports": [
-      "_less-layout-trashing-h1-YA2_D.js"
+      "_less-layout-trashing-DZwrEJ20.js"
     ]
   },
-  "_less-layout-trashing-h1-YA2_D.js": {
-    "file": "assets/less-layout-trashing-h1-YA2_D.js",
+  "_less-layout-trashing-DZwrEJ20.js": {
+    "file": "assets/less-layout-trashing-DZwrEJ20.js",
     "name": "less-layout-trashing",
     "imports": [
       "index.js"
@@ -45,48 +45,48 @@
     "file": "assets/ibm-plex-mono-medium-COFd06Dj.ttf",
     "src": "assets/ibm-plex-mono-medium.ttf"
   },
+  "components/Card.js": {
+    "file": "assets/Card-BCOTrAYT.js",
+    "name": "Card",
+    "src": "components/Card.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_raf-Be84MYDk.js",
+      "_less-layout-trashing-DZwrEJ20.js",
+      "_Pointer-QKU2q22n.js",
+      "index.js"
+    ]
+  },
   "components/Clients.js": {
-    "file": "assets/Clients-D5bxudsZ.js",
+    "file": "assets/Clients-Cvd5Vfr_.js",
     "name": "Clients",
     "src": "components/Clients.js",
     "isDynamicEntry": true,
     "imports": [
-      "_Pointer-Bkr16rJj.js",
+      "_Pointer-QKU2q22n.js",
       "_raf-Be84MYDk.js",
-      "_less-layout-trashing-h1-YA2_D.js",
+      "_less-layout-trashing-DZwrEJ20.js",
       "index.js"
     ]
   },
   "components/HueShifter.js": {
-    "file": "assets/HueShifter-FQEI7Wla.js",
+    "file": "assets/HueShifter-CKqx7WdX.js",
     "name": "HueShifter",
     "src": "components/HueShifter.js",
     "isDynamicEntry": true
   },
   "components/Menu.js": {
-    "file": "assets/Menu-DVGL5i-m.js",
+    "file": "assets/Menu-CnWCfcmO.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
     "imports": [
       "index.js",
-      "_less-layout-trashing-h1-YA2_D.js"
-    ]
-  },
-  "components/ProjectCard.js": {
-    "file": "assets/ProjectCard-DkOz0uj8.js",
-    "name": "ProjectCard",
-    "src": "components/ProjectCard.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "_raf-Be84MYDk.js",
-      "_less-layout-trashing-h1-YA2_D.js",
-      "_Pointer-Bkr16rJj.js",
-      "index.js"
+      "_less-layout-trashing-DZwrEJ20.js"
     ]
   },
   "components/Projects.js": {
-    "file": "assets/Projects-DKonfbks.js",
+    "file": "assets/Projects-7Xs1eCiK.js",
     "name": "Projects",
     "src": "components/Projects.js",
     "isDynamicEntry": true
@@ -101,19 +101,19 @@
     ]
   },
   "components/Tooltip.js": {
-    "file": "assets/Tooltip-Dw2tPOHE.js",
+    "file": "assets/Tooltip-CwdHutBf.js",
     "name": "Tooltip",
     "src": "components/Tooltip.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
-      "_Pointer-Bkr16rJj.js",
-      "_less-layout-trashing-h1-YA2_D.js",
+      "_Pointer-QKU2q22n.js",
+      "_less-layout-trashing-DZwrEJ20.js",
       "index.js"
     ]
   },
   "index.js": {
-    "file": "assets/index-SpzmsJoy.js",
+    "file": "assets/index-C4oiOT_Y.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
@@ -123,14 +123,14 @@
       "components/HueShifter.js",
       "components/Clients.js",
       "components/HueShifter.js",
-      "components/ProjectCard.js",
+      "components/Card.js",
       "components/Projects.js",
       "components/Slideshow.js",
       "components/Tooltip.js"
     ]
   },
   "index.scss": {
-    "file": "assets/index-C6pId2iR.css",
+    "file": "assets/index-yguwfzPO.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -153,7 +153,7 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-Dtz_z_V1.js",
+    "file": "assets/default-XxAfaG8S.js",
     "name": "default",
     "src": "views/default.js",
     "isDynamicEntry": true,
