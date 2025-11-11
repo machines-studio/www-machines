@@ -37,6 +37,7 @@ export default ({ mode }) => ({
   build: {
     outDir: resolve(process.cwd(), 'public/dist'),
     emptyOutDir: true,
+    sourcemap: true,
     rollupOptions: { input }
   },
 
