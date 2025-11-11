@@ -7,10 +7,6 @@
     --card-width: #{column-span(1, 5)};
   }
 
-  @include narrow {
-    --card-width: column-span(1, 2);
-  }
-
   @include mobile {
     --card-width: column-span(1, 1);
   }

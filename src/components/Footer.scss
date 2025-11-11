@@ -1,3 +1,11 @@
+:root {
+  --footer-height: 9.9rem;
+
+  @include mobile {
+    --footer-height: 23.4rem;
+  }
+}
+
 .footer {
   @include no-select;
   @include font('footer');
