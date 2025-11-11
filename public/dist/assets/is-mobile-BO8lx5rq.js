@@ -4,3 +4,4 @@ const M={"Amazon Silk":"amazon_silk","Android Browser":"android",Bada:"bada",Bla
  * MIT License | (c) Dustin Diaz 2012-2015
  * MIT License | (c) Denis Demchenko 2015-2019
  */class k{static getParser(e,t=!1){if(typeof e!="string")throw new Error("UserAgent should be a string");return new p(e,t)}static parse(e){return new p(e).getResult()}static get BROWSER_MAP(){return w}static get ENGINE_MAP(){return m}static get OS_MAP(){return l}static get PLATFORMS_MAP(){return a}}const O=k.getParser(window.navigator.userAgent),A=O.getPlatformType(!0)==="mobile";export{A as I};
+//# sourceMappingURL=is-mobile-BO8lx5rq.js.map

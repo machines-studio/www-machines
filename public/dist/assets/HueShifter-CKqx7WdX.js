@@ -1,1 +1,2 @@
 const f=".hue-shifter";let t=0;const c=["mouseenter","focus","click"];function r(e){o();for(const s of c)e.addEventListener(s,n);function n(){t=(t+2)%360,o()}function o(){e.style.setProperty("--hue-shift",t+"deg")}}export{r as hydrate,f as selector};
+//# sourceMappingURL=HueShifter-CKqx7WdX.js.map
