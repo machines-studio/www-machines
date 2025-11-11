@@ -1,5 +1,5 @@
 .cards {
-  contain: paint;
+  overflow: hidden;
 
   &[data-layout='grid'] {
     --cards-grid-columns: 4;

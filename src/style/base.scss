@@ -80,7 +80,6 @@ input[id^='toggle-'] {
 
 figure {
   img,
-  picture,
   video {
     @include no-select;
     width: 100%;

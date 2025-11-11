@@ -15,34 +15,21 @@
   <?= attr($attributes) ?>
   class='image <?= $attributes['class'] ?? '' ?>'
 >
-  <picture>
-    <source
-      srcset='<?= $image->srcset('avif') ?>'
-      sizes='<?= $sizes ?>'
-      type='image/avif'
-    >
-
-    <source
-      srcset='<?= $image->srcset('webp') ?>'
-      sizes='<?= $sizes ?>'
-      type='image/webp'
-    >
-
-    <img <?= attr([
-      'loading' => $lazyload ? 'lazy' : false,
-      'alt' => $alt,
-      'src' => $image->resize(300)->url(),
-      'srcset' => $image->srcset(),
-      'sizes' => $sizes,
-      'width' => $image->resize(1920)->width(),
-      'height' => $image->resize(1920)->height(),
-      'draggable' => 'false',
-      'style' => [
-        "--focus-x: " . ($focus[0] ?? 0.5) * 100 . '%;',
-        '--focus-y: ' . ($focus[1] ?? 0.5) * 100 . '%;'
-      ]
-    ])?>>
-  </picture>
+  <img <?= attr([
+    'loading' => $lazyload ? 'lazy' : false,
+    'alt' => $alt,
+    'src' => $image->thumbnail(option('thumbs.srcsets.default.800w')),
+    'srcset' => $image->srcset(),
+    'sizes' => $sizes,
+    'width' => $image->resize(1920)->width(),
+    'height' => $image->resize(1920)->height(),
+    'decoding' => 'async',
+    'draggable' => 'false',
+    'style' => [
+      "--focus-x: " . ($focus[0] ?? 0.5) * 100 . '%;',
+      '--focus-y: ' . ($focus[1] ?? 0.5) * 100 . '%;'
+    ]
+  ])?>>
 
   <figcaption><?= $caption ?></figcaption>
 </figure>

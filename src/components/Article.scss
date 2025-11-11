@@ -55,10 +55,10 @@
 
     position: absolute;
 
-    // Random X
+    // Random left or right of viewport
     left: clamp(
       -1 * var(--card-width) * 0.25,
-      50vw + sin(var(--card-seed)) * 100vw,
+      sign(sin(var(--card-seed))) * 100vw,
       100vw - var(--card-width) * 0.75
     );
     margin-top: calc(-1 * var(--card-width) * var(--card-ratio));
@@ -93,7 +93,7 @@
     }
 
     figure {
-      img, picture, video {
+      img, video {
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
       }

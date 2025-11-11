@@ -10,6 +10,16 @@ return [
   'thumbs' => [
     'driver' => 'im',
 
+    'srcsets' => [
+      'default' => [
+        '400w' => ['width' => 400, 'format' => 'webp'],
+        '800w' => ['width' => 800, 'format' => 'webp'],
+        '1200w' => ['width' => 1200, 'format' => 'webp'],
+        '1600w' => ['width' => 1600, 'format' => 'webp'],
+        '1920w' => ['width' => 1920, 'format' => 'webp']
+      ]
+    ],
+
     'sizes' => [
       'default' => '100vw',
       'half' => implode(',', [
@@ -17,28 +27,11 @@ return [
         '50vw'
       ]),
       'card' => implode(',', [
-        '(min-width: 1024px) 50vw',
-        '(min-width: 800px) 50vw',
-        '100vw'
+        '(max-width: 800px) 100vw',
+        '(max-width: 1024px) 25vw',
+        '20vw'
       ])
-    ],
-
-    'srcsets' => (function () {
-      $srcsets = [
-        '300w' => ['width' => 300, 'quality' => 100],
-        '400w' => ['width' => 400, 'quality' => 100],
-        '800w' => ['width' => 800, 'quality' => 100],
-        '960w' => ['width' => 960, 'quality' => 100],
-        '1280w' => ['width' => 1280, 'quality' => 100],
-        '1920w' => ['width' => 1920, 'quality' => 100]
-      ];
-
-      return [
-        'default' => $srcsets,
-        'avif' => array_map(fn ($srcset) => [...$srcset, 'format' => 'avif'], $srcsets),
-        'webp' => array_map(fn ($srcset) => [...$srcset, 'format' => 'webp'], $srcsets)
-      ];
-    })()
+    ]
   ],
 
   'sitemap' => [

@@ -35,7 +35,7 @@
     rotate(calc(var(--card-angle, 0deg) + var(--card-offset-angle)))
   ;
 
-  isolation: isolate;
+  contain: layout size;
   will-change: transform;
 
   &.is-dragged {
