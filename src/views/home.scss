@@ -29,6 +29,10 @@ main[data-barba-namespace='home'] {
         &:nth-child(#{$i}):has([loading='lazy'].is-loaded) {
           opacity: 1;
           animation: fan-card-slide-down var(--easing-slow) #{($i - 1) * 30}ms var(--easing-ease-back) both;
+
+          @include reduced-motion {
+            animation: none;
+          }
         }
       }
     }
