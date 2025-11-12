@@ -51,6 +51,8 @@ export function getElementRectangle (element) {
   const $boundingClientRect = $(element.getBoundingClientRect())
 
   const api = {
+    element,
+
     // Relative to the viewport top-left corner
     $boundingClientRect,
 

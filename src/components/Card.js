@@ -11,6 +11,7 @@ let Z_INDEX = 1
 const PRECISION = 3
 const DEADZONE_FALLOFF = 5 // Lower moves more
 const DRAG_THRESHOLD = 10 // px
+const TIME_THREHOLD = 1_000 // ms
 const FRICTION_CORNERS = 0.01
 const FRICTION_DEADZONE = 0.008
 const MIN_VELOCITY = 0.01
@@ -60,7 +61,7 @@ export function hydrate (element) {
   function handleClick (e) {
     // Abort mouse click when card has been dragged or hold for too long
     const tooFar = distance(Handle.origin, Handle.position) > DRAG_THRESHOLD
-    const tooLong = Pointer.$lastPressed.value - Date.now() > 1_000 // ms
+    const tooLong = Pointer.$lastPressed.value - Date.now() > TIME_THREHOLD
     if (tooFar || tooLong) {
       e.stopPropagation()
       e.preventDefault()
@@ -73,7 +74,7 @@ export function hydrate (element) {
 
     Handle.active = true
     element.classList.add('is-dragged')
-    element.style.zIndex = ++Z_INDEX // TODO improve to avoid too high z-index
+    Rect.element.style.zIndex = ++Z_INDEX
 
     // Compute Handle initial state for this drag
     Handle.origin = [+Pointer.$pageX, +Pointer.$pageY]
