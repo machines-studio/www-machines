@@ -1,6 +1,0 @@
-import{I}from"./is-mobile-BO8lx5rq.js";import{d as m}from"./distance-squared-DPx3DWkA.js";import{u as S,r as E}from"./missing-math.m-CBhLctOr.js";const x='.cards[data-layout="fan"]',d=50,y=300,T={duration:300,easing:"cubic-bezier(0.25, 0.1, 0.25, 1)"},p={duration:300,easing:"cubic-bezier(0.25, 0.1, 0.25, 1)"};function A(l){if(!I)return;const o={start:[0,0]},e=Array.from(l.querySelectorAll(".card-slot"));for(let n=0;n<e.length;n++){const t=e[n];t.style.zIndex=n,t.style.touchAction="none",t.addEventListener("touchstart",h,{passive:!0}),t.addEventListener("touchend",f,{passive:!0})}let a=e.length-1;async function u({angle:n=0,strength:t=0}={}){const s=e[a];a=(a+e.length-1)%e.length;const c={transform:"translate(0)"},i={transform:`
-        rotate(${n}rad)
-        translateX(${S(150,180,t*Math.abs(Math.sin(n)))}%)
-        rotate(${-n+Math.random()}rad)
-      `};await s.animate([c,i],T).finished;for(const r of e)r.style.zIndex=r===s?0:r.style.zIndex+1;s.animate([i,c],p)}function h(n){const t=n.touches[0];o.start[0]=t.clientX,o.start[1]=t.clientY}function f(n){const t=n.changedTouches[0],s=m([o.start[0],t.clientX],[o.start[1],t.clientY]);s<d**2||u({angle:Math.atan2(t.clientY-o.start[1],t.clientX-o.start[0]),strength:E(s,d**2,y**2)})}}export{A as hydrate,x as selector};
-//# sourceMappingURL=Cards.Fan--waiWWSn.js.map
