@@ -162,7 +162,7 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
   &__link {
     @include mobile {
       @include easing(background);
-      padding: var(--button-padding);
+      padding: 0.25rem 1.2rem 0.5rem;
       background: var(--color-white);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
