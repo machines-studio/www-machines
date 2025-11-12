@@ -17,7 +17,7 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
   @include no-select;
   @include font('menu');
 
-  $sticked: "&:not(.is-on-top)"; // ??? "&:not(.is-on-top):is(:hover, .is-sticky)";
+  $sticked: "&:not(.is-on-top)";
   $scrolled: "&:not(.is-on-top)";
   $open: "#toggle-menu:checked ~ .menu";
 
