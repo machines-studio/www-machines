@@ -19,9 +19,5 @@ main[data-barba-namespace='home'] {
     height: calc(100 * var(--vh) - var(--footer-height));
     padding-top: var(--menu-height);
     padding-bottom: var(--menu-height);
-
-    @include desktop {
-      --footer-height: 0px;
-    }
   }
 }
