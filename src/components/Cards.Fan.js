@@ -1,13 +1,13 @@
 import IS_MOBILE from '/utils/is-mobile'
 import distSq from '/utils/distance-squared'
 import { normalize, lerp } from 'missing-math'
+import { Viewport } from '/utils/less-layout-trashing'
 
 export const selector = '.cards[data-layout="fan"]'
 
 const SWIPE_THRESHOLD = 50 // px
-const SWIPE_MAX_DISTANCE = 300 // px
 const SWIPE_START_TIMING = { duration: 300, easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)' }
-const SWIPE_END_TIMING = { duration: 300, easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)' }
+const SWIPE_END_TIMING = { duration: 600, easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)' }
 
 export function hydrate (element) {
   // Only on mobile
@@ -43,7 +43,7 @@ export function hydrate (element) {
     const to = {
       transform: `
         rotate(${angle}rad)
-        translateX(${lerp(150, 180, strength * Math.abs(Math.sin(angle)))}%)
+        translateX(${lerp(120, 300, strength * Math.abs(Math.sin(angle)))}%)
         rotate(${-angle + Math.random()}rad)
       `
     }
@@ -55,7 +55,7 @@ export function hydrate (element) {
       slot.style.zIndex = (slot === curr) ? 0 : (slot.style.zIndex + 1)
     }
 
-    curr.animate([to, from], SWIPE_END_TIMING)
+    return curr.animate([to, from], SWIPE_END_TIMING).finished
   }
 
   function handleTouchStart (e) {
@@ -71,7 +71,7 @@ export function hydrate (element) {
 
     update({
       angle: Math.atan2(touch.clientY - Swipe.start[1], touch.clientX - Swipe.start[0]),
-      strength: normalize(d, SWIPE_THRESHOLD ** 2, SWIPE_MAX_DISTANCE ** 2, true)
+      strength: normalize(d, 0, (Viewport.$innerWidth * Viewport.$innerHeight) * 0.75, true)
     })
   }
 }
