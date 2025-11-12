@@ -1,6 +1,7 @@
 main[data-barba-namespace='home'] {
   .splashscreen {
     position: relative;
+    contain: paint;
   }
 
   .splashscreen > svg {
