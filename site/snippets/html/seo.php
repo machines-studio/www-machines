@@ -7,7 +7,7 @@
 <meta name='theme-color' content='#e4e4e4' />
 
 <?php
-  $title = r($page !== $site->homePage(), $page->title() . ' | ') . $site->title();
+  $title = r($page !== $site->homePage(), Str::unhtml($page->title()) . ' | ') . $site->title();
   $description = $page->seo_description()->or($site->seo_description());
   $keywords = implode(', ', array_unique([
     ...$site->seo_keywords()->split(),
