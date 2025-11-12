@@ -53,7 +53,7 @@
     align-items: center;
 
     @include mobile {
-      --card-width: 50vw;
+      --card-width: 60vw;
       justify-content: center;
       align-items: center;
     }
