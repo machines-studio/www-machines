@@ -49,6 +49,7 @@ export function hydrate (element) {
   element.addEventListener('pointerdown', handleDown)
   element.addEventListener('pointerup', handleUp)
   window.addEventListener('resize', handleResize)
+  Rect.element.addEventListener('animationend', reset)
 
   return {
     destroy: () => {

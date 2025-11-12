@@ -74,6 +74,7 @@ export function getElementRectangle (element) {
   }
 
   window.addEventListener('resize', update)
+  element.addEventListener('animationend', update)
   RECTANGLES.set(element, api)
 
   return api

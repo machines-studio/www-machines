@@ -20,5 +20,26 @@ main[data-barba-namespace='home'] {
     height: calc(100 * var(--vh) - var(--footer-height));
     padding-top: var(--menu-height);
     padding-bottom: var(--menu-height);
+
+    // Animate cards at load
+    @for $i from 1 through 10 {
+      .card-slot:nth-child(#{$i}):has(.is-loaded) {
+        animation: fan-card-slide-down var(--easing-slow) #{($i - 1) * 30}ms var(--easing-ease-back) both;
+      }
+    }
+  }
+}
+
+@keyframes fan-card-slide-down {
+  from {
+    transform:
+      rotate(
+        lerp(
+          -10deg,
+          10deg,
+          var(--card-slot-index-normalized)
+        )
+      )
+      translateY(100vh);
   }
 }
