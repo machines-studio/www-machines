@@ -81,6 +81,7 @@
 
     label, button, a {
       @include no-select;
+      &::before { @include hitbox(calc(var(--space-0) / 2)); }
     }
 
     // Squares
