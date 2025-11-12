@@ -1,0 +1,2 @@
+function i(t,a,n){return Math.max(a,Math.min(t,n))}function M(t,a,n,u){return c(t,a,n,0,1)}function c(t,a,n,u,o,h){var r=(t-a)*(o-u)/(n-a)+u;return i(r,u,o)}function e(t,a,n){return t+n*(a-t)}function f(t,a,n){var u=(1-n)*Math.sin(t)+n*Math.sin(a),o=(1-n)*Math.cos(t)+n*Math.cos(a);return Math.atan2(u,o)}export{f as a,i as n,c as o,M as r,e as u};
+//# sourceMappingURL=missing-math.m-CBhLctOr.js.map
