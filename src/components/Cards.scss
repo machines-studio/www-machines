@@ -43,9 +43,9 @@
 
   &[data-layout='fan'] { // stack on mobile
     $spread: 10deg;
-    $spread-random: 0deg;
+    $spread-random: 2deg;
     $span: 8%;
-    $span-random: 0%;
+    $span-random: 3%;
     $gap: calc(-0.25 * var(--card-width));
 
     display: flex;
