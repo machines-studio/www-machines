@@ -45,7 +45,7 @@ export function hydrate (element) {
     nextFrame = requestAnimationFrame(() => {
       const y = Viewport.$scrollTop
       element.classList.toggle('is-on-top', y < Rect.$height)
-      element.classList.toggle('is-sticky', (y.previous ?? y) >= y && y < Viewport.$scrollHeight - Viewport.$innerHeight)
+      element.classList.toggle('is-sticky', y < Viewport.$scrollHeight - Viewport.$innerHeight)
     })
   }
 
