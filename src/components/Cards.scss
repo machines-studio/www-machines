@@ -42,10 +42,11 @@
   }
 
   &[data-layout='fan'] { // stack on mobile
-    $spread: 20deg;
-    $spread-random: 3deg;
-    $span: 20%;
+    $spread: 10deg;
+    $spread-random: 0deg;
+    $span: 8%;
     $span-random: 0%;
+    $gap: calc(-0.25 * var(--card-width));
 
     display: flex;
     justify-content: center;
@@ -58,7 +59,7 @@
     }
 
     .card-slot + .card-slot {
-      margin-left: calc(-0.33 * var(--card-width));
+      margin-left: $gap;
 
       @include mobile {
         margin-top: -10vw;
