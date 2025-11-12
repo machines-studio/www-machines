@@ -23,9 +23,10 @@
 
   will-change: transform;
 
+  color: var(--color-white);
   white-space: nowrap;
 
-  background: var(--color-white);
+  background: var(--color-black);
   border-radius: var(--border-radius);
   opacity: 0;
   transform:

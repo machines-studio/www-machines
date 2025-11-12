@@ -35,10 +35,11 @@
       padding: var(--button-padding);
       overflow: hidden;
 
+      color: var(--color-white);
       text-overflow: ellipsis;
       white-space: nowrap;
 
-      background: var(--color-white);
+      background: var(--color-black);
       border-radius: var(--border-radius);
       opacity: 1;
       box-shadow: var(--box-shadow);
