@@ -16,6 +16,7 @@ main[data-barba-namespace='home'] {
   }
 
   .splashscreen > .cards {
+    --footer-height: 0px;
     height: calc(100 * var(--vh) - var(--footer-height));
     padding-top: var(--menu-height);
     padding-bottom: var(--menu-height);
