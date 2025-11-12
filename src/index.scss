@@ -13,10 +13,11 @@
   --space-3: 12rem;
   --space-gutter: var(--space-1);
 
-  --z-menu: 11;
-  --z-footer: 10;
-  --z-projects-filter: 10;
-  --z-tooltip: 9;
+  // Leave room for cards dynamic z-index
+  --z-menu: 10003;
+  --z-footer: 10002;
+  --z-projects-filter: 10001;
+  --z-tooltip: 10000;
 
   --easing: 300ms;
   --easing-fast: 120ms;
