@@ -21,10 +21,15 @@ main[data-barba-namespace='home'] {
     padding-top: var(--menu-height);
     padding-bottom: var(--menu-height);
 
-    // Animate cards at load
-    @for $i from 1 through 10 {
-      .card-slot:nth-child(#{$i}):has(.is-loaded) {
-        animation: fan-card-slide-down var(--easing-slow) #{($i - 1) * 30}ms var(--easing-ease-back) both;
+    .card-slot {
+      opacity: 0;
+
+      // Animate cards at load
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}):has([loading='lazy'].is-loaded) {
+          opacity: 1;
+          animation: fan-card-slide-down var(--easing-slow) #{($i - 1) * 30}ms var(--easing-ease-back) both;
+        }
       }
     }
   }
