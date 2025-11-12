@@ -3,7 +3,7 @@
   if (!$page) return;
 
   $filter ??= implode('|', [
-    $page->title(),
+    Str::unhtml($page->title()),
     ...array_merge(...$page->year()->toEntries()->toArray()),
     ...$page->tags()->toTaxonomies()
   ]);
@@ -15,7 +15,7 @@
   ...$attributes,
   'href' => $page->url(),
   'class' => 'card ' . ($attributes['class'] ?? ''),
-  'aria-label' => $page->title(),
+  'aria-label' => Str::unhtml($page->title()),
   'data-filter' => $filter,
   'style' => '--card-seed: '. rand() .';'
 ]) ?>>

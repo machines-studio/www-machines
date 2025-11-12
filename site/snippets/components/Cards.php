@@ -20,11 +20,11 @@
       [snippet('components/Card', compact('page'), true)],
       [
         'class' => 'card-slot',
-        'style' => "
-          --card-slot-index: {$index};
-          --card-slot-seed: {$seed};
-          --card-slot-index-normalized: {$normalizedIndex}
-        "
+        'style' => implode(';', [
+          "--card-slot-index: {$index}",
+          "--card-slot-seed: {$seed}",
+          "--card-slot-index-normalized: {$normalizedIndex}"
+        ])
       ]
     );
   } ?>
