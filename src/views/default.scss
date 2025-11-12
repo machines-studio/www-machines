@@ -1,1 +1,3 @@
-main[data-barba-namespace='default'] {}
+main[data-barba-namespace='default'] {
+  padding-top: var(--menu-height);
+}
