@@ -26,7 +26,7 @@
     content: '\202F↗';
     display: inline-block;
     line-height: 0;
-    vertical-align: -0.1em;
+    vertical-align: -0.15em;
   }
 
   a[href*='instagram.com'] {
@@ -40,6 +40,9 @@
       position: absolute;
       margin-left: -$char-width;
     }
+
+    // Disable target=_blank arrow
+    &::after { content: none; }
   }
 
   s {
