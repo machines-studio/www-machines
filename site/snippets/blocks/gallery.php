@@ -1,6 +1,7 @@
 <?php
   $medias = $block->medias()->toFiles();
-  $count = $medias->count()
+  $count = $medias->count();
+  $caption = $block->caption()->kirbytextinline();
 ?>
 
 <section
@@ -22,4 +23,8 @@
       </li>
     <?php endforeach ?>
   </ul>
+
+  <?php if (trim($caption ?? '')) : ?>
+    <figcaption><p><?= $caption ?></p></figcaption>
+  <?php endif ?>
 </section>

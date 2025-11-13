@@ -6,3 +6,10 @@ wysiwyg: true
 fields:
   medias:
     extends: fields/gallery
+
+  caption:
+    label: Légende globale
+    type: writer
+    icon: text
+    inline: true
+    help: Remplacera les légendes des images si présente

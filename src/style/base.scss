@@ -106,13 +106,13 @@ figure {
     cursor: pointer;
     cursor: zoom-in;
   }
+}
 
-  figcaption {
-    margin-block: var(--space-0);
-    font-size: small;
+figcaption {
+  @include font('caption');
+  margin-top: var(--space-0);
 
-    &:empty {
-      display: none;
-    }
+  &:empty {
+    display: none;
   }
 }

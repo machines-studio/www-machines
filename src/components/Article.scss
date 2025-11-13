@@ -72,13 +72,14 @@
   }
 
   > section.gallery {
+    position: relative;
     padding: var(--space-gutter);
     // background: var(--color-white); // ???
 
     ul {
       display: grid;
       grid-template-columns: repeat(var(--gallery-columns-count), 1fr);
-      gap: var(--space-gutter);
+      gap: var(--space-0);
       width: 100%;
       max-width: unset;
       margin-left: unset;
@@ -92,11 +93,19 @@
       flex: 0 0 calc(50% - var(--space-gutter) / 2);
     }
 
-    figure {
-      img, video {
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
+    // Global caption
+    > figcaption {
+      width: 100%;
+      max-width: unset;
+      margin-inline: 0;
+
+      > * {
+        margin-left: auto;
+        text-align: right;
       }
     }
+
+    // Hide captions when a global one is present
+    &:has(> figcaption) figure figcaption { display: none; }
   }
 }
