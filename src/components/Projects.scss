@@ -81,6 +81,8 @@
 
     label, button, a {
       @include no-select;
+      box-shadow: var(--box-shadow);
+
       &::before { @include hitbox(calc(var(--space-0) / 2)); }
     }
 
@@ -122,6 +124,7 @@
       position: relative;
       z-index: 2;
       background: none;
+      box-shadow: none;
     }
 
     #{$searching} label[for='toggle-search'] {
