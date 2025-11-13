@@ -77,7 +77,7 @@
 
     ul {
       display: grid;
-      grid-template-columns: repeat(min(2, var(--gallery-columns-count)), 1fr);
+      grid-template-columns: repeat(var(--gallery-columns-count), 1fr);
       gap: var(--space-gutter);
       width: 100%;
       max-width: unset;
