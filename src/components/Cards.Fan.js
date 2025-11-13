@@ -66,7 +66,7 @@ export function hydrate (element) {
 
   function handleTouchEnd (e) {
     const touch = e.changedTouches[0]
-    const d = distSq([Swipe.start[0], touch.clientX], [Swipe.start[1], touch.clientY])
+    const d = distSq([Swipe.start[0], Swipe.start[1]], [touch.clientX, touch.clientY])
     if (d < SWIPE_THRESHOLD ** 2) return
 
     update({
