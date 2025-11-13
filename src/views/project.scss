@@ -35,13 +35,11 @@ main[data-barba-namespace='project'] {
 
     .prose {
       max-width: column-span(6, 8, $breakpoint-wide);
-    }
 
-    // Align aside and prose with h3
-    &:has(.prose h3:first-child) .prose {
+      // Align aside and prose baselines
       @include desktop {
-        $offset: calc(var(--h2-font-size) - var(--body-font-size) + 2px);
-        margin-top: calc(-1 * $offset);
+        margin-top: -0.8rem;
+        &:has(h3:first-child) { margin-top: -2.4rem; }
       }
     }
   }
@@ -74,7 +72,7 @@ main[data-barba-namespace='project'] {
 
   .meta {
     margin-bottom: var(--space-0);
-    line-height: 118%;
+    line-height: 108%;
     text-transform: initial;
 
     &[data-name]::before {
