@@ -29,6 +29,19 @@
     vertical-align: -0.1em;
   }
 
+  a[href*='instagram.com'] {
+    $char-width: 1.5ch;
+
+    position: relative;
+    padding-left: $char-width;
+
+    &::before {
+      content: '@';
+      position: absolute;
+      margin-left: -$char-width;
+    }
+  }
+
   s {
     text-decoration: underline;
     text-underline-offset: -0.5ex;
