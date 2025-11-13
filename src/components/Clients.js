@@ -1,19 +1,22 @@
-import distSq from '/utils/distance-squared'
-import { map } from 'missing-math'
 import { raf } from '@internet/raf'
 import Pointer from '/utils/Pointer'
+import { map, normalize, lerpRadians } from 'missing-math'
 import { getElementRectangle } from '/utils/less-layout-trashing'
 import IS_MOBILE from '/utils/is-mobile'
 
 export const selector = '.clients'
 
-const STICKY_DISTANCE = 100 // px
-const STICKY_FACTOR = 0.3 // %
+const STICKY_DISTANCE = 40 // px
+const STICKY_ANGLE_FACTOR = 0.5 // %
+const STICKY_FRICTION_X = 0.3 // %
+const STICKY_FRICTION_Y = 0.6 // %
 
 export function hydrate (element) {
   if (IS_MOBILE) return
 
   const clients = Array.from(element.querySelectorAll('.clients__client'))
+  for (const client of clients) client.Rect = getElementRectangle(client)
+
   raf.add(tick)
 
   return {
@@ -21,57 +24,45 @@ export function hydrate (element) {
   }
 
   function tick () {
-    // Compute sticky factor based on mouse speed
-    const factor = map(
-      distSq(
-        [Pointer.$pageX.previous ?? Pointer.$pageX.value, Pointer.$pageY.previous ?? Pointer.$pageY.value],
-        [Pointer.$pageX, Pointer.$pageY]
-      ),
-      0,
-      STICKY_DISTANCE ** 2,
-      STICKY_FACTOR,
-      1,
-      true
-    )
-
     for (const client of clients) {
-      const {
-        $top,
-        $left,
-        $bottom,
-        $right
-      } = getElementRectangle(client)
-
-      // Adjust initial bounding box to current document scroll
-      const hit = element.contains(Pointer.$target.value) &&
-        Pointer.$pageX > $left &&
-        Pointer.$pageX < $right &&
-        Pointer.$pageY > $top &&
-        Pointer.$pageY < $bottom
-
-      client.classList.toggle('is-sticked', hit)
+      const hit = Pointer.$pageX > client.Rect.$left - STICKY_DISTANCE &&
+        Pointer.$pageX < client.Rect.$right + STICKY_DISTANCE &&
+        Pointer.$pageY > client.Rect.$top - STICKY_DISTANCE &&
+        Pointer.$pageY < client.Rect.$bottom + STICKY_DISTANCE
 
       if (hit) {
-        // Define origin of the hit
         client.initialHit ??= {
-          x: Pointer.$clientX.value,
-          y: Pointer.$clientY.value
+          x: Pointer.$pageX.value,
+          y: Pointer.$pageY.value
         }
 
-        // Update position
-        client.dx = (Pointer.$clientX - client.initialHit.x) * factor
-        client.dy = (Pointer.$clientY - client.initialHit.y) * factor
-        client.style.setProperty('--stick-x', client.dx.toFixed(3) + 'px')
-        client.style.setProperty('--stick-y', client.dy.toFixed(3) + 'px')
+        const dx = (Pointer.$pageX - client.initialHit.x) * STICKY_FRICTION_X
+        const dy = (Pointer.$pageY - client.initialHit.y) * STICKY_FRICTION_Y
+
+        const theta =
+          lerpRadians(
+            lerpRadians(
+              -Math.atan2(dy, client.Rect.$centerX - Pointer.$pageX),
+              -Math.atan2(dy, client.Rect.$centerX - Pointer.$pageX) - Math.PI,
+              // Normalized left to right
+              normalize(Pointer.$pageX, client.Rect.$left, client.Rect.$right, true)
+            ),
+            0,
+            // Normalized distance to x center
+            Math.abs(Math.sin(map(Pointer.$pageX, client.Rect.$left, client.Rect.$right, 0, Math.PI, true)))
+          ) * STICKY_ANGLE_FACTOR
+
+        client.classList.add('is-sticked')
+        client.style.setProperty('--stick-x', dx.toFixed(3) + 'px')
+        client.style.setProperty('--stick-y', dy.toFixed(3) + 'px')
+        client.style.setProperty('--stick-angle', theta + 'rad')
       } else {
-        // Delete hit origin
         delete client.initialHit
 
-        // Reset position
-        client.dx = 0
-        client.dy = 0
+        client.classList.remove('is-sticked')
         client.style.setProperty('--stick-x', 0)
         client.style.setProperty('--stick-y', 0)
+        client.style.setProperty('--stick-angle', 0)
       }
     }
   }

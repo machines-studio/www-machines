@@ -1,5 +1,5 @@
 :root {
-  --clients-bounce-back-duration: var(--easing-slow);
+  --clients-bounce-back-duration: var(--easing);
   --clients-bounce-back-easing: var(--easing-ease-back);
 }
 
@@ -29,13 +29,20 @@
   }
 
   &__client {
+    @include easing(box-shadow);
+
     --stick-x: 0;
     --stick-y: 0;
+    --stick-angle: 0;
 
     overflow: hidden;
     will-change: transform;
     background: var(--color-accent);
-    transform: translateX(var(--stick-x)) translateY(var(--stick-y));
+    transform:
+      translateX(var(--stick-x))
+      translateY(var(--stick-y))
+      rotate(var(--stick-angle))
+    ;
 
     @include desktop {
       --hue-offset: 0deg !important;
@@ -45,8 +52,6 @@
     @include reduced-motion { transform: none; }
 
     &.is-sticked {
-      z-index: 1;
-      box-shadow: var(--box-shadow-small);
       @include mobile { box-shadow: none; }
       @include reduced-motion { box-shadow: none; }
     }
