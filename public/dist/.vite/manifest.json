@@ -1,21 +1,17 @@
 {
-  "_Pointer-CMKogvFt.js": {
-    "file": "assets/Pointer-CMKogvFt.js",
+  "_Pointer-D6wi58TK.js": {
+    "file": "assets/Pointer-D6wi58TK.js",
     "name": "Pointer",
     "imports": [
-      "_less-layout-trashing-ODFiZqzZ.js"
+      "_less-layout-trashing-DPZOZhGe.js"
     ]
-  },
-  "_distance-squared-DPx3DWkA.js": {
-    "file": "assets/distance-squared-DPx3DWkA.js",
-    "name": "distance-squared"
   },
   "_is-mobile-BO8lx5rq.js": {
     "file": "assets/is-mobile-BO8lx5rq.js",
     "name": "is-mobile"
   },
-  "_less-layout-trashing-ODFiZqzZ.js": {
-    "file": "assets/less-layout-trashing-ODFiZqzZ.js",
+  "_less-layout-trashing-DPZOZhGe.js": {
+    "file": "assets/less-layout-trashing-DPZOZhGe.js",
     "name": "less-layout-trashing",
     "imports": [
       "index.js"
@@ -58,43 +54,41 @@
     "src": "assets/ibm-plex-mono-medium.ttf"
   },
   "components/Card.js": {
-    "file": "assets/Card-DpuhgSlM.js",
+    "file": "assets/Card-VoTwJd8V.js",
     "name": "Card",
     "src": "components/Card.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
-      "_less-layout-trashing-ODFiZqzZ.js",
+      "_less-layout-trashing-DPZOZhGe.js",
       "_missing-math.m-CBhLctOr.js",
-      "_Pointer-CMKogvFt.js",
+      "_Pointer-D6wi58TK.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
   },
   "components/Cards.Fan.js": {
-    "file": "assets/Cards.Fan-CIXJMV_4.js",
+    "file": "assets/Cards.Fan-Bzmxr2Fw.js",
     "name": "Cards.Fan",
     "src": "components/Cards.Fan.js",
     "isDynamicEntry": true,
     "imports": [
       "_is-mobile-BO8lx5rq.js",
-      "_distance-squared-DPx3DWkA.js",
       "_missing-math.m-CBhLctOr.js",
-      "_less-layout-trashing-ODFiZqzZ.js",
+      "_less-layout-trashing-DPZOZhGe.js",
       "index.js"
     ]
   },
   "components/Clients.js": {
-    "file": "assets/Clients-DU-kbPyz.js",
+    "file": "assets/Clients-BerS_OaO.js",
     "name": "Clients",
     "src": "components/Clients.js",
     "isDynamicEntry": true,
     "imports": [
-      "_distance-squared-DPx3DWkA.js",
-      "_missing-math.m-CBhLctOr.js",
       "_raf-Be84MYDk.js",
-      "_Pointer-CMKogvFt.js",
-      "_less-layout-trashing-ODFiZqzZ.js",
+      "_Pointer-D6wi58TK.js",
+      "_missing-math.m-CBhLctOr.js",
+      "_less-layout-trashing-DPZOZhGe.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
@@ -106,13 +100,13 @@
     "isDynamicEntry": true
   },
   "components/Menu.js": {
-    "file": "assets/Menu-BDNqy-qT.js",
+    "file": "assets/Menu-CGTsduio.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
     "imports": [
       "index.js",
-      "_less-layout-trashing-ODFiZqzZ.js"
+      "_less-layout-trashing-DPZOZhGe.js"
     ]
   },
   "components/Projects.js": {
@@ -134,21 +128,21 @@
     ]
   },
   "components/Tooltip.js": {
-    "file": "assets/Tooltip-BEqzFcFE.js",
+    "file": "assets/Tooltip-By4VU98y.js",
     "name": "Tooltip",
     "src": "components/Tooltip.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
       "_missing-math.m-CBhLctOr.js",
-      "_Pointer-CMKogvFt.js",
-      "_less-layout-trashing-ODFiZqzZ.js",
+      "_Pointer-D6wi58TK.js",
+      "_less-layout-trashing-DPZOZhGe.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
   },
   "index.js": {
-    "file": "assets/index-DXeIH8Od.js",
+    "file": "assets/index-CPWxtRR0.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
@@ -166,7 +160,7 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-DICcYbjk.css",
+    "file": "assets/index-_MlnhHtl.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -189,7 +183,7 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-Dgq0r-GV.js",
+    "file": "assets/default-XkSMj6pE.js",
     "name": "default",
     "src": "views/default.js",
     "isDynamicEntry": true,
