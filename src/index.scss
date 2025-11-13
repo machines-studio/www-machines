@@ -38,6 +38,13 @@
   --body-line-height: 124%;
   --body-text-decoration-thickness: 2px;
   --body-text-underline-offset: 0.26em;
+  --body-letter-spacing: -0.005em;
+  --body-word-spacing: -0.08ch;
+  --body-font-feature-settings:
+    'ss11' 1, /* dot dot dot */
+    'ss14' 1  /* arrows alt */
+  ;
+
   --code-font-family: ibm-plex-mono, monospace;
   --code-font-size: 1.8rem;
   --code-line-height: 120%;
