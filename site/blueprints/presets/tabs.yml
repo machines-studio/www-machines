@@ -10,6 +10,18 @@ tabs:
   files:
     label: Fichiers
     sections:
-      files:
-        label: Fichiers
+      medias:
+        label: Médias
+        type: files
+        template: media
+        help: Images et vidéos utilisables dans les galeries
+        layout: cards
+        info: "{{ file.niceSize }}"
+        image:
+          cover: true
 
+      files:
+        label: Autres fichiers
+        query: page.files.filterBy('template', '!=', 'media')
+        info: "{{ file.niceSize }}"
+        help: Autres fichiers
