@@ -1,17 +1,17 @@
 {
-  "_Pointer-QCUkbGoH.js": {
-    "file": "assets/Pointer-QCUkbGoH.js",
+  "_Pointer-CjJ5bIKw.js": {
+    "file": "assets/Pointer-CjJ5bIKw.js",
     "name": "Pointer",
     "imports": [
-      "_less-layout-trashing-BsFalJSR.js"
+      "_less-layout-trashing-WJNfdykP.js"
     ]
   },
   "_is-mobile-BO8lx5rq.js": {
     "file": "assets/is-mobile-BO8lx5rq.js",
     "name": "is-mobile"
   },
-  "_less-layout-trashing-BsFalJSR.js": {
-    "file": "assets/less-layout-trashing-BsFalJSR.js",
+  "_less-layout-trashing-WJNfdykP.js": {
+    "file": "assets/less-layout-trashing-WJNfdykP.js",
     "name": "less-layout-trashing",
     "imports": [
       "index.js"
@@ -54,41 +54,41 @@
     "src": "assets/ibm-plex-mono-medium.ttf"
   },
   "components/Card.js": {
-    "file": "assets/Card-_iJEvr7S.js",
+    "file": "assets/Card-HrRBENx7.js",
     "name": "Card",
     "src": "components/Card.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
-      "_less-layout-trashing-BsFalJSR.js",
+      "_less-layout-trashing-WJNfdykP.js",
       "_missing-math.m-CBhLctOr.js",
-      "_Pointer-QCUkbGoH.js",
+      "_Pointer-CjJ5bIKw.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
   },
   "components/Cards.Fan.js": {
-    "file": "assets/Cards.Fan-kShFFofT.js",
+    "file": "assets/Cards.Fan-C7ZzmfLK.js",
     "name": "Cards.Fan",
     "src": "components/Cards.Fan.js",
     "isDynamicEntry": true,
     "imports": [
       "_is-mobile-BO8lx5rq.js",
       "_missing-math.m-CBhLctOr.js",
-      "_less-layout-trashing-BsFalJSR.js",
+      "_less-layout-trashing-WJNfdykP.js",
       "index.js"
     ]
   },
   "components/Clients.js": {
-    "file": "assets/Clients-CWpgs42b.js",
+    "file": "assets/Clients-D5EcoGTA.js",
     "name": "Clients",
     "src": "components/Clients.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
-      "_Pointer-QCUkbGoH.js",
+      "_Pointer-CjJ5bIKw.js",
       "_missing-math.m-CBhLctOr.js",
-      "_less-layout-trashing-BsFalJSR.js",
+      "_less-layout-trashing-WJNfdykP.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
@@ -99,14 +99,24 @@
     "src": "components/HueShifter.js",
     "isDynamicEntry": true
   },
+  "components/Lightbox.js": {
+    "file": "assets/Lightbox-Dzvw0P9V.js",
+    "name": "Lightbox",
+    "src": "components/Lightbox.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_less-layout-trashing-WJNfdykP.js",
+      "index.js"
+    ]
+  },
   "components/Menu.js": {
-    "file": "assets/Menu-B97oVMeZ.js",
+    "file": "assets/Menu-CP1ZlUJY.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
     "imports": [
       "index.js",
-      "_less-layout-trashing-BsFalJSR.js"
+      "_less-layout-trashing-WJNfdykP.js"
     ]
   },
   "components/Projects.js": {
@@ -128,21 +138,21 @@
     ]
   },
   "components/Tooltip.js": {
-    "file": "assets/Tooltip-BEnlzLIt.js",
+    "file": "assets/Tooltip-BCIDz1VY.js",
     "name": "Tooltip",
     "src": "components/Tooltip.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
       "_missing-math.m-CBhLctOr.js",
-      "_Pointer-QCUkbGoH.js",
-      "_less-layout-trashing-BsFalJSR.js",
+      "_Pointer-CjJ5bIKw.js",
+      "_less-layout-trashing-WJNfdykP.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
   },
   "index.js": {
-    "file": "assets/index-DDzP14Ny.js",
+    "file": "assets/index-BkyUOiJs.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
@@ -154,13 +164,14 @@
       "components/HueShifter.js",
       "components/Card.js",
       "components/Cards.Fan.js",
+      "components/Lightbox.js",
       "components/Projects.js",
       "components/Slideshow.js",
       "components/Tooltip.js"
     ]
   },
   "index.scss": {
-    "file": "assets/index--8BYw0sH.css",
+    "file": "assets/index-Di71H5dI.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -183,7 +194,7 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-DXl164-E.js",
+    "file": "assets/default-B4Rukx1H.js",
     "name": "default",
     "src": "views/default.js",
     "isDynamicEntry": true,
