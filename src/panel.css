@@ -2,3 +2,8 @@
 .k-block-type-header .k-writer-input {
   font-size: large;
 }
+
+/* Hide activation tooltip */
+.k-activation {
+  display: none;
+}
