@@ -4,7 +4,10 @@
 
   $filter ??= implode('|', [
     Str::unhtml($page->title()),
-    ...array_merge(...$page->year()->toEntries()->toArray()),
+    ...array_map(
+      fn ($year) => Str::unhtml($year->kirbytextinline()),
+      $page->year()->toEntries()->values()
+    ),
     ...$page->tags()->toTaxonomies()
   ]);
 
