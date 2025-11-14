@@ -20,6 +20,8 @@ tabs:
 
       - width: 2/3
         fields:
-          slideshow: fields/gallery
+          slideshow:
+            translate: false
+            extends: fields/gallery
           blocks: fields/blocks
 
