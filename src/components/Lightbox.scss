@@ -1,0 +1,71 @@
+.lightbox {
+  position: fixed;
+  z-index: var(--z-lightbox);
+  inset: 0;
+  pointer-events: none;
+
+  &.is-open {
+    pointer-events: auto;
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--color-gray);
+    opacity: 0;
+  }
+
+  &.is-open &__backdrop {
+    @include easing(opacity);
+    opacity: 0.9;
+  }
+
+  &__placeholder {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    padding: var(--space-gutter);
+    cursor: zoom-out;
+
+    opacity: 0;
+    transform-origin: top left;
+
+    will-change: transform;
+
+    &.is-ready {
+      opacity: 1;
+    }
+
+    img, video {
+      width: auto;
+      height: auto;
+      max-height: 100%;
+      margin: auto;
+      border-radius: calc(var(--border-radius) / var(--scale, 1));
+    }
+
+    video[controls] {
+      cursor: default;
+    }
+
+    &.is-animating img,
+    &.is-animating video {
+      @include easing(border-radius);
+      border-radius: var(--border-radius);
+    }
+  }
+
+  &.is-open &__placeholder {
+    opacity: 1;
+  }
+}
+
+figure.has-lightbox {
+  cursor: zoom-in;
+}
+
+body:has(.lightbox.is-open) {
+  overflow: hidden;
+}

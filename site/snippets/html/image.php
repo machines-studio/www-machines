@@ -18,7 +18,8 @@
   <img <?= attr([
     'loading' => $lazyload ? 'lazy' : false,
     'alt' => $alt,
-    'src' => $image->thumbnail(option('thumbs.srcsets.default.800w')),
+    'data-src' => $image->thumb(option('thumbs.srcsets.default.1920w'))->url(),
+    'src' => $image->thumb(option('thumbs.srcsets.default.800w'))->url(),
     'srcset' => $image->srcset(),
     'sizes' => $sizes,
     'width' => $image->resize(1920)->width(),

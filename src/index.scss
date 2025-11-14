@@ -14,6 +14,7 @@
   --space-gutter: var(--space-1);
 
   // Leave room for cards dynamic z-index
+  --z-lightbox: 10004;
   --z-menu: 10003;
   --z-footer: 10002;
   --z-projects-filter: 10001;
@@ -154,6 +155,7 @@
 @import '/components/Footer';
 @import '/components/HueShifter';
 @import '/components/Languages';
+@import '/components/Lightbox';
 @import '/components/Menu';
 @import '/components/Projects';
 @import '/components/Slideshow';

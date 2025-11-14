@@ -34,7 +34,8 @@
       'alt' => $alt,
       'width' => $width,
       'height' => $height,
-      'draggable' => 'false'
+      'draggable' => 'false',
+      'data-src' => $video->url()
     ]) ?>
   >
     <source src='<?= $video->url() ?>' type='<?= $video->mime() ?>' />
