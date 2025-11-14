@@ -4,6 +4,7 @@
   $attributes ??= [];
   $lazyload ??= true;
   $autoplay ??= true;
+  $controls ??= false;
   $loop ??= true;
   $muted ??= $autoplay;
 
@@ -25,6 +26,7 @@
     <?= attr([
       'playsinline' => true,
       'autoplay' => $autoplay,
+      'controls' => $controls,
       'loop' => $loop,
       'muted' => $muted,
       'preload' => $lazyload ? 'none' : 'auto',

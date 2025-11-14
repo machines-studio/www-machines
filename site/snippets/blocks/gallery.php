@@ -16,6 +16,7 @@
           'media' => $media,
           'lazyload' => true,
           'autoplay' => true,
+          'controls' => true,
           'sizes' => $count >= 2
             ? option('thumbs.sizes.half')
             : option('thumbs.sizes.default')

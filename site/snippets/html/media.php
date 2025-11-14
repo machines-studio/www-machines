@@ -2,10 +2,12 @@
   $media ??= null;
   if (!$media) return;
 
+  $sizes ??= null;
   $lazyload ??= null;
+
   $autoplay ??= null;
   $muted ??= null;
-  $sizes ??= null;
+  $controls ??= null;
 
   switch ($media->type()) {
     case 'image':
@@ -21,7 +23,8 @@
       'video' => $media,
       'muted' => $muted,
       'autoplay' => $autoplay,
-      'lazyload' => $lazyload
+      'lazyload' => $lazyload,
+      'controls' => $controls
     ]);
     break;
   }
