@@ -14,7 +14,7 @@
     <ul class='metas'>
       <li class='meta' data-name='year'>
         <?php foreach ($page->year()->toEntries() as $year) : ?>
-          <div class='year'><?= $year ?></div>
+          <div class='year'><?= $year->kirbytextinline() ?></div>
         <?php endforeach ?>
       </li>
 
