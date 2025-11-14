@@ -11,7 +11,7 @@
 >
   <ul>
     <?php foreach ($medias as $media) : ?>
-      <li <?= attr(['data-crop' => $media->croppable()->isTrue()]) ?>>
+      <li>
         <?php snippet('html/media', [
           'media' => $media,
           'lazyload' => true,

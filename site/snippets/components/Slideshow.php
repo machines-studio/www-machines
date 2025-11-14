@@ -25,8 +25,11 @@
     <?php foreach ($medias as $media) : ?>
       <li <?= attr([
         'class' => 'slideshow__slide',
-        'data-crop' => $media->croppable()->or('true')->isTrue(),
-        'style' => '--figure-color-background: ' . $media->color()
+        'data-crop' => $media->croppable()->isTrue(),
+        'data-rounded' => $media->rounded()->isTrue(),
+        'style' => $media->color()->isNotEmpty()
+          ? '--slideshow-slide-background: ' . $media->color()
+          : null
       ]) ?>>
         <?php snippet('html/media', [
           'media' => $media,
