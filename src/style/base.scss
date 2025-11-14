@@ -79,8 +79,6 @@ input[id^='toggle-'] {
 }
 
 figure {
-  background: var(--color-white);
-
   img,
   video {
     @include no-select;
@@ -90,6 +88,7 @@ figure {
     object-fit: cover;
     object-position: var(--focus-x, 50%) var(--focus-y, 50%);
 
+    background: var(--color-white);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
   }
