@@ -160,21 +160,21 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-BUYvsj7t.css",
+    "file": "assets/index-DPIr_HuA.css",
     "src": "index.scss",
     "isEntry": true
   },
   "panel.css": {
-    "file": "assets/panel-C64EqVrX.js",
+    "file": "assets/panel--cuOLWXm.js",
     "name": "panel",
     "src": "panel.css",
     "isEntry": true,
     "css": [
-      "assets/panel-DF3oujaB.css"
+      "assets/panel-D1ev_YVL.css"
     ]
   },
   "panel.js": {
-    "file": "assets/panel-D0jUJTvB.js",
+    "file": "assets/panel-DP0KjWjl.js",
     "name": "panel",
     "src": "panel.js",
     "isEntry": true,
