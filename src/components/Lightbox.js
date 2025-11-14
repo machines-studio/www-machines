@@ -1,3 +1,5 @@
+// TODO improve loading time
+
 import { Viewport } from '/utils/less-layout-trashing'
 
 export const selector = '.lightbox'
@@ -41,7 +43,10 @@ export function hydrate (element) {
 
   async function open (index = 0) {
     // Cleanup
-    if (slides[current]?.media) slides[current].media.style.display = 'none'
+    if (slides[current]?.media) {
+      slides[current].media.style.display = 'none'
+      slides[current].media.pause?.()
+    }
     placeholder.classList.remove('is-ready')
 
     current = index
@@ -53,6 +58,7 @@ export function hydrate (element) {
       const media = document.createElement(slide.type)
       media.decoding = 'sync'
       media.src = slide.src
+      media.draggable = false
       media.loop = true
       media.controls = true
       media.autoplay = true
@@ -63,6 +69,7 @@ export function hydrate (element) {
     })()
 
     // Ensure reused media is shown
+    slide.media.play?.()
     slide.media.style.display = ''
 
     // Transition to fullscreen
@@ -103,7 +110,10 @@ export function hydrate (element) {
 
   function close () {
     // Hide current slide for potential later use
-    if (slides[current].media) slides[current].media.style.display = 'none'
+    if (slides[current].media) {
+      slides[current].media.style.display = 'none'
+      slides[current].media.pause?.()
+    }
 
     element.classList.remove('is-open')
     placeholder.classList.remove('is-ready')
