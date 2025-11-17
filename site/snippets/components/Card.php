@@ -8,7 +8,7 @@
       fn ($year) => Str::unhtml($year->kirbytextinline()),
       $page->year()->toEntries()->values()
     ),
-    ...$page->tags()->toTaxonomies()
+    ...array_map(fn ($tag) => implode('|', $tag->value), $page->tags()->toTaxonomies())
   ]);
 
   $attributes ??= [];
