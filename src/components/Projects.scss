@@ -63,6 +63,7 @@
     gap: var(--space-0);
     padding-inline: var(--space-gutter);
     margin-bottom: var(--space-gutter);
+    pointer-events: none;
 
     @include mobile {
       display: none !important;
@@ -81,6 +82,7 @@
 
     label, button, a {
       @include no-select;
+      pointer-events: auto;
       box-shadow: var(--box-shadow);
 
       &::before { @include hitbox(calc(var(--space-0) / 2)); }
@@ -121,14 +123,24 @@
 
     #{$searching} label[for='toggle-search'],
     #{$searching} #clear-filter {
-      position: relative;
       z-index: 2;
       background: none;
       box-shadow: none;
     }
 
     #{$searching} label[for='toggle-search'] {
+      position: relative;
       pointer-events: none;
+    }
+
+    #clear-filter {
+      position: absolute;
+      right: -100vw;
+    }
+
+    #{$searching} #clear-filter {
+      right: 0;
+      animation: clear-filter-fade-in var(--easing-slow) var(--easing-ease-smooth) both;
     }
 
     input[type='search'] {
@@ -166,11 +178,6 @@
       pointer-events: none;
       opacity: 0;
       transition-delay: var(--easing-fast);
-    }
-
-    &:not(:has(.is-active, #toggle-search:checked)) #clear-filter {
-      pointer-events: none;
-      color: rgba(0 0 0 / 30%);
     }
   }
 }
