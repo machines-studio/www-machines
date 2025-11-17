@@ -181,3 +181,30 @@
     background: transparent;
   }
 }
+
+/**
+ * Spinner
+ */
+
+@keyframes spinner-spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@mixin spinner ($size: var(--space-gutter), $thickness: 2px, $foreground: currentColor, $background: transparent, $speed: 1s) {
+  content: '';
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: $size;
+  height: $size;
+  pointer-events: none;
+
+  border: $thickness solid $background;
+  border-top: $thickness solid $foreground;
+  border-left: $thickness solid $foreground;
+  border-radius: 50%;
+  animation: spinner-spin $speed linear infinite;
+}

@@ -1,6 +1,7 @@
 // TODO improve loading time
 
 import { Viewport } from '/utils/less-layout-trashing'
+import mediaReady from '/utils/media-ready'
 
 export const selector = '.lightbox'
 
@@ -156,14 +157,4 @@ function contain (source, target, {
     width,
     height
   }
-}
-
-async function mediaReady (media) {
-  return media instanceof HTMLImageElement
-    ? (media.complete && media.naturalWidth !== 0) ||
-      new Promise(resolve => media.addEventListener('load', resolve, { once: true }))
-    : media instanceof HTMLVideoElement
-      ? (media.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) ||
-      new Promise(resolve => media.addEventListener('canplay', resolve, { once: true }))
-      : true
 }

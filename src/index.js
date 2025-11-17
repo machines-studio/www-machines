@@ -1,4 +1,5 @@
 import { bootstrap } from '/core/Barba'
+import mediaReady from '/utils/media-ready'
 
 ;(async () => {
   bootstrap({
@@ -26,13 +27,12 @@ import { bootstrap } from '/core/Barba'
       ]
     },
 
-    afterEnter: next => {
+    afterEnter: async next => {
       // Flag native lazy loading so that we can animate in CSS
-      for (const el of next.container.querySelectorAll('[loading="lazy"]')) {
-        const markAsLoaded = () => el.classList.add('is-loaded')
-        if (el.complete) markAsLoaded()
-        else el.addEventListener('load', markAsLoaded)
-      }
+      Promise.all(Array.from(next.container.querySelectorAll('video, [loading="lazy"]')).map(async el => {
+        await mediaReady(el)
+        el.classList.add('is-loaded')
+      }))
 
       // Reset scroll position
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
