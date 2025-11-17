@@ -14,8 +14,9 @@
     ? Escape::html($alt)
     : Str::slug($site->title() . '_' . $video->parent()->title()) . '_' . $video->filename();
 
-  $width = $video->width();
-  $height = $video->height();
+  $poster ??= $video->poster();
+  $width ??= $poster?->width();
+  $height ??= $poster?->height();
 ?>
 
 <figure
@@ -35,10 +36,11 @@
       'width' => $width,
       'height' => $height,
       'draggable' => 'false',
-      'data-src' => $video->url()
+      'data-src' => $video->url(),
+      'poster' => $poster->url()
     ]) ?>
   >
-    <source src='<?= $video->url() ?>' type='<?= $video->mime() ?>' />
+    <?php foreach ($video->optimizedSources() as $source) echo $source ?>
   </video>
   <figcaption>
     <?= $caption ?>

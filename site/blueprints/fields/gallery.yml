@@ -7,6 +7,7 @@ layout: cards
 size: small
 
 uploads: media
+query: page.files.filterBy('template', 'media')
 
 image:
   cover: true

@@ -88,9 +88,16 @@ figure {
     object-fit: cover;
     object-position: var(--focus-x, 50%) var(--focus-y, 50%);
 
-    background: var(--color-white);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+  }
+
+  img {
+    background: var(--color-white);
+  }
+
+  video {
+    background: var(--color-black);
   }
 
   [loading='lazy'] {
