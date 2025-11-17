@@ -19,9 +19,11 @@ export function hydrate (element) {
   ).map((figure, index) => {
     // Bind
     figure.classList.add('has-lightbox')
-    figure.addEventListener('click', e => {
+    figure.addEventListener('click', async e => {
       e.preventDefault()
-      open(index)
+      figure.classList.add('has-lightbox-loading')
+      await open(index)
+      figure.classList.remove('has-lightbox-loading')
     })
 
     const element = figure.querySelector('img, video')
@@ -58,6 +60,7 @@ export function hydrate (element) {
     slide.media ??= (() => {
       const media = document.createElement(slide.type)
       media.decoding = 'sync'
+      media.loading = 'lazy'
       media.src = slide.src
       media.draggable = false
       media.loop = true
@@ -66,6 +69,8 @@ export function hydrate (element) {
       media.currentTime = slide.element.currentTime
       media.muted = false
       placeholder.append(media)
+
+      mediaReady(media, m => m.classList.add('is-loaded'))
       return media
     })()
 

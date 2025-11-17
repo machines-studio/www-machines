@@ -38,11 +38,17 @@
       opacity: 1;
     }
 
+    &::before {
+      color: var(--color-black);
+    }
+
     img, video {
       width: auto;
       height: auto;
       max-height: 100%;
       margin: auto;
+
+      background: none;
       border-radius: calc(var(--border-radius) / var(--scale, 1));
     }
 
@@ -64,6 +70,16 @@
 
 figure.has-lightbox {
   cursor: zoom-in;
+
+  &.has-lightbox-loading {
+    img, video {
+      opacity: 0.2;
+    }
+
+    &::after {
+      @include spinner;
+    }
+  }
 }
 
 body:has(.lightbox.is-open) {
