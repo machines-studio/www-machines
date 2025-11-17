@@ -5,5 +5,5 @@ wysiwyg: true
 
 fields:
   page:
-    extends: fields/project
+    extends: fields/projects
     multiple: false
