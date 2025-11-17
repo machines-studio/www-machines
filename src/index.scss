@@ -14,11 +14,11 @@
   --space-gutter: var(--space-1);
 
   // Leave room for cards dynamic z-index
-  --z-lightbox: 10004;
+  --z-lightbox: 10005;
+  --z-tooltip: 10004;
   --z-menu: 10003;
   --z-footer: 10002;
   --z-projects-filter: 10001;
-  --z-tooltip: 10000;
 
   --easing: 300ms;
   --easing-fast: 120ms;
