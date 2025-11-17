@@ -37,7 +37,7 @@
       'height' => $height,
       'draggable' => 'false',
       'data-src' => $video->url(),
-      'poster' => $poster->url()
+      'poster' => $poster?->url()
     ]) ?>
   >
     <?php foreach ($video->optimizedSources() as $source) echo $source ?>

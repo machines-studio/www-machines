@@ -52,7 +52,7 @@ Kirby::plugin('machines/video', [
   ],
 
   'fileMethods' => [
-    'poster' => function () : File {
+    'poster' => function () : ?File {
       $filename = $this->name();
       return $this->page()->file($filename . option('machines.video.poster.suffix') . '.jpg');
     },
@@ -68,7 +68,7 @@ Kirby::plugin('machines/video', [
         ['ext' => 'mp4', 'type' => 'video/mp4']
       ] as $source) {
         $file = $page->file($filename . option('machines.video.file.suffix') . ".{$source['ext']}");
-        if (!$file->exists()) continue;
+        if (!$file?->exists()) continue;
 
         $sources[] = [
           'src' => $file->url(),
