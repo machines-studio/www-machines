@@ -10,7 +10,7 @@
   --slideshow-dot-color-progress: var(--color-accent);
 
   --slideshow-slide-background: var(--color-white);
-  --slideshow-slide-border-radius: 5px;
+  --slideshow-slide-border-radius: 7px;
 
   @supports (height: 100svh) {
     --slideshow-height: calc(100svh - var(--menu-height) - var(--slideshow-dots-height));
