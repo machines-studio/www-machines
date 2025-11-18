@@ -1,0 +1,32 @@
+name: Clients
+icon: list-bullet
+translate: true
+
+preview: fields
+wysiwyg: true
+
+fields:
+  clients:
+    type: structure
+
+    fields:
+      fr:
+        type: text
+        width: 1/2
+        placeholder: Nom du groupe
+        required: true
+
+      en:
+        type: text
+        width: 1/2
+
+      clients:
+        type: structure
+        fields:
+          name:
+            label: Nom
+            type: text
+            required: true
+
+          link:
+            type: url

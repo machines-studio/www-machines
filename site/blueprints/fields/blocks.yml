@@ -2,7 +2,20 @@ label: Blocs
 type: blocks
 
 fieldsets:
-  - header
-  - writer
-  - gallery
-  - project
+  text:
+    label: Textes
+    type: group
+    fieldsets:
+      - header
+      - writer
+
+  medias:
+    type: group
+    fieldsets:
+      - gallery
+
+  misc:
+    type: group
+    fieldsets:
+      - project
+      - clients

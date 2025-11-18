@@ -1,10 +1,11 @@
 title: Carte projet
-icon: box
+icon: open
 preview: fields
 wysiwyg: true
 
 fields:
   page:
+    label: Projet
     extends: fields/projects
     multiple: false
     translate: true
