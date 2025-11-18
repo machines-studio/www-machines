@@ -69,7 +69,7 @@
     // Random y on block height (25% card height margin)
     top: clamp(
       var(--card-width) / var(--card-ratio) * 0.25,
-      sign(sin(var(--card-seed))) * 100%,
+      ((sin(var(--card-seed)) + 1) / 2) * 100%,
       100% - var(--card-width) / var(--card-ratio) * 1.25
     );
 
