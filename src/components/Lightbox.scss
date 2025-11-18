@@ -8,7 +8,7 @@
   pointer-events: none;
 
   opacity: 0;
-  backdrop-filter: blur(1rem);
+  backdrop-filter: var(--blur);
 
   &.is-open {
     pointer-events: auto;
