@@ -47,6 +47,11 @@
     @include font('h1');
   }
 
+  > section.prose h3 {
+    @include font('h1');
+    margin-bottom: var(--space-2);
+  }
+
   > header ~ section.prose {
     background: var(--color-white);
   }

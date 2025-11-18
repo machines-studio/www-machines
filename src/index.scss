@@ -37,7 +37,7 @@
   --box-shadow-none: 0 0 3rem 0 rgba(0 0 0 / 0%);
 
   --body-font-family: milling, system-ui, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
-  --body-font-size: 2.4rem;
+  --body-font-size: 2.6rem;
   --body-line-height: 124%;
   --body-text-decoration-thickness: 2px;
   --body-text-underline-offset: 0.26em;
@@ -54,6 +54,7 @@
   --code-letter-spacing: 0.05em;
 
   --nav-font-size: 1.7rem;
+  --nav-line-height: 180%;
   --nav-text-underline-offset: 0.3em;
   --nav-text-transform: lowercase;
   --nav-text-decoration-thickness: 1px;
@@ -72,6 +73,7 @@
   --h2-font-feature-settings: var(--body-font-feature-settings);
 
   --menu-font-size: var(--nav-font-size);
+  --menu-line-height: var(--nav-line-height);
   --menu-text-transform: var(--nav-text-transform);
   --menu-text-decoration-thickness: 1.5px;
   --menu-font-feature-settings: var(--body-font-feature-settings);
