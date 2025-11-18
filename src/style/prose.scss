@@ -63,6 +63,11 @@
 
     p {
       margin-bottom: var(--space-gutter);
+
+      em:first-child {
+        // Optical left overhang
+        margin-left: -0.1ch;
+      }
     }
 
     ul, * ul {
