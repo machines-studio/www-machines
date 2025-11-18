@@ -84,7 +84,7 @@
     label, button, a {
       @include no-select;
       pointer-events: auto;
-      box-shadow: var(--box-shadow);
+      box-shadow: var(--box-shadow-small);
 
       &::before { @include hitbox(calc(var(--space-0) / 2)); }
     }

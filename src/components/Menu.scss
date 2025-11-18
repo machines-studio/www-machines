@@ -144,7 +144,7 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
 
         background: var(--color-white);
         border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
+        box-shadow: var(--box-shadow-small);
       }
 
       a {

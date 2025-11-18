@@ -57,7 +57,7 @@
 
     background: var(--color-white);
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow-small);
 
     &:focus-within {
       background: var(--color-accent);
@@ -93,7 +93,7 @@
     margin-top: var(--space-0);
     background: var(--color-white);
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow-small);
   }
 
   &__result {
