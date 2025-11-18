@@ -1,7 +1,6 @@
-// TODO improve loading time
-
 import { Viewport } from '/utils/less-layout-trashing'
 import mediaReady from '/utils/media-ready'
+import IS_MOBILE from '/utils/is-mobile'
 
 export const selector = '.lightbox'
 
@@ -9,6 +8,8 @@ const FIGURE_SELECTOR = '.gallery figure'
 const PLACEHOLDER_TIMING = { duration: 300, easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)' }
 
 export function hydrate (element) {
+  if (IS_MOBILE) return
+
   let current
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion)').matches
