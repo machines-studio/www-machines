@@ -22,6 +22,6 @@ tabs:
 
       files:
         label: Autres fichiers
-        query: page.files.filterBy('template', '!=', 'media')
+        query: model.files.filterBy('template', '!=', 'media')
         info: "{{ file.niceSize }}"
         help: Autres fichiers
