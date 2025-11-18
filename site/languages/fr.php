@@ -15,6 +15,8 @@ return [
   'translations' => [
     'clients.more' => '…',
     'projects.filter.search.placeholder' => 'nom, année, tag…',
-    'projects.filter.clear' => 'effacer'
+    'projects.filter.clear' => 'effacer',
+    'search.placeholder' => 'Rechercher un projet',
+    'search.close' => 'fermer'
   ]
 ];

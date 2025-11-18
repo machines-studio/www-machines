@@ -8,9 +8,10 @@ return [
   'url' => '/en',
 
   'translations' => [
-    // Write your custom languages variables here, and use them in your snippets using t('go.home', 'fallback')
     'clients.more' => '…',
     'projects.filter.search.placeholder' => 'name, year, tag…',
-    'projects.filter.clear' => 'clear'
+    'projects.filter.clear' => 'clear',
+    'search.placeholder' => 'Search a project',
+    'search.close' => 'close'
   ]
 ];

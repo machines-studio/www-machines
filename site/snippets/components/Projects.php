@@ -11,12 +11,12 @@
 
   <nav class='projects__filter'>
     <fieldset>
-      <input id='toggle-search' type='checkbox'>
+      <input id='toggle-filter' type='checkbox'>
 
       <?php snippet('components/HueShifter', [
         'tag' => 'label',
         'content' => snippet('svg/search', [], true),
-        'attributes' => ['for' => 'toggle-search']
+        'attributes' => ['for' => 'toggle-filter']
       ]) ?>
 
       <?php snippet('components/HueShifter', [

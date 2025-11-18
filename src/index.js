@@ -12,6 +12,7 @@ import mediaReady from '/utils/media-ready'
       global: [
         await import('/components/Menu'),
         await import('/components/HueShifter'),
+        await import('/components/Search'),
       ],
 
       // Inside barba wrapper

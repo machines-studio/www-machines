@@ -10,10 +10,10 @@ export function hydrate (element) {
 
   const tags = Array.from(element.querySelectorAll('[data-tag]'))
   const clearFilter = element.querySelector('#clear-filter')
-  const toggleSearch = element.querySelector('#toggle-search')
+  const toggleFilter = element.querySelector('#toggle-filter')
 
   // Focus search
-  toggleSearch.addEventListener('click', e => {
+  toggleFilter.addEventListener('click', e => {
     search.focus()
     handleSearch()
   })
@@ -21,7 +21,7 @@ export function hydrate (element) {
   // Hide search on blur
   search.addEventListener('blur', e => {
     if (search.value) return
-    toggleSearch.checked = false
+    toggleFilter.checked = false
   })
 
   // Bind tags click
@@ -49,7 +49,7 @@ export function hydrate (element) {
   return {}
 
   function clear () {
-    toggleSearch.checked = false
+    toggleFilter.checked = false
     search.value = ''
 
     for (const tag of tags) {
@@ -60,7 +60,7 @@ export function hydrate (element) {
   }
 
   function handleSearch () {
-    return filter(toggleSearch.checked
+    return filter(toggleFilter.checked
       ? search.value
       : tags.filter(tag => tag.classList.contains('is-active'))
         .map(tag => tag.dataset.tag)

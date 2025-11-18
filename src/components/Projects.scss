@@ -1,5 +1,5 @@
 .projects {
-  $searching: '#toggle-search:checked ~';
+  $searching: '#toggle-filter:checked ~';
 
   position: relative;
   min-height: 100%;
@@ -28,6 +28,7 @@
       content: attr(aria-label);
 
       position: absolute;
+      z-index: 1;
 
       width: auto;
       height: var(--button-height);
@@ -121,14 +122,14 @@
       }
     }
 
-    #{$searching} label[for='toggle-search'],
+    #{$searching} label[for='toggle-filter'],
     #{$searching} #clear-filter {
       z-index: 2;
       background: none;
       box-shadow: none;
     }
 
-    #{$searching} label[for='toggle-search'] {
+    #{$searching} label[for='toggle-filter'] {
       position: relative;
       pointer-events: none;
     }
@@ -156,7 +157,7 @@
       transform-origin: left;
 
       &::placeholder {
-        color: rgba(0 0 0 / 30%);
+        color: rgba(0 0 0 / 10%);
       }
 
       &::selection {
@@ -169,7 +170,7 @@
       animation: search-slide-in var(--easing-fast) var(--easing-ease-smooth) both;
     }
 
-    #toggle-search:not(:checked) ~ input[type='search'] {
+    #toggle-filter:not(:checked) ~ input[type='search'] {
       display: none;
     }
 

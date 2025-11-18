@@ -116,7 +116,7 @@ export function hydrate (element) {
 
   function close () {
     // Hide current slide for potential later use
-    if (slides[current].media) {
+    if (slides[current]?.media) {
       slides[current].media.style.display = 'none'
       slides[current].media.pause?.()
     }

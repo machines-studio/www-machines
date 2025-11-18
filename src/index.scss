@@ -14,6 +14,7 @@
   --space-gutter: var(--space-1);
 
   // Leave room for cards dynamic z-index
+  --z-search: 10006;
   --z-lightbox: 10005;
   --z-tooltip: 10004;
   --z-menu: 10003;
@@ -158,6 +159,7 @@
 @import '/components/Lightbox';
 @import '/components/Menu';
 @import '/components/Projects';
+@import '/components/Search';
 @import '/components/Slideshow';
 @import '/components/Tooltip';
 

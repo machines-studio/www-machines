@@ -1,11 +1,18 @@
 .lightbox {
+  @include easing(opacity);
+
   position: fixed;
   z-index: var(--z-lightbox);
   inset: 0;
+
   pointer-events: none;
+
+  opacity: 0;
+  backdrop-filter: blur(1rem);
 
   &.is-open {
     pointer-events: auto;
+    opacity: 1;
   }
 
   &__backdrop {
@@ -17,7 +24,7 @@
 
   &.is-open &__backdrop {
     @include easing(opacity);
-    opacity: 0.9;
+    opacity: 0.8;
   }
 
   &__placeholder {

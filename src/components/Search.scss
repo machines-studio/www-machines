@@ -1,0 +1,129 @@
+.search {
+  @include easing(opacity);
+
+  position: fixed;
+  z-index: var(--z-search);
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+
+  opacity: 0;
+  backdrop-filter: blur(1rem);
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    background: var(--color-gray);
+    opacity: 0.9;
+  }
+
+  #toggle-search:checked ~ & {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  form {
+    position: fixed;
+    top: 10vh;
+    bottom: 10vh;
+
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    max-width: 50rem;
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    padding-inline: var(--space-0);
+
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+
+    &:focus-within {
+      background: var(--color-accent);
+    }
+
+    svg {
+      width: 1em;
+      height: auto;
+    }
+  }
+
+  input[type='search'] {
+    @include font('menu');
+    flex: 1;
+    padding: var(--space-0);
+    background: none;
+    border: 0;
+    outline: 0;
+
+    &::placeholder {
+      color: rgba(0 0 0 / 10%);
+    }
+
+    &::selection {
+      color: var(--color-white);
+      background: var(--color-black);
+    }
+  }
+
+  &__results {
+    @include invisible-scroll(y);
+    max-height: 100%;
+    margin-top: var(--space-0);
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+
+  &__result {
+    a {
+      @include easing(background, var(--easing-fast));
+      @include font('body');
+
+      display: flex;
+      align-items: center;
+      gap: var(--space-0);
+      padding: var(--space-0);
+      text-decoration: none;
+
+      figure {
+        width: var(--space-2);
+        height: var(--space-2);
+
+        img {
+          border-radius: 5px;
+          box-shadow: none;
+        }
+
+        figcaption {
+          display: none;
+        }
+      }
+    }
+
+    &.is-active a {
+      background: var(--color-gray);
+      outline: 0;
+    }
+  }
+
+  &__result.filtered-out { display: none; }
+}
+
+body:has(#toggle-search:checked) {
+  overflow: hidden;
+}

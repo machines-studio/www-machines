@@ -15,6 +15,7 @@
 
 <?php
   if (!isset($_SERVER['HTTP_X_BARBA'])) {
+    snippet('components/Search');
     snippet('html/footer');
   }
 ?>

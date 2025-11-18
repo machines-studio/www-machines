@@ -12,6 +12,7 @@ return [
 
     'srcsets' => [
       'default' => [
+        '200w' => ['width' => 200, 'format' => 'webp'],
         '600w' => ['width' => 600, 'format' => 'webp'],
         '800w' => ['width' => 800, 'format' => 'webp'],
         '1200w' => ['width' => 1200, 'format' => 'webp'],
@@ -22,6 +23,7 @@ return [
 
     'sizes' => [
       'default' => '100vw',
+      'small' => '1vw',
       'half' => implode(',', [
         '(max-width: 1024px) 100vw',
         '50vw'
