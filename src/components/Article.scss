@@ -10,6 +10,7 @@
   > header,
   > section > *,
   > .cta {
+    position: relative;
     width: column-span(6);
     max-width: column-span(6, 8, $breakpoint-wide);
     margin-left: column-start(1);
@@ -22,7 +23,6 @@
 
   > header {
     @include font('h2');
-    margin-bottom: var(--space-2);
 
     .cta {
       @include font('nav');
@@ -51,30 +51,37 @@
   }
 
   > .card {
+    display: none; // Wait until Article.js move inside the previous sibling
+  }
+
+  > header > .card,
+  > section > .card {
     --card-offset-angle: calc(30deg * sin(var(--card-seed)));
 
     position: absolute;
 
-    // Random left or right of viewport
-    left: clamp(
-      -1 * var(--card-width) * 0.25,
-      sign(sin(var(--card-seed))) * 100vw,
-      100vw - var(--card-width) * 0.75
+    // Random y on block height (25% card height margin)
+    top: clamp(
+      var(--card-width) / var(--card-ratio) * 0.25,
+      sign(sin(var(--card-seed))) * 100%,
+      100% - var(--card-width) / var(--card-ratio) * 1.25
     );
-    margin-top: calc(-1 * var(--card-width) * var(--card-ratio));
+
+    // Random x on block width (-25% card width margin)
+    left: clamp(
+      -1 * var(--card-width) * 0.75,
+      sign(sin(var(--card-seed))) * 100%,
+      100% - var(--card-width) * 0.25
+    );
 
     @include mobile {
-      --card-offset-angle: 0;
-      position: relative;
-      left: unset;
-      margin-inline: var(--space-gutter);
+      display: none;
     }
   }
 
   > section.gallery {
     position: relative;
     padding: var(--space-gutter);
-    // background: var(--color-white); // ???
 
     ul {
       display: grid;

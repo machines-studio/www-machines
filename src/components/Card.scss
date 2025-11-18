@@ -16,6 +16,7 @@
   @include font('nav');
 
   position: relative;
+  z-index: 1; // Init at 1, will be incremented in Card.js
 
   display: flex;
   justify-content: center;

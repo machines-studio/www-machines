@@ -26,7 +26,7 @@ export function hydrate (element) {
   if (IS_MOBILE) return
 
   const Rect = getElementRectangle(element.closest('.card-slot') ?? element)
-  const Container = getElementRectangle(element.closest('.cards') ?? element.offsetParent)
+  const Container = getElementRectangle(element.closest('.cards') ?? element.closest('article') ?? element.offsetParent)
 
   const Handle = {
     active: false,

@@ -17,6 +17,7 @@ import mediaReady from '/utils/media-ready'
 
       // Inside barba wrapper
       local: [
+        await import('/components/Article'),
         await import('/components/Clients'),
         await import('/components/HueShifter'),
         await import('/components/Card'),
