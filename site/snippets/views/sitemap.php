@@ -4,7 +4,7 @@
     if (in_array($page->uri(), option('sitemap.ignore', ['error']))) return;
 
     echo '<li>';
-    echo Html::a($page->url(), $page->title());
+    echo Html::a($page->url(), Str::unhtml($page->title()));
     if (($children = $page->children()->listed()) && $children->count() >= 1) {
       echo '<ul>';
       foreach ($children as $child) walk($child);
