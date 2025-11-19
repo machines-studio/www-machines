@@ -25,25 +25,17 @@
     "file": "assets/raf-Be84MYDk.js",
     "name": "raf"
   },
-  "assets/205tf-milling-duplex1mm-italic.otf": {
-    "file": "assets/205tf-milling-duplex1mm-italic-dWjPk0hy.otf",
-    "src": "assets/205tf-milling-duplex1mm-italic.otf"
-  },
-  "assets/205tf-milling-duplex1mm-italic.woff": {
-    "file": "assets/205tf-milling-duplex1mm-italic-D0T3IR3I.woff",
-    "src": "assets/205tf-milling-duplex1mm-italic.woff"
-  },
-  "assets/205tf-milling-duplex1mm-italic.woff2": {
-    "file": "assets/205tf-milling-duplex1mm-italic-DLGHdL7P.woff2",
-    "src": "assets/205tf-milling-duplex1mm-italic.woff2"
-  },
-  "assets/205tf-milling-duplex1mm.otf": {
-    "file": "assets/205tf-milling-duplex1mm-CmFhjRGx.otf",
-    "src": "assets/205tf-milling-duplex1mm.otf"
-  },
   "assets/205tf-milling-duplex1mm.woff": {
-    "file": "assets/205tf-milling-duplex1mm-DQc0pnru.woff",
+    "file": "assets/205tf-milling-duplex1mm-D8cpIEON.woff",
     "src": "assets/205tf-milling-duplex1mm.woff"
+  },
+  "assets/205tf-milling-duplex1mmitalic.woff": {
+    "file": "assets/205tf-milling-duplex1mmitalic-BhYRsvBz.woff",
+    "src": "assets/205tf-milling-duplex1mmitalic.woff"
+  },
+  "assets/205tf-milling-duplex1mmitalic.woff2": {
+    "file": "assets/205tf-milling-duplex1mmitalic-BDhcPxDq.woff2",
+    "src": "assets/205tf-milling-duplex1mmitalic.woff2"
   },
   "assets/ibm-plex-mono-medium-italic.ttf": {
     "file": "assets/ibm-plex-mono-medium-italic-DGs9d82A.ttf",
@@ -190,7 +182,7 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-lV8BP0a5.css",
+    "file": "assets/index-BvoGtaJX.css",
     "src": "index.scss",
     "isEntry": true
   },
