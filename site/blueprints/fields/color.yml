@@ -1,2 +1,5 @@
 label: Couleur
-type: color
+type: text
+icon: palette
+placholder: 'lch(), #000000'
+help: <a href='https://lch.oklch.com/' target='_blank'>LCH picker</a>

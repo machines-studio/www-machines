@@ -11,8 +11,11 @@ tabs:
 
       - width: 1/3
         fields:
-          color: fields/color
+          color:
+            extends: fields/color
+            translate: false
 
           email:
             type: email
+            translate: false
 

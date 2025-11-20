@@ -2,7 +2,7 @@ Title: Machines Studio
 
 ----
 
-Color: #faea0e
+Color: lch(87.69 88.85 166.35)
 
 ----
 
