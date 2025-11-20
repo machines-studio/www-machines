@@ -136,11 +136,12 @@
 
     #clear-filter {
       position: absolute;
-      right: -100vw;
+      left: -100vw;
     }
 
     #{$searching} #clear-filter {
       right: 0;
+      left: unset;
       animation: clear-filter-fade-in var(--easing-slow) var(--easing-ease-smooth) both;
     }
 
