@@ -73,7 +73,7 @@
     &, fieldset {
       display: flex;
       align-items: flex-start;
-      gap: var(--space-0);
+      gap: 0.6rem; // Same as sticky menu
     }
 
     fieldset {
