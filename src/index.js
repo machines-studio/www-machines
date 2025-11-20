@@ -30,6 +30,9 @@ import mediaReady from '/utils/media-ready'
     },
 
     afterEnter: async next => {
+      // Update manually as Barba payload does not include <header>
+      document.title = next.container.dataset.title
+
       // Flag native lazy loading so that we can animate in CSS
       Promise.all(Array.from(next.container.querySelectorAll('video, [loading="lazy"]')).map(async el => {
         await mediaReady(el)
