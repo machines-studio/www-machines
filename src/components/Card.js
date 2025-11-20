@@ -15,6 +15,7 @@ const TIME_THREHOLD = 1_000 // ms
 const FRICTION_CORNERS = 0.01
 const FRICTION_DEADZONE = 0.008
 const MIN_VELOCITY = 0.01
+const BOUNCE_DAMPING = 0.9
 
 export const selector = '.card'
 
@@ -145,8 +146,22 @@ export function hydrate (element) {
     })()
 
     // Bounce on boundaries
-    if (Card.position[0] < Container.$left || Card.position[0] > Container.$right) Handle.velocity[0] = -Handle.velocity[0]
-    if (Card.position[1] < Container.$top || Card.position[1] > Container.$bottom) Handle.velocity[1] = -Handle.velocity[1]
+    if (Card.position[0] < Container.$left) {
+      Card.position[0] = Container.$left
+      Handle.velocity[0] = -Handle.velocity[0] * BOUNCE_DAMPING
+    }
+    if (Card.position[0] > Container.$right) {
+      Card.position[0] = Container.$right
+      Handle.velocity[0] = -Handle.velocity[0] * BOUNCE_DAMPING
+    }
+    if (Card.position[1] < Container.$top) {
+      Card.position[1] = Container.$top
+      Handle.velocity[1] = -Handle.velocity[1] * BOUNCE_DAMPING
+    }
+    if (Card.position[1] > Container.$bottom) {
+      Card.position[1] = Container.$bottom
+      Handle.velocity[1] = -Handle.velocity[1] * BOUNCE_DAMPING
+    }
 
     // Compute card rotation
     Card.theta = Handle.position
