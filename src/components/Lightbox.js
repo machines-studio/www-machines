@@ -133,6 +133,8 @@ export function hydrate (element) {
   }
 
   function handleKey (e) {
+    if (!element.classList.contains('is-open')) return
+
     if (e.key === 'Escape') close()
     if (e.key === 'ArrowRight') open((current + 1) % slides.length)
     if (e.key === 'ArrowLeft') open((current + slides.length - 1) % slides.length)
