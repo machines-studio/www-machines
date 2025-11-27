@@ -39,6 +39,9 @@
     &:first-child,
     &.prose + section.prose,
     &.gallery + section.gallery { padding-top: 0; }
+
+    // Small gutter between two galleries
+    &.gallery:has(+ section.gallery) { padding-bottom: var(--space-0); }
   }
 
   // Elements
