@@ -49,7 +49,8 @@ export function hydrate (element) {
     // Cleanup
     if (slides[current]?.media) {
       slides[current].media.style.display = 'none'
-      slides[current].media.pause?.()
+      slides[current].element.pause?.()
+      slides[current].element.play?.()
     }
     placeholder.classList.remove('is-ready')
 
@@ -74,6 +75,9 @@ export function hydrate (element) {
       mediaReady(media, m => m.classList.add('is-loaded'))
       return media
     })()
+
+    // Pause background element
+    slides[current].element.pause?.()
 
     // Ensure reused media is shown
     slide.media.play?.()
@@ -120,6 +124,7 @@ export function hydrate (element) {
     if (slides[current]?.media) {
       slides[current].media.style.display = 'none'
       slides[current].media.pause?.()
+      slides[current].element.play?.()
     }
 
     element.classList.remove('is-open')
