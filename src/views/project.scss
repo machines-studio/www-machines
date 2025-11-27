@@ -89,5 +89,9 @@ main[data-barba-namespace='project'] {
       &::before { content: none; }
       .year + .year::before { content: '\00A0→\00A0'; }
     }
+
+    &__entry {
+      padding-right: var(--space-gutter);
+    }
   }
 }
