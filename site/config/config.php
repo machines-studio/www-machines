@@ -37,7 +37,7 @@ return [
   ],
 
   'sitemap' => [
-    'ignore' => ['error']
+    'ignore' => ['error', 'legals', 'sitemap']
   ],
 
   'panel' => [
