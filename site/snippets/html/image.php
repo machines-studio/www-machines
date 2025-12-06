@@ -4,7 +4,7 @@
 
   $lazyload ??= true;
   $caption ??= $image->caption()->kirbytext();
-  $alt ??= Escape::html($alt ?? ($site->title() . '_' . $image->parent()->title()) . '_' . $image->filename());
+  $alt ??= Escape::html($alt ?? ($image->parent()->title() . ' (' . $site->title()) . ')');
   $attributes ??= [];
 
   $sizes ??= option('thumbs.sizes.default');

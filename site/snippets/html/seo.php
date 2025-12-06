@@ -6,6 +6,10 @@
 <link rel='manifest' href='/assets/favicons/site.webmanifest' />
 <meta name='theme-color' content='#e4e4e4' />
 
+<?php foreach ($kirby->languages() as $language) : ?>
+  <link rel='alternate' hreflang='<?= $language->code() ?>' href='<?= $page->url($language->code()) ?>' />
+<?php endforeach ?>
+
 <?php
   $title = r($page !== $site->homePage(), Str::unhtml($page->title()) . ' | ') . $site->title();
   $description = $page->seo_description()->or($site->seo_description());
