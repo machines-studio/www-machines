@@ -83,6 +83,7 @@
 
     label, button, a {
       @include no-select;
+      position: relative;
       pointer-events: auto;
       box-shadow: var(--box-shadow-small);
 
