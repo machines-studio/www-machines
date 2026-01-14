@@ -23,15 +23,7 @@
           <ul class='meta__entries'>
             <?php foreach ($credit->entries()->toEntries() as $entry) : ?>
             <li class='meta__entry'>
-              <?php
-                // Format some people working at chevalvert as * tooltip
-                $regex = '/(.*?)[,\s\(](\s+)?chevalvert/i';
-                $peoples = ['Arnaud Juracek', 'Stéphane Buellet'];
-                preg_match($regex, $entry, $matches);
-                echo in_array(trim($matches[1] ?? ''), $peoples)
-                  ? trim($matches[1]) . Html::tag('span', '✳', ['title' => t('project.meta.chevalvert')])
-                  : $entry;
-              ?>
+              <?= $entry ?>
             </li>
           <?php endforeach ?>
         </ul>

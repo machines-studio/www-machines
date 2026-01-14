@@ -92,11 +92,6 @@ main[data-barba-namespace='project'] {
 
     &__entry {
       padding-right: var(--space-gutter);
-
-      span[title] {
-        @include easing(transform, 60s, linear);
-        cursor: help;
-      }
     }
   }
 }

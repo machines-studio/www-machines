@@ -14,7 +14,6 @@ return [
 
   'translations' => [
     'clients.more' => '…',
-    'project.meta.chevalvert' => 'dans le cadre du studio Chevalvert',
     'projects.filter.search.placeholder' => 'nom, année, tag…',
     'projects.filter.clear' => 'effacer',
     'search.placeholder' => 'Rechercher un projet',
