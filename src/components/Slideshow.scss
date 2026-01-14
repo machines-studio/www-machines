@@ -102,8 +102,8 @@
     width: 45%;
     cursor: pointer;
 
-    &--prev { left: 0; cursor: w-resize; }
-    &--next { right: 0; cursor: e-resize; }
+    &--prev { left: 0; }
+    &--next { right: 0; }
   }
 
   &__dots {
