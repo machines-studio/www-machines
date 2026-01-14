@@ -82,6 +82,30 @@
     }
   }
 
+  &__buttons {
+    position: absolute;
+    z-index: 1;
+    inset: var(--space-gutter);
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__button {
+    all: unset;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    width: 45%;
+    cursor: pointer;
+
+    &--prev { left: 0; cursor: w-resize; }
+    &--next { right: 0; cursor: e-resize; }
+  }
+
   &__dots {
     position: absolute;
     z-index: 1;

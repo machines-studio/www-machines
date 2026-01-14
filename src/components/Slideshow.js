@@ -8,11 +8,12 @@ export function hydrate (element) {
 
   let currentSlide, currentVideo, currentDot
 
+  const [prev, next] = element.querySelectorAll('.slideshow__button')
   const dots = element.querySelectorAll('.slideshow__dot')
   const slides = element.querySelectorAll('.slideshow__slide')
   const reducedMotion = window.matchMedia('(prefers-reduced-motion)').matches
 
-  const embla = EmblaCarousel(element, {
+  const embla = EmblaCarousel(element.querySelector('.slideshow__viewport'), {
     container: '.slideshow__container',
     loop: true,
     duration: reducedMotion ? 0 : 25
@@ -64,10 +65,21 @@ export function hydrate (element) {
     autoplay.stop()
   })
 
+  prev.addEventListener('click', e => {
+    autoplay.stop()
+    embla.scrollPrev()
+  }, false)
+
+  next.addEventListener('click', e => {
+    autoplay.stop()
+    embla.scrollNext()
+  }, false)
+
   // Handle dots
   for (let index = 0; index < dots.length; index++) {
     dots[index].addEventListener('click', e => {
       e.preventDefault()
+      autoplay.stop()
       embla.scrollTo(index)
     })
   }
