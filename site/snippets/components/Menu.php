@@ -17,7 +17,7 @@
       snippet('components/HueShifter', [
         'tag' => 'li',
         'attributes' => ['class' => 'menu__link'],
-        'content' => Html::a($child->url(), $child->title(), ['class' => r($child->isActive(), 'is-active')], true)
+        'content' => Html::a($child->url(), $child->title(), ['class' => r($child->isOpen(), 'is-active')], true)
       ]);
     } ?>
   </ul>
