@@ -42,7 +42,5 @@
   >
     <?php foreach ($video->optimizedSources() as $source) echo $source ?>
   </video>
-  <figcaption>
-    <?= $caption ?>
-  </figcaption>
+  <figcaption><?= $caption ?></figcaption>
 </figure>
