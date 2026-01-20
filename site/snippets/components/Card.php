@@ -2,6 +2,7 @@
   $page ??= null;
   if (!$page) return;
 
+  $chrome ??= $page->hasChrome()->bool();
   $filter ??= implode('|', [
     Str::unhtml($page->title()),
     ...array_map(
@@ -23,6 +24,7 @@
   'class' => 'card ' . ($attributes['class'] ?? ''),
   'aria-label' => Str::unhtml($page->title()),
   'data-filter' => $filter,
+  'data-chrome' => $chrome,
   'style' => '--card-seed: '. rand() .';'
 ]) ?>>
   <?php snippet('components/Tooltip', ['content' => $page->title()]) ?>

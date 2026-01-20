@@ -3,6 +3,14 @@
   --card-ratio: calc(3 / 4);
   --card-offset-angle: 0deg;
 
+  --card-chrome-height: 2.6rem;
+  --card-chrome-border-width: 4px;
+  --card-chrome-background: #f0f0f0;
+  --card-chrome-color-button: #CACACA;
+  --card-chrome-color-text: #909090;
+  --card-hover-chrome-color-button: #909090;
+  --card-hover-chrome-color-text: #606060;
+
   @include wide {
     --card-width: #{column-span(1, 5)};
   }
@@ -31,9 +39,68 @@
     translateY(var(--card-y, 0))
     rotate(calc(var(--card-angle, 0deg) + var(--card-offset-angle)))
   ;
+  box-shadow: var(--box-shadow);
 
   contain: layout size;
   will-change: transform;
+
+  &[data-chrome] {
+    background: var(--card-chrome-background);
+    outline: var(--card-chrome-border-width) solid var(--card-chrome-background) !important;
+    outline-offset: calc(var(--card-chrome-border-width) / -2);
+
+    &::before {
+      @include easing(color);
+      @include font('caption');
+      content: attr(aria-label);
+
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      left: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: var(--card-chrome-height);
+
+      font-size: 0.8rem;
+      color: var(--card-chrome-color-text);
+
+      background: var(--card-chrome-background);
+      border-top-right-radius: var(--border-radius);
+      border-top-left-radius: var(--border-radius);
+      box-shadow: 0 0 0 1px var(--card-chrome-background); // Fix aliased border-radius glitch
+    }
+
+    &:focus::before,
+    &:active::before {
+      color: var(--card-hover-chrome-color-text);
+    }
+
+    &::after {
+      @include easing(color);
+      content: '··';
+
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0.5rem;
+
+      display: flex;
+      align-items: center;
+      height: 1.8rem;
+
+      font-size: 5rem;
+      color: var(--card-chrome-color-button);
+    }
+
+    &:focus::after,
+    &:active::after {
+      color: var(--card-hover-chrome-color-button);
+    }
+  }
 
   &.is-dragged {
     cursor: grabbing;
@@ -42,6 +109,10 @@
   figure {
     width: 100%;
     height: 100%;
+
+    img {
+      box-shadow: none;
+    }
 
     figcaption {
       display: none;
