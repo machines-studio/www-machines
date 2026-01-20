@@ -18,6 +18,7 @@ tabs:
           hasChrome:
             label: Vignette fenêtrée
             type: toggle
+            translate: false
             default: off
 
           year: fields/year
