@@ -14,7 +14,7 @@ use Kirby\Content\Field;
 Kirby::plugin('machines/opticem', [
   'fieldMethods' => [
     'kirbytext' => function (Field $field, array $options = []) : Field {
-      if (preg_match('/<p><em\b/i', $field->value)) {
+      if (preg_match('/<p><em\b/i', $field->value ?? '')) {
         $field->value = preg_replace(
           '/<p><em\b/i',
           '<p><em class="is-first-node"',
