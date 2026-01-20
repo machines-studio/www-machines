@@ -100,6 +100,11 @@
     &:active::after {
       color: var(--card-hover-chrome-color-button);
     }
+
+    figure {
+      padding-top: var(--card-chrome-height);
+      img { object-position: left top; }
+    }
   }
 
   &.is-dragged {
