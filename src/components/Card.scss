@@ -103,7 +103,12 @@
 
     figure {
       padding-top: var(--card-chrome-height);
-      img { object-position: left top; }
+
+      img {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        object-position: left top;
+      }
     }
   }
 
