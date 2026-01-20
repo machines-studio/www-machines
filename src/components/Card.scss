@@ -52,7 +52,7 @@
     &::before {
       @include easing(color);
       @include font('caption');
-      content: attr(aria-label);
+      content: attr(data-chrome);
 
       position: absolute;
       z-index: 1;

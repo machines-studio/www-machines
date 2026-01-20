@@ -21,6 +21,13 @@ tabs:
             translate: false
             default: off
 
+          chromeTitle:
+            label: Titre de la fenêtre
+            placeholder: "{{ page.title }}"
+            type: text
+            when:
+              hasChrome: true
+
           year: fields/year
           tags: fields/tags
           credits: fields/credits
