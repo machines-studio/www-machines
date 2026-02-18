@@ -2,7 +2,7 @@
   <?php snippet('svg/machines.letters') ?>
   <?php snippet('components/Cards', [
     'layout' => 'fan',
-    'pages' => $page->projects()->toPages()
+    'pages' => $page->projects()->toPages()->shuffle()->limit(4)
   ]) ?>
 </section>
 
