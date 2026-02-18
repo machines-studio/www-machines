@@ -51,7 +51,7 @@ export function hydrate (element) {
       currentDot?.style.setProperty('--slideshow-dot-progress', (ellapsed / delay).toFixed(3))
       if (ellapsed <= delay) return
 
-      embla.scrollNext()
+      scrollTo(+1)
       ellapsed = 0
     }
   })()
@@ -65,15 +65,8 @@ export function hydrate (element) {
     autoplay.stop()
   })
 
-  prev.addEventListener('click', e => {
-    autoplay.stop()
-    embla.scrollPrev()
-  }, false)
-
-  next.addEventListener('click', e => {
-    autoplay.stop()
-    embla.scrollNext()
-  }, false)
+  prev.addEventListener('click', e => scrollTo(-1, { cancelAutoplay: true }))
+  next.addEventListener('click', e => scrollTo(+1, { cancelAutoplay: true }))
 
   // Handle dots
   for (let index = 0; index < dots.length; index++) {
@@ -92,6 +85,15 @@ export function hydrate (element) {
       autoplay.stop()
       raf.remove(handleVideoTick)
     }
+  }
+
+  function scrollTo (dir, { cancelAutoplay = false } = {}) {
+    if (cancelAutoplay) autoplay.stop()
+
+    const index = embla.selectedScrollSnap()
+    embla.scrollTo(dir < 0
+      ? (index + dots.length + dir) % dots.length
+      : (index + dir) % dots.length)
   }
 
   function handleSlideChange () {
@@ -139,7 +141,7 @@ export function hydrate (element) {
   }
 
   function handleVideoEnd (e) {
-    if (autoplay.isRunning) embla.scrollNext()
+    if (autoplay.isRunning) scrollTo(+1)
     else e.target.play() // Loop back
   }
 }
