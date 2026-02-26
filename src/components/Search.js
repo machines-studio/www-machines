@@ -34,6 +34,7 @@ export function hydrate (element) {
 
   function handleKey (e) {
     if (e.key === 'k' && e.metaKey) {
+      e.preventDefault()
       toggle.checked = true
       input.select()
       focusAbsolute(-1)
