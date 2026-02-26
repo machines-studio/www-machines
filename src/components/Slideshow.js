@@ -1,5 +1,6 @@
 import EmblaCarousel from 'embla-carousel'
 import raf from '@internet/raf'
+import { normalize } from 'missing-math'
 
 export const selector = '.slideshow'
 
@@ -71,9 +72,17 @@ export function hydrate (element) {
   // Handle dots
   for (let index = 0; index < dots.length; index++) {
     dots[index].addEventListener('click', e => {
-      e.preventDefault()
       autoplay.stop()
-      embla.scrollTo(index)
+      e.preventDefault()
+
+      // Scroll to target
+      if (e.target !== currentDot) return embla.scrollTo(index)
+
+      // Act as a progress bar if current slide is video
+      if (e.target.dataset.type !== 'video' || !currentVideo) return
+      const { left, width } = e.target.getBoundingClientRect()
+      const progress = normalize(e.clientX, left, left + width, true)
+      currentVideo.currentTime = progress * currentVideo.duration
     })
   }
 
