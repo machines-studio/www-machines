@@ -1,0 +1,19 @@
+main[data-barba-namespace='logo'] {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+
+  > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .white { background: var(--color-white); }
+  .black { background: var(--color-black); }
+
+  svg {
+    animation: logo-bounce 1s infinite;
+  }
+}

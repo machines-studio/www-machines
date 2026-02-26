@@ -98,6 +98,13 @@ return [
       }
     ],
 
+    [ // Sitemap for humans
+      'pattern' => 'logo',
+      'action' => function () {
+        return new Page(['slug' => 'logo', 'template' => 'logo']);
+      }
+    ],
+
     [ // Quick panel access from any page by appending /panel to the url
       'pattern' => '(fr|en)/(:all)/panel',
       'action' => function ($lang, $uid) {
