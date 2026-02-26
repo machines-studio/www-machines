@@ -46,10 +46,12 @@ export function hydrate (element) {
   }
 
   // Bind events
+  element.style.touchAction = 'none'
   element.addEventListener('click', handleClick)
   element.addEventListener('pointerdown', handleDown)
   element.addEventListener('pointerup', handleUp)
-  window.addEventListener('resize', handleResize)
+  element.addEventListener('pointercancel', handleUp)
+  ;(window.visualViewport ?? window).addEventListener('resize', handleResize)
   Rect.element.addEventListener('animationend', reset)
 
   return {
@@ -79,7 +81,9 @@ export function hydrate (element) {
     Rect.element.style.zIndex = ++Z_INDEX
 
     // Compute Handle initial state for this drag
-    Handle.origin = [+Pointer.$pageX, +Pointer.$pageY]
+    // Using raw MouseEvent instead of Pointer signals to avoid a race condition
+    // between documentElement and card touchdown events on touch devices
+    Handle.origin = [e.pageX, e.pageY]
     Handle.distance = distance(Card.position, Handle.origin)
     Handle.theta = Card.theta - Math.atan2(Card.position[1] - Handle.origin[1], Card.position[0] - Handle.origin[0])
 

@@ -12,21 +12,25 @@ const Pointer = {
 
 export default Pointer
 
-document.documentElement.addEventListener('pointermove', e => {
+function move (e) {
   Pointer.$pageX.value = e.pageX
   Pointer.$pageY.value = e.pageY
   Pointer.$clientX.value = e.clientX
   Pointer.$clientY.value = e.clientY
   Pointer.$target.value = e.target
-})
+}
 
+document.documentElement.addEventListener('pointermove', move, { passive: true })
 document.documentElement.addEventListener('pointerdown', e => {
+  move(e)
   Pointer.$pressed.value = true
   Pointer.$lastPressed.value = Date.now()
 })
 
 document.documentElement.addEventListener('pointerup', e => {
-  window.setTimeout(() => {
-    Pointer.$pressed.value = false
-  })
+  Pointer.$pressed.value = false
+})
+
+document.documentElement.addEventListener('pointercancel', () => {
+  Pointer.$pressed.value = false
 })
