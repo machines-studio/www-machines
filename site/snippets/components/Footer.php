@@ -1,11 +1,19 @@
 <?php
   $groups = [
     'primary' => [
-      ['mailto:' . $site->email(), 'email'],
       [
-        r($site->instagram()->isNotEmpty(), 'https://instagram.com/' . $site->instagram()),
-        'instagram',
-        ['target' => '_blank']
+        'url' => r($site->email()->isNotEmpty(), 'mailto:' . $site->email()),
+        'title' => 'email',
+        'attributes' => [
+          'href' => [
+            'value' => 'mailto:' . Str::encode($site->email()),
+            'escape' => false
+          ]
+        ]
+      ],
+      [
+        'url' => r($site->instagram()->isNotEmpty(), 'https://instagram.com/' . $site->instagram()),
+        'title' => 'instagram'
       ]
     ],
 
@@ -29,12 +37,7 @@
               continue;
             }
 
-            // Convert Page to array
-            if ($item instanceof \Kirby\Cms\Page) {
-              $item = [$item->url(), $item->title()];
-            }
-
-            echo Html::a($item[0], $item[1] ?? null, $item[2] ?? [])
+            echo snippet('html/link', $item);
           ?>
         </li>
       <?php endforeach ?>
