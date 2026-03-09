@@ -1,20 +1,14 @@
 label: Crédits
-type: structure
-empty: Aucun crédits
-translate: false
+type: textarea
+counter: false
+buttons: false
+font: monospace
 
-fields:
-  fr:
-    type: text
-    required: true
-    width: 1/2
-  en:
-    type: text
-    width: 1/2
+placeholder: |
+  - group 1
+    - entry 1
+    - entry 2
 
-  entries:
-    label: Entrées
-    min: 1
-
-    field:
-      type: text
+  - group 2
+    - entry 1
+    - entry 2

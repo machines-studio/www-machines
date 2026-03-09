@@ -11,25 +11,13 @@
 
 <header>
   <aside>
-    <ul class='metas'>
-      <li class='meta' data-name='year'>
-        <?php foreach ($page->year()->toEntries() as $year) : ?>
-          <div class='year'><?= $year->kirbytextinline() ?></div>
-        <?php endforeach ?>
-      </li>
-
-      <?php foreach ($page->credits()->toStructure() as $credit) : ?>
-        <li class='meta' data-name='<?= $credit->$lang()->or($credit->fr()) ?>'>
-          <ul class='meta__entries'>
-            <?php foreach ($credit->entries()->toEntries() as $entry) : ?>
-            <li class='meta__entry'>
-              <?= $entry ?>
-            </li>
-          <?php endforeach ?>
-        </ul>
-      </li>
+    <div class='pubdate'>
+      <?php foreach ($page->year()->toEntries() as $year) : ?>
+        <time datetime='<?= $year->kirbytextinline() ?>'><?= $year->kirbytextinline() ?></time>
       <?php endforeach ?>
-    </ul>
+    </div>
+
+    <?= $page->credits()->markdown() ?>
   </aside>
 
   <?= $blocks->first() ?>

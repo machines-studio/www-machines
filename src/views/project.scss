@@ -63,35 +63,41 @@ main[data-barba-namespace='project'] {
 
   // Elements
 
-  .metas {
+  > header > aside {
     @include font('nav');
     display: flex;
     flex-direction: column;
     gap: var(--space-gutter);
+    line-height: 108%;
   }
 
-  .meta {
-    margin-bottom: var(--space-0);
-    line-height: 108%;
-    text-transform: initial;
+  > header > aside > .pubdate {
+    display: flex;
+    time + time::before { content: '\00A0→\00A0'; }
+  }
 
-    &[data-name]::before {
-      content: attr(data-name);
-      display: block;
-      margin-bottom: var(--space-0);
+  > header > aside > ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-gutter);
+    padding-right: var(--space-gutter);
+
+    > li {
       text-decoration: underline;
-      text-transform: lowercase;
     }
 
-    &[data-name='year'] {
-      display: flex;
+    ul {
+      display: inline-block;
+      width: 100%;
+      margin-top: var(--space-0);
+      text-transform: initial;
 
-      &::before { content: none; }
-      .year + .year::before { content: '\00A0→\00A0'; }
-    }
-
-    &__entry {
-      padding-right: var(--space-gutter);
+      @include mobile {
+        li {
+          display: inline;
+          &:has(+ li)::after { content: ', '; }
+        }
+      }
     }
   }
 }
