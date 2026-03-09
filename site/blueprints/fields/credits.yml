@@ -5,10 +5,14 @@ buttons: false
 font: monospace
 
 placeholder: |
-  - group 1
-    - entry 1
-    - entry 2
+  - machines
+    - direction artistique
+    - développement
+    - fabrication
+  - équipe
 
-  - group 2
-    - entry 1
-    - entry 2
+  - collaborateur·ices
+  - création/agence
+  - distribution
+  - co-production
+  - documentation photo
