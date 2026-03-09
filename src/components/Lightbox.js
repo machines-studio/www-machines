@@ -49,7 +49,7 @@ export function hydrate (element) {
     // Cleanup
     if (slides[current]?.media) {
       slides[current].media.style.display = 'none'
-      slides[current].element.pause?.()
+      slides[current].media.pause?.()
       slides[current].element.play?.()
     }
     placeholder.classList.remove('is-ready')
