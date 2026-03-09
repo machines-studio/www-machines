@@ -60,7 +60,11 @@
     &:not([data-crop]) figure {
       display: flex;
       align-items: center;
-      padding: var(--space-gutter);
+      padding: var(--space-2);
+
+      @include mobile {
+        padding: var(--space-1);
+      }
 
       img,
       video {
