@@ -11,6 +11,7 @@
   data-title='<?= snippet('html/title', [], true) ?>'
 >
   <?php snippet(["views/$view", 'views/default']) ?>
+  <?php snippet('components/Lightbox') ?>
   <?php snippet('components/Footer') ?>
 </main>
 

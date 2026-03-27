@@ -22,5 +22,3 @@
 
   <?= $content ?>
 </article>
-
-<?php snippet('components/Lightbox') ?>

@@ -1,5 +1,8 @@
-main[data-barba-namespace='project'] {
+main[data-barba-namespace='project'] > .wrapper {
+  // Card container
+  position: relative;
   padding-top: var(--menu-height);
+  contain: paint;
 
   // Layout
 
@@ -75,6 +78,20 @@ main[data-barba-namespace='project'] {
   > header > aside > .pubdate {
     display: flex;
     time + time::before { content: '\00A0→\00A0'; }
+  }
+
+  > header > .card {
+    $angle-range: 30deg;
+    --card-offset-angle: calc(#{$angle-range} * sin(var(--card-seed)));
+
+    position: absolute;
+
+    // Random x on block width
+    right: calc((50% - var(--card-width) / 2) + 30% * sin(var(--card-seed)));
+
+    @include mobile {
+      display: none;
+    }
   }
 
   > header > aside > ul {
