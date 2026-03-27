@@ -138,11 +138,7 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
 
         position: absolute;
         z-index: -1;
-        top: -0.1rem;
-        right: -1.2rem;
-        left: -1.2rem;
-
-        height: var(--button-height);
+        inset: -0.1rem -1.2rem;
 
         background: var(--color-white);
         border-radius: var(--border-radius);
