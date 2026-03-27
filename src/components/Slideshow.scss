@@ -129,6 +129,8 @@
     }
   }
 
+  &:not(.is-ready) &__dots { display: none; }
+
   &__dot {
     @include easing(width, var(--easing-slow));
     position: relative;

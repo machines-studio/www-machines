@@ -5,7 +5,8 @@ import { normalize } from 'missing-math'
 export const selector = '.slideshow'
 
 export function hydrate (element) {
-  if (element.querySelectorAll('.slideshow__slide').length <= 1) return
+  if (element.querySelectorAll('.slideshow__slide').length <= 1 && !element.querySelectorAll('.slideshow__slide[data-type="video"]').length) return
+  element.classList.add('is-ready')
 
   let currentSlide, currentVideo, currentDot
 
@@ -66,8 +67,8 @@ export function hydrate (element) {
     autoplay.stop()
   })
 
-  prev.addEventListener('click', e => scrollTo(-1, { cancelAutoplay: true }))
-  next.addEventListener('click', e => scrollTo(+1, { cancelAutoplay: true }))
+  prev?.addEventListener('click', e => scrollTo(-1, { cancelAutoplay: true }))
+  next?.addEventListener('click', e => scrollTo(+1, { cancelAutoplay: true }))
 
   // Handle dots
   for (let index = 0; index < dots.length; index++) {
@@ -100,9 +101,12 @@ export function hydrate (element) {
     if (cancelAutoplay) autoplay.stop()
 
     const index = embla.selectedScrollSnap()
-    embla.scrollTo(dir < 0
+    const next = dir < 0
       ? (index + dots.length + dir) % dots.length
-      : (index + dir) % dots.length)
+      : (index + dir) % dots.length
+
+    if (next !== index) embla.scrollTo(next)
+    else handleSlideChange()
   }
 
   function handleSlideChange () {

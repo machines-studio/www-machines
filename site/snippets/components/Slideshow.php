@@ -12,25 +12,26 @@
       <button class='slideshow__button slideshow__button--prev'></button>
       <button class='slideshow__button slideshow__button--next'></button>
     </nav>
-
-    <ul class='slideshow__dots'>
-      <?php foreach ($medias as $media) {
-        snippet('components/HueShifter', [
-          'tag' => 'li',
-          'attributes' => [
-            'class' => 'slideshow__dot',
-            'data-type' => $media->type()
-          ]
-        ]);
-      } ?>
-    </ul>
   <?php endif ?>
+
+  <ul class='slideshow__dots'>
+    <?php foreach ($medias as $media) {
+      snippet('components/HueShifter', [
+        'tag' => 'li',
+        'attributes' => [
+          'class' => 'slideshow__dot',
+          'data-type' => $media->type()
+        ]
+      ]);
+    } ?>
+  </ul>
 
   <div class='slideshow__viewport'>
     <ul class='slideshow__container'>
       <?php foreach ($medias as $media) : ?>
         <li <?= attr([
           'class' => 'slideshow__slide',
+          'data-type' => $media->type(),
           'data-crop' => $media->croppable()->isTrue(),
           'data-rounded' => $media->rounded()->isTrue(),
           'style' => $media->color()->isNotEmpty()
