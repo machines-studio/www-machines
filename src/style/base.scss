@@ -118,6 +118,15 @@ figure {
     }
   }
 
+  &.is-buffering::after {
+    @include spinner(var(--space-0), 1px, white);
+    content: '';
+    z-index: 2;
+    top: calc(var(--space-0) + var(--space-0));
+    right: var(--space-0);
+    left: unset;
+  }
+
   &:has(.is-loaded)::before {
     display: none;
   }

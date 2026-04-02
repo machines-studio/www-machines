@@ -39,6 +39,15 @@ import mediaReady from '/utils/media-ready'
         el.classList.add('is-loaded')
       }))
 
+      // Flag buffering videos
+      for (const video of next.container.querySelectorAll('video')) {
+        video.addEventListener('playing', () => video.closest('figure')?.classList.remove('is-buffering'))
+        video.addEventListener('waiting', () => {
+          if (video.readyState >= video.HAVE_FUTURE_DATA) return
+          video.closest('figure')?.classList.add('is-buffering')
+        })
+      }
+
       // Reset scroll position, handling url hash
       if (next?.url.hash) next.container.getElementById(next.url.hash)?.scrollIntoView()
       else window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
