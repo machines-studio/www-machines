@@ -21,7 +21,7 @@
 
   // Display tooltip when filtering
   &:has(.filtered-out) .card-slot:not(.filtered-out) .card {
-    &::before {
+    &:not([data-chrome])::before {
       @include font('nav');
       @include easing(opacity);
 
@@ -46,8 +46,14 @@
       box-shadow: var(--box-shadow);
     }
 
-    &:hover::before {
+    &:not([data-chrome]):hover::before {
       opacity: 0;
+    }
+
+    &[data-chrome] {
+      --card-chrome-background: var(--color-black);
+      --card-chrome-color-text: var(--color-white);
+      --card-hover-chrome-color-text: var(--color-white);
     }
   }
 
