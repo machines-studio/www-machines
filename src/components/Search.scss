@@ -144,6 +144,10 @@
       background: var(--color-gray);
       outline: 0;
     }
+
+    &.is-active .parent {
+      color: var(--color-black);
+    }
   }
 
   #toggle-search:checked ~ & &__result { display: block; }
