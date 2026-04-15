@@ -57,7 +57,11 @@
       margin-bottom: var(--space-gutter);
     }
 
-    h2, h3, p, ul, ol {
+    h2, h3 {
+      padding-right: var(--space-gutter);
+    }
+
+    p, ul, ol {
       padding-right: var(--space-0);
     }
 
