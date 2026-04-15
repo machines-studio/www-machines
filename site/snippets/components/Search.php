@@ -38,6 +38,7 @@
               'sizes' => option('thumbs.sizes.small')
             ]) ?>
             <span class='title'><?= $project->title() ?></span>
+            <span class='parent'><?= $project->parent() ?></span>
           </a>
         </li>
       <?php endforeach ?>

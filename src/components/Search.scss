@@ -132,6 +132,12 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+
+      .parent {
+        margin-left: auto;
+        font-size: small;
+        color: var(--color-gray);
+      }
     }
 
     &.is-active a {
