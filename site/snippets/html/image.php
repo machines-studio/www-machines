@@ -24,6 +24,7 @@
     'sizes' => $sizes,
     'width' => $image->resize(1920)->width(),
     'height' => $image->resize(1920)->height(),
+    'data-orientation' => $image->orientation(),
     'decoding' => 'async',
     'draggable' => 'false',
     'style' => [

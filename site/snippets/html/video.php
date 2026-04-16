@@ -17,6 +17,12 @@
   $poster ??= $video->poster();
   $width ??= $poster?->width();
   $height ??= $poster?->height();
+  $orientation = $poster?->orientation() ?? (
+    // Fallback to 16:9
+    ($ratio = ($width ?? 16) / ($height ?? 9)) < 1
+      ? 'portrait'
+      : ($ratio === 1 ? 'square' : 'landscape')
+  );
 ?>
 
 <figure
@@ -35,6 +41,7 @@
       'alt' => $alt,
       'width' => $width,
       'height' => $height,
+      'data-orientation' => $orientation,
       'draggable' => 'false',
       'data-src' => $video->url(),
       'poster' => $poster?->url()

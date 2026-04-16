@@ -33,6 +33,18 @@ $handle-prefers-reduced-motion: true;
   }
 }
 
+@mixin portrait {
+  @media (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin landscape {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
 @mixin reduced-motion {
   @if $handle-prefers-reduced-motion {
     @media (prefers-reduced-motion) {

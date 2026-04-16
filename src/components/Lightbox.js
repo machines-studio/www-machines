@@ -28,11 +28,7 @@ export function hydrate (element) {
     })
 
     const element = figure.querySelector('img, video')
-    return element && {
-      index,
-      element,
-      type: element.tagName
-    }
+    return element && { element }
   }).filter(Boolean)
 
   element.addEventListener('click', handleClick)

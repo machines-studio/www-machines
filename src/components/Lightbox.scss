@@ -50,13 +50,37 @@
     }
 
     img, video {
-      width: auto;
-      height: auto;
-      max-height: 100%;
       margin: auto;
-
       background: none;
       border-radius: calc(var(--border-radius) / var(--scale, 1));
+
+      @include portrait {
+        &[data-orientation='landscape'] {
+          width: 100%;
+          height: auto;
+          max-height: 100%;
+        }
+
+        &[data-orientation='portrait'] {
+          width: auto;
+          height: 100%;
+          max-width: 100%;
+        }
+      }
+
+      @include landscape {
+        &[data-orientation='landscape'] {
+          width: 100%;
+          height: auto;
+          max-height: 100%;
+        }
+
+        &[data-orientation='portrait'] {
+          width: auto;
+          height: 100%;
+          max-width: 100%;
+        }
+      }
     }
 
     video[controls] {
