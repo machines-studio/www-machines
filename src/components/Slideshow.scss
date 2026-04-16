@@ -72,41 +72,9 @@
         height: auto;
         max-height: 100%;
         margin: auto;
+
         border-radius: 0;
         box-shadow: none;
-      }
-    }
-
-    @media (orientation: portrait) {
-      // Cas 4 : croppable true + invert → pas de crop en portrait
-      &[data-crop][data-crop-invert] figure {
-        display: flex;
-        align-items: center;
-        padding: var(--space-1);
-
-        img,
-        video {
-          width: auto;
-          height: auto;
-          max-height: 100%;
-          margin: auto;
-          border-radius: 0;
-          box-shadow: none;
-        }
-      }
-
-      // Cas 2 : croppable false + invert → crop en portrait
-      &:not([data-crop])[data-crop-invert] figure {
-        display: block;
-        padding: 0;
-
-        img,
-        video {
-          width: 100%;
-          height: 100%;
-          max-height: none;
-          margin: 0;
-        }
       }
     }
 

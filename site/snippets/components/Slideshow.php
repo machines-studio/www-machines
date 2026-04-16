@@ -33,7 +33,6 @@
           'class' => 'slideshow__slide',
           'data-type' => $media->type(),
           'data-crop' => $media->croppable()->isTrue(),
-          'data-crop-invert' => $media->mobile_invert()->isTrue(),
           'data-rounded' => $media->rounded()->isTrue(),
           'style' => $media->color()->isNotEmpty()
             ? '--slideshow-slide-background: ' . $media->color()

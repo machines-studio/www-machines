@@ -22,21 +22,16 @@ fields:
     translate: false
     label: field.blocks.image.crop
     type: toggle
-    width: 1/4
+    width: 1/2
     default: on
-
-  mobile_invert:
-    translate: false
-    label: Inverser en portrait (mobile)
-    type: toggle
-    width: 1/4
-    default: off
 
   color:
     translate: false
     label: Couleur d’arrière-plan
     extends: fields/color
     width: 1/4
+    when:
+      croppable: off
 
   rounded:
     translate: false
@@ -44,4 +39,5 @@ fields:
     type: toggle
     default: off
     width: 1/4
-
+    when:
+      croppable: off
