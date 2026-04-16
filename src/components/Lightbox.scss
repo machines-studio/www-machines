@@ -87,6 +87,12 @@ figure.has-lightbox {
       @include spinner;
     }
   }
+
+  .filler {
+    position: relative;
+    background: var(--color-gray);
+    border-radius: var(--border-radius);
+  }
 }
 
 body:has(.lightbox.is-open) {

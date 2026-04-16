@@ -31,8 +31,7 @@ export function hydrate (element) {
     return element && {
       index,
       element,
-      type: element.tagName,
-      src: element.dataset.src
+      type: element.tagName
     }
   }).filter(Boolean)
 
@@ -46,51 +45,30 @@ export function hydrate (element) {
   }
 
   async function open (index = 0) {
-    // Cleanup
-    if (slides[current]?.media) {
-      slides[current].media.style.display = 'none'
-      slides[current].media.pause?.()
-      slides[current].element.play?.()
-    }
+    cleanup(slides[current])
     placeholder.classList.remove('is-ready')
 
     current = index
     const slide = slides[current]
     if (!slide) return
 
-    // Populate placeholder, reusing media if possible
-    slide.media ??= (() => {
-      const media = document.createElement(slide.type)
-      media.decoding = 'sync'
-      media.loading = 'lazy'
-      media.src = slide.src
-      media.draggable = false
-      media.loop = true
-      media.controls = true
-      media.autoplay = true
-      media.currentTime = slide.element.currentTime
-      media.muted = false
-      placeholder.append(media)
+    // Create a filler to replace slide media
+    slide.filler = document.createElement('div')
+    slide.filler.classList.add('filler')
+    slide.filler.style.aspectRatio = slide.element.width / slide.element.height
+    slide.element.replaceWith(slide.filler)
 
-      mediaReady(media, m => m.classList.add('is-loaded'))
-      return media
-    })()
-
-    // Pause background element
-    slides[current].element.pause?.()
-
-    // Ensure reused media is shown
-    slide.media.play?.()
-    slide.media.style.display = ''
+    // Insert slide media into the lightbox
+    placeholder.append(slide.element)
 
     // Transition to fullscreen
     if (!reducedMotion && !element.classList.contains('is-open')) {
       // Avoid flash
-      await mediaReady(slide.media)
+      await mediaReady(slide.element)
       placeholder.classList.add('is-ready')
 
       // Compute transformation
-      const from = slide.element.getBoundingClientRect()
+      const from = slide.filler.getBoundingClientRect()
       const to = contain(from, { width: Viewport.$innerWidth, height: Viewport.$innerHeight }, {
         padding: parseInt(window.getComputedStyle(placeholder).paddingInline)
       })
@@ -119,13 +97,12 @@ export function hydrate (element) {
     element.classList.add('is-open')
   }
 
+  function cleanup (slide) {
+    slide?.filler.replaceWith(slide.element)
+  }
+
   function close () {
-    // Hide current slide for potential later use
-    if (slides[current]?.media) {
-      slides[current].media.style.display = 'none'
-      slides[current].media.pause?.()
-      slides[current].element.play?.()
-    }
+    cleanup(slides[current])
 
     element.classList.remove('is-open')
     placeholder.classList.remove('is-ready')
