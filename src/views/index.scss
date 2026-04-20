@@ -1,0 +1,97 @@
+main[data-barba-namespace='index'] {
+  padding-top: var(--menu-height);
+
+  h2 {
+    margin-left: calc(column-start(1) - 0.05em);
+
+    @include narrow {
+      margin-left: calc(var(--space-gutter) - 0.05em);
+    }
+  }
+
+  table {
+    position: relative;
+    width: column-span(6);
+    margin-bottom: var(--space-2);
+    margin-left: column-start(1);
+
+    @include narrow {
+      width: column-span(1, 1);
+      margin-inline: var(--space-gutter);
+    }
+
+    thead {
+      @include font('nav');
+
+      td {
+        @include no-select;
+        cursor: pointer;
+      }
+
+      td:not([data-sort])::after { content: '\00A0↑'; visibility: hidden; }
+      td[data-sort='ASC']::after { content: '\00A0↑'; }
+      td[data-sort='DESC']::after { content: '\00A0↓'; }
+    }
+
+    tbody {
+      tr {
+        cursor: pointer;
+
+        &:hover td:first-child::before,
+        &:focus-within td:first-child::before {
+          @include desktop {
+            content: '→\00A0';
+            position: absolute;
+            left: -2ch;
+
+            @include narrow {
+              @include font('nav');
+            }
+          }
+        }
+
+        &:first-child .card {
+          display: block;
+        }
+      }
+
+      tr + tr {
+        border-top: 1px solid;
+      }
+
+      td {
+        padding-block: var(--space-0);
+      }
+
+      td[data-content='parent'],
+      td[data-content='pubdate'] {
+        @include font('nav');
+      }
+
+      td[data-content='pubdate'] {
+        display: flex;
+        time + time::before { content: '\00A0→\00A0'; }
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    td + td {
+      padding-left: var(--space-0);
+    }
+
+    td[data-content='parent'] {
+      @include mobile {
+        text-align: right;
+      }
+    }
+
+    td[data-content='pubdate'] {
+      @include mobile {
+        display: none !important;
+      }
+    }
+  }
+}

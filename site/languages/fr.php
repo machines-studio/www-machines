@@ -17,6 +17,9 @@ return [
     'projects.filter.search.placeholder' => 'nom, année, tag…',
     'projects.filter.clear' => 'effacer',
     'search.placeholder' => 'Rechercher un projet',
-    'search.close' => 'fermer'
+    'search.close' => 'fermer',
+    'index.project' => 'Projet',
+    'index.category' => 'Catégorie',
+    'index.pubdate' => 'Date'
   ]
 ];

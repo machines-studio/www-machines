@@ -4,7 +4,8 @@ import mediaReady from '/utils/media-ready'
 ;(async () => {
   bootstrap({
     views: [
-      await import('/views/default')
+      await import('/views/default'),
+      await import('/views/index')
     ],
 
     components: {
