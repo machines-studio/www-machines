@@ -12,6 +12,9 @@ return [
     'projects.filter.search.placeholder' => 'name, year, tag…',
     'projects.filter.clear' => 'clear',
     'search.placeholder' => 'Search a project',
-    'search.close' => 'close'
+    'search.close' => 'close',
+    'index.project' => 'Project',
+    'index.category' => 'Category',
+    'index.pubdate' => 'Date'
   ]
 ];
