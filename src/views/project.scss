@@ -82,12 +82,17 @@ main[data-barba-namespace='project'] > .wrapper {
 
   > header > .card {
     $angle-range: 30deg;
+
+    // IMPORTANT $h-safe-zone + $h-gutter should be equal to 50%
+    $h-safe-zone: 30%; // width of zone on block center where no cards can spawn
+    $h-gutter: 20%; // width of spawn zone on left and right gutter of the block
+
     --card-offset-angle: calc(#{$angle-range} * sin(var(--card-seed)));
 
     position: absolute;
 
     // Random x on block width
-    right: calc((50% - var(--card-width) / 2) + 30% * sin(var(--card-seed)));
+    left: calc((50% - var(--card-width) / 2) + sign(sin(var(--card-seed))) * #{$h-safe-zone} + sin(var(--card-seed)) * #{$h-gutter});
 
     @include mobile {
       display: none;
