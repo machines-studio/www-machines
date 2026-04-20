@@ -1,17 +1,17 @@
 {
-  "_Pointer-BqMNmBor.js": {
-    "file": "assets/Pointer-BqMNmBor.js",
+  "_Pointer-BP3ZsvZt.js": {
+    "file": "assets/Pointer-BP3ZsvZt.js",
     "name": "Pointer",
     "imports": [
-      "_less-layout-trashing-b_qUhd2s.js"
+      "_less-layout-trashing-BhYNYSaW.js"
     ]
   },
   "_is-mobile-BO8lx5rq.js": {
     "file": "assets/is-mobile-BO8lx5rq.js",
     "name": "is-mobile"
   },
-  "_less-layout-trashing-b_qUhd2s.js": {
-    "file": "assets/less-layout-trashing-b_qUhd2s.js",
+  "_less-layout-trashing-BhYNYSaW.js": {
+    "file": "assets/less-layout-trashing-BhYNYSaW.js",
     "name": "less-layout-trashing",
     "imports": [
       "index.js"
@@ -52,41 +52,41 @@
     "isDynamicEntry": true
   },
   "components/Card.js": {
-    "file": "assets/Card-p5b4CwZS.js",
+    "file": "assets/Card-D-B_o99m.js",
     "name": "Card",
     "src": "components/Card.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
-      "_less-layout-trashing-b_qUhd2s.js",
+      "_less-layout-trashing-BhYNYSaW.js",
       "_missing-math.m-CBhLctOr.js",
-      "_Pointer-BqMNmBor.js",
+      "_Pointer-BP3ZsvZt.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
   },
   "components/Cards.Fan.js": {
-    "file": "assets/Cards.Fan-DFrBIkxp.js",
+    "file": "assets/Cards.Fan-BFBbnUSM.js",
     "name": "Cards.Fan",
     "src": "components/Cards.Fan.js",
     "isDynamicEntry": true,
     "imports": [
       "_is-mobile-BO8lx5rq.js",
       "_missing-math.m-CBhLctOr.js",
-      "_less-layout-trashing-b_qUhd2s.js",
+      "_less-layout-trashing-BhYNYSaW.js",
       "index.js"
     ]
   },
   "components/Clients.js": {
-    "file": "assets/Clients-DD538L3G.js",
+    "file": "assets/Clients-COi1czoj.js",
     "name": "Clients",
     "src": "components/Clients.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
-      "_Pointer-BqMNmBor.js",
+      "_Pointer-BP3ZsvZt.js",
       "_missing-math.m-CBhLctOr.js",
-      "_less-layout-trashing-b_qUhd2s.js",
+      "_less-layout-trashing-BhYNYSaW.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
@@ -98,24 +98,24 @@
     "isDynamicEntry": true
   },
   "components/Lightbox.js": {
-    "file": "assets/Lightbox-BZ4tgzQn.js",
+    "file": "assets/Lightbox-CQ99I43i.js",
     "name": "Lightbox",
     "src": "components/Lightbox.js",
     "isDynamicEntry": true,
     "imports": [
-      "_less-layout-trashing-b_qUhd2s.js",
+      "_less-layout-trashing-BhYNYSaW.js",
       "index.js",
       "_is-mobile-BO8lx5rq.js"
     ]
   },
   "components/Menu.js": {
-    "file": "assets/Menu-BtlsT1dH.js",
+    "file": "assets/Menu-A4jlvoI7.js",
     "name": "Menu",
     "src": "components/Menu.js",
     "isDynamicEntry": true,
     "imports": [
       "index.js",
-      "_less-layout-trashing-b_qUhd2s.js"
+      "_less-layout-trashing-BhYNYSaW.js"
     ]
   },
   "components/Projects.js": {
@@ -128,7 +128,7 @@
     ]
   },
   "components/Search.js": {
-    "file": "assets/Search-CAX_J65D.js",
+    "file": "assets/Search-C4QNDBW7.js",
     "name": "Search",
     "src": "components/Search.js",
     "isDynamicEntry": true,
@@ -148,26 +148,27 @@
     ]
   },
   "components/Tooltip.js": {
-    "file": "assets/Tooltip-CkAccrf6.js",
+    "file": "assets/Tooltip-0WJ14BxS.js",
     "name": "Tooltip",
     "src": "components/Tooltip.js",
     "isDynamicEntry": true,
     "imports": [
       "_raf-Be84MYDk.js",
       "_missing-math.m-CBhLctOr.js",
-      "_Pointer-BqMNmBor.js",
-      "_less-layout-trashing-b_qUhd2s.js",
+      "_Pointer-BP3ZsvZt.js",
+      "_less-layout-trashing-BhYNYSaW.js",
       "_is-mobile-BO8lx5rq.js",
       "index.js"
     ]
   },
   "index.js": {
-    "file": "assets/index-Cel9PNZW.js",
+    "file": "assets/index-KF51VEc9.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
     "dynamicImports": [
       "views/default.js",
+      "views/index.js",
       "components/Menu.js",
       "components/HueShifter.js",
       "components/Search.js",
@@ -183,7 +184,7 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-D7nzPbNv.css",
+    "file": "assets/index-C0YJNacC.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -206,9 +207,18 @@
     ]
   },
   "views/default.js": {
-    "file": "assets/default-DlY40_Vi.js",
+    "file": "assets/default-BuoXBZfV.js",
     "name": "default",
     "src": "views/default.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.js"
+    ]
+  },
+  "views/index.js": {
+    "file": "assets/index-CQ1TzW7e.js",
+    "name": "index",
+    "src": "views/index.js",
     "isDynamicEntry": true,
     "imports": [
       "index.js"
