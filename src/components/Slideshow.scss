@@ -41,23 +41,7 @@
   &.is-active &__slide { cursor: grabbing !important; }
 
   &__slide {
-    height: 100%;
-    min-width: 0;
-    margin-right: var(--space-gutter);
-    overflow: hidden;
-
-    flex: 0 0 100%;
-
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-
-    figure {
-      width: 100%;
-      height: 100%;
-      background: var(--slideshow-slide-background);
-    }
-
-    &:not([data-crop]) figure {
+    @mixin contain {
       display: flex;
       align-items: center;
       padding: var(--space-2);
@@ -77,6 +61,27 @@
         box-shadow: none;
       }
     }
+
+    height: 100%;
+    min-width: 0;
+    margin-right: var(--space-gutter);
+    overflow: hidden;
+
+    flex: 0 0 100%;
+
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+
+
+    figure {
+      width: 100%;
+      height: 100%;
+      background: var(--slideshow-slide-background);
+    }
+
+    &[data-crop='never'] figure { @include contain; }
+    &[data-crop='desktop'] figure {  @include mobile { @include contain; } }
+    &[data-crop='mobile'] figure {  @include desktop { @include contain; } }
 
     &[data-rounded] figure {
       img,

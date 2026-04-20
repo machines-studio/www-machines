@@ -21,17 +21,28 @@ fields:
   croppable:
     translate: false
     label: field.blocks.image.crop
-    type: toggle
+    type: toggles
     width: 1/2
-    default: on
+    default: never
+    options:
+      - value: never
+        text: jamais
+        icon: image
+      - value: always
+        text: toujours
+        icon: crop
+      - value: desktop
+        text: desktop
+        icon: display
+      - value: mobile
+        text: mobile
+        icon: mobile
 
   color:
     translate: false
     label: Couleur d’arrière-plan
     extends: fields/color
     width: 1/4
-    when:
-      croppable: off
 
   rounded:
     translate: false
@@ -39,5 +50,3 @@ fields:
     type: toggle
     default: off
     width: 1/4
-    when:
-      croppable: off
