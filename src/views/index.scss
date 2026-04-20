@@ -28,9 +28,10 @@ main[data-barba-namespace='index'] {
         cursor: pointer;
       }
 
-      td:not([data-sort])::after { content: '\00A0↑'; visibility: hidden; }
-      td[data-sort='ASC']::after { content: '\00A0↑'; }
-      td[data-sort='DESC']::after { content: '\00A0↓'; }
+      td:not([data-sort])::after { --arrow: '\00A0↑\00A0'; visibility: hidden; }
+      td[data-sort='ASC'] { --arrow: '\00A0↑\00A0'; }
+      td[data-sort='DESC'] { --arrow: '\00A0↓\00A0'; }
+      td::after { content: var(--arrow); }
     }
 
     tbody {
@@ -85,6 +86,8 @@ main[data-barba-namespace='index'] {
     td[data-content='parent'] {
       @include mobile {
         text-align: right;
+        &::after { display: none; }
+        &::before { content: var(--arrow); }
       }
     }
 
