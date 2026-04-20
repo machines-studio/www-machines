@@ -168,6 +168,7 @@
     "isEntry": true,
     "dynamicImports": [
       "views/default.js",
+      "views/index.js",
       "components/Menu.js",
       "components/HueShifter.js",
       "components/Search.js",
@@ -183,7 +184,7 @@
     ]
   },
   "index.scss": {
-    "file": "assets/index-D7nzPbNv.css",
+    "file": "assets/index-C0YJNacC.css",
     "src": "index.scss",
     "isEntry": true
   },
@@ -209,6 +210,15 @@
     "file": "assets/default-G4TAZlW4.js",
     "name": "default",
     "src": "views/default.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.js"
+    ]
+  },
+  "views/index.js": {
+    "file": "assets/index-CQ1TzW7e.js",
+    "name": "index",
+    "src": "views/index.js",
     "isDynamicEntry": true,
     "imports": [
       "index.js"
