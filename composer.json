@@ -6,7 +6,8 @@
     "getkirby/cms": "^5.0",
     "arnoson/kirby-vite": "^5.4.0",
     "php-ffmpeg/php-ffmpeg": "^1.3",
-    "johannschopplich/kirbylog": "^1.4"
+    "johannschopplich/kirbylog": "^1.4",
+    "sylvainjule/matomo": "^2.1"
   },
   "config": {
     "allow-plugins": {

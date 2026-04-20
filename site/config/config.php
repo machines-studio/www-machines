@@ -74,8 +74,9 @@ return [
     [
       '-',
       'users',
+      'matomo',
       'languages',
-      'system'
+      'system',
     ])
   ],
 
