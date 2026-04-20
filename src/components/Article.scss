@@ -52,6 +52,10 @@
   }
 
   > section.prose {
+    h2 {
+      margin-bottom: var(--space-2);
+    }
+
     p, ul {
       max-width: calc(#{column-span(6, 8, $breakpoint-wide)} - var(--space-2));
     }
