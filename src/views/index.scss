@@ -23,7 +23,7 @@ main[data-barba-namespace='index'] {
     thead {
       @include font('nav');
 
-      td {
+      td span {
         @include no-select;
         cursor: pointer;
       }
