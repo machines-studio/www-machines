@@ -4,7 +4,7 @@ import IS_MOBILE from '/utils/is-mobile'
 
 export const selector = '.lightbox'
 
-const FIGURE_SELECTOR = '.gallery figure'
+const FIGURE_SELECTOR = 'main:last-of-type .gallery figure'
 const PLACEHOLDER_TIMING = { duration: 300, easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)' }
 
 export function hydrate (element) {
