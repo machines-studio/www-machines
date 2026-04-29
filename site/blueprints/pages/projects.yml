@@ -20,4 +20,4 @@ tabs:
           pages:
             label: Projets
             extends: sections/pages
-            status: listed
+            status: published
