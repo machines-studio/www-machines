@@ -564,6 +564,13 @@
     estraverse "^5.3.0"
     picomatch "^4.0.2"
 
+"@tooooools/ui@2.0.0-alpha.1":
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@tooooools/ui/-/ui-2.0.0-alpha.1.tgz#7dd03a25e2aeb76a56e5f07a546f504e2845ec75"
+  integrity sha512-5eC7UV28jwUYw61SgHoUWJ2DgnIpeh9HAWhwbmzpdCEI0lngynsTsOy63gDvTjLyaQhpWFxBN410wAcP9V4QBQ==
+  dependencies:
+    debounce "^1.2.1"
+
 "@tybys/wasm-util@^0.10.0":
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/@tybys/wasm-util/-/wasm-util-0.10.1.tgz#ecddd3205cf1e2d5274649ff0eedd2991ed7f414"
@@ -1387,6 +1394,11 @@ date-fns@^2.30.0:
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
   dependencies:
     "@babel/runtime" "^7.21.0"
+
+debounce@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.1.tgz#38881d8f4166a5c5848020c11827b834bcb3e0a5"
+  integrity sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==
 
 debug@2.6.9, debug@^2.2.0:
   version "2.6.9"

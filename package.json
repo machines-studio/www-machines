@@ -36,6 +36,7 @@
     "@barba/core": "^2.10.0",
     "@barba/prefetch": "^2.2.0",
     "@internet/raf": "^0.2.1",
+    "@tooooools/ui": "2.0.0-alpha.1",
     "bowser": "^2.12.1",
     "embla-carousel": "^8.6.0",
     "missing-math": "^3.5.1"
