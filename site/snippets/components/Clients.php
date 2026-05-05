@@ -11,9 +11,10 @@
       <li class='clients__group'><?= $group ?></li>
 
       <?php foreach ($clients as $client) : ?>
+        <?php $index += 2 ?>
         <?php snippet('components/HueShifter', [
           'tag' => 'li',
-          'offset' => ++$index,
+          'offset' => $index,
           'attributes' => ['class' => 'clients__client']
         ], slots: true) ?>
           <?php slot('content') ?>
