@@ -5,8 +5,4 @@
 
 .hue-shifter {
   filter: hue-rotate(calc(var(--hue-offset, 0deg) + var(--hue-shift, 0deg)));
-
-  @include reduced-motion {
-    filter: none;
-  }
 }

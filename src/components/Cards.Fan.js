@@ -15,7 +15,6 @@ export function hydrate (element) {
 
   const Swipe = { start: [0, 0] }
   const slots = Array.from(element.querySelectorAll('.card-slot'))
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion)').matches
 
   for (let index = 0; index < slots.length; index++) {
     const slot = slots[index]
@@ -49,14 +48,14 @@ export function hydrate (element) {
       `
     }
 
-    if (!reducedMotion) await curr.animate([from, to], SWIPE_START_TIMING).finished
+    await curr.animate([from, to], SWIPE_START_TIMING).finished
 
     // Update z-index
     for (const slot of slots) {
       slot.style.zIndex = (slot === curr) ? 0 : (slot.style.zIndex + 1)
     }
 
-    if (!reducedMotion) curr.animate([to, from], SWIPE_END_TIMING)
+    curr.animate([to, from], SWIPE_END_TIMING)
   }
 
   function handleTouchStart (e) {

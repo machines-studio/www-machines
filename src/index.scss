@@ -100,12 +100,6 @@
     --body-text-decoration-thickness: 1.5px;
   }
 
-  @include reduced-motion {
-    --easing: 0ms;
-    --easing-fast: 0ms;
-    --easing-slow: 0ms;
-  }
-
   @include mobile {
     --space-0: 1rem;
     --space-1: 2rem;

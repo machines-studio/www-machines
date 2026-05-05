@@ -76,7 +76,7 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
       animation: logo-bounce 1s infinite;
 
       @include reduced-motion {
-        animation: none;
+        animation: logo-rotate var(--easing) var(--easing-ease-smooth) infinite;
       }
     }
 
@@ -228,6 +228,11 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
   70% { transform: rotate(180deg); }
   90% { transform: rotate(180deg) scaleX(1.1) scaleY(0.9) translateY(-10%); }
   100% { transform: rotate(180deg); }
+}
+
+@keyframes logo-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(120deg); }
 }
 
 @keyframes link-slide-in {

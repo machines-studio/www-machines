@@ -87,8 +87,6 @@ export function hydrate (element) {
     })
   }
 
-  if (!reducedMotion) autoplay.start()
-
   return {
     destroy: () => {
       embla.destroy()
