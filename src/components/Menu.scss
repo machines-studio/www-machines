@@ -198,6 +198,10 @@ body:has(#toggle-menu:checked) { overflow: hidden; }
       display: none;
     }
 
+    @include tiny {
+      top: 2.4rem;
+    }
+
     svg {
       overflow: visible;
     }

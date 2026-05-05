@@ -1,6 +1,6 @@
 $breakpoint-wide: 1500px;
 $breakpoint-narrow: 1024px;
-$breakpoint-mobile: 800px;
+$breakpoint-mobile: 720px;
 $handle-prefers-reduced-motion: true;
 
 @mixin wide {
@@ -23,6 +23,12 @@ $handle-prefers-reduced-motion: true;
 
 @mixin mobile {
   @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tiny {
+  @media (max-width: 360px) {
     @content;
   }
 }
