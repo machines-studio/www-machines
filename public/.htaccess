@@ -54,6 +54,9 @@ AddOutputFilterByType DEFLATE text/javascript
 AddOutputFilterByType DEFLATE application/json
 AddOutputFilterByType DEFLATE application/javascript
 AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE image/svg+xml
+AddOutputFilterByType DEFLATE font/woff2
+Header append Vary Accept-Encoding
 </IfModule>
 
 # set security headers in all responses
@@ -64,9 +67,25 @@ AddOutputFilterByType DEFLATE application/x-javascript
 Header set Content-Type "text/plain" "expr=-z %{CONTENT_TYPE}"
 Header set X-Content-Type-Options "nosniff"
 
-</IfModule>
+# no caching for HTML (Kirby renders dynamically)
+<FilesMatch "\.(html|php)$">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Pragma "no-cache"
+</FilesMatch>
 
-# long cache for hashed assets
+# long cache for hashed assets (CSS, JS)
 <FilesMatch "\.(css|js)$">
   Header set Cache-Control "public, max-age=31536000, immutable"
 </FilesMatch>
+
+# long cache for fonts
+<FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# long cache for images and media
+<FilesMatch "\.(ico|jpg|jpeg|png|gif|svg|webp|avif|mp4|webm|ogg)$">
+  Header set Cache-Control "public, max-age=31536000"
+</FilesMatch>
+
+</IfModule>
