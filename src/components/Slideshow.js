@@ -87,6 +87,8 @@ export function hydrate (element) {
     })
   }
 
+  autoplay.start()
+
   return {
     destroy: () => {
       embla.destroy()
