@@ -1,3 +1,5 @@
+<link rel='canonical' href='<?= $page->urlForLanguage('fr') ?>' />
+
 <link rel='icon' type='image/png' href='/assets/favicons/favicon-96x96.png' sizes='96x96' />
 <link rel='icon' type='image/svg+xml' href='/assets/favicons/favicon.svg' />
 <link rel='shortcut icon' href='/assets/favicons/favicon.ico' />
@@ -6,6 +8,7 @@
 <link rel='manifest' href='/assets/favicons/site.webmanifest' />
 <meta name='theme-color' content='#e4e4e4' />
 
+<link rel='alternate' hreflang='x-default' href='<?= $page->urlForLanguage('fr') ?>' />
 <?php foreach ($kirby->languages() as $language) : ?>
   <link rel='alternate' hreflang='<?= $language->code() ?>' href='<?= $page->url($language->code()) ?>' />
 <?php endforeach ?>
@@ -28,7 +31,7 @@
     'application-name' => $title,
     'description' => $description,
     'keywords' => $keywords,
-    'og:url' => $site->url(),
+    'og:url' => $page->urlForLanguage('fr'),
     'og:type' => 'website',
     'og:title' => $title,
     'og:image' => $cover?->url(),
