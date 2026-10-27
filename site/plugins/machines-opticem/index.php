@@ -14,6 +14,13 @@ use Kirby\Content\Field;
 Kirby::plugin('machines/opticem', [
   'fieldMethods' => [
     'kirbytext' => function (Field $field, array $options = []) : Field {
+      // Overriding the core field method: run the core kirbytext first so
+      // that kirbytext parsing and hooks (e.g. machines/anchors) still apply
+      $field->value = kirby()->kirbytext($field->value, array_merge($options, [
+        'parent' => $field->parent(),
+        'field' => $field
+      ]));
+
       if (preg_match('/<p><em\b/i', $field->value ?? '')) {
         $field->value = preg_replace(
           '/<p><em\b/i',
