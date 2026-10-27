@@ -68,8 +68,9 @@ export function getElementRectangle (element) {
 
     update,
     destroy: () => {
-      RECTANGLES.delete(update)
+      RECTANGLES.delete(element)
       window.removeEventListener('resize', update)
+      element.removeEventListener('animationend', update)
     }
   }
 
