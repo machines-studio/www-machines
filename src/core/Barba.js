@@ -29,8 +29,16 @@ export function bootstrap ({
 
   const refs = new Set()
 
-  Barba.hooks.afterEnter(({ next }) => {
+  Barba.hooks.afterEnter(({ next, trigger }) => {
     try {
+      // Restore url hash, as Barba replaces next.url (and history) with the
+      // XHR responseURL, which never includes the hash
+      if (trigger?.hash && !next.url.hash) {
+        next.url.hash = trigger.hash.slice(1)
+        next.url.href = next.url.href.split('#')[0] + trigger.hash
+        window.history.replaceState(window.history.state, '', next.url.href)
+      }
+
       // Hydrate all possible components, keeping a ref
       for (const { selector, hydrate } of components.local) {
         for (const el of next.container.querySelectorAll(selector)) {

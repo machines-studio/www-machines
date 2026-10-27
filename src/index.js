@@ -50,7 +50,7 @@ import mediaReady from '/utils/media-ready'
       }
 
       // Reset scroll position, handling url hash
-      if (next?.url.hash) next.container.getElementById(next.url.hash)?.scrollIntoView()
+      if (next?.url.hash) next.container.querySelector(`#${CSS.escape(next.url.hash)}`)?.scrollIntoView()
       else window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     }
   })

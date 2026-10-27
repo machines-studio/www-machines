@@ -12,6 +12,10 @@
         ]
       ],
       [
+        'url' => page('about')->url() . '#contact',
+        'title' => 'contact'
+      ],
+      [
         'url' => r($site->instagram()->isNotEmpty(), 'https://instagram.com/' . $site->instagram()),
         'title' => 'instagram'
       ]
